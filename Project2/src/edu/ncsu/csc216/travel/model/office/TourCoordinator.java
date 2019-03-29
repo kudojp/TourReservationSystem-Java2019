@@ -8,6 +8,7 @@ import java.time.LocalDate;
 import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
 import edu.ncsu.csc216.travel.list_utils.SortedLinkedListWithIterator;
 import edu.ncsu.csc216.travel.model.participants.Client;
+import edu.ncsu.csc216.travel.model.vacation.CapacityException;
 import edu.ncsu.csc216.travel.model.vacation.Reservation;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
 
@@ -19,17 +20,52 @@ import edu.ncsu.csc216.travel.model.vacation.Tour;
  */
 public class TourCoordinator implements TravelManager {
 	
+	/** true whenever the TourCoordinator data has not been saved to a file and false otherwise */
+	private boolean dataNotSaved;
 	/** List of customers */
 	private SimpleArrayList<Client> customer;
 	/** List of tours*/
 	private SortedLinkedListWithIterator<Tour> tours;
+	/** String which represents a kind of Tour for filtering */
+	private String kindFilter;
+	/** integer which represents the input of min duration for filtering */
+	private int durationMinFilter;
+	/** integer which represents the inpur of max duration for filtering */
+	private int durationMaxFilter;
 
 	/**
-	 * Constructs TourCoord
+	 * Constructs TourCoordinator object.
+	 * This is a private constructor and called only in getInstance() method only if this class has not been instantiated.
 	 */
-	public TourCoordinator() {
+	private TourCoordinator() {
 		// TODO Auto-generated constructor stub
 	}
+	
+	/**
+	 * Returns the only instance of this of this class.
+	 * (If it has not been instantiated yet, it would be.)
+	 * @return : TourCoordinator object 
+	 */
+	public static TourCoordinator getInstance() {
+		return null;
+	}
+	
+	
+	/**
+	 * Clears all client and tour data from the customer and tours lists, sets TourCoordinator.dataNotSaved to false, and notifies observers. 
+	 */
+	public void flushList() {
+		// (Note that the other method that sets TourCoordinator.dataNotSaved to false is TourCoordinator.saveToFile().)
+	}
+	
+	/**
+	 * Returns true if the data has not been saved and should be saved
+	 * @return : true if data should be saved
+	 */
+	public boolean dataShouldBeSaved() {
+		return false;
+	}
+	
 
 	/* (non-Javadoc)
 	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#setFilters(java.lang.String, int, int)
