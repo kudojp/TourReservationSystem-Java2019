@@ -21,13 +21,19 @@ public class Client {
 
 	/**
 	 * Constructs new Client objects with the name and contact info.
+	 *  If any actual parameters to a Client method are illegal, the method should throw an IllegalArgumentException
 	 * @param name : name of the client
 	 * @param contact : contact info of the client
 	 */
 	public Client(String name, String contact) {
+		
+		// If any actual parameters to a Client method are illegal 
+		//(such as names not starting with alphabetic characters or indexes out of bounds),
+		//the method should throw an IllegalArgumentException
+		
 		this.name = name;
 		this.contact = contact;
-		this.myReservations = new SimleArrayList<Reservation>();
+		this.myReservations = new SimpleArrayList<Reservation>();
 	}
 
 	/**
@@ -62,6 +68,23 @@ public class Client {
 		return null;
 	}
 	
+	/**
+	 * Returns number of total reservation by this client.
+	 * @return number of total reservation
+	 */
+	public int totalReservation() {
+		return this.totalReservation();
+	}
+	
+	/**
+	 * Adds a Reservation object to the this Client’s list.
+	 * Throws an IllegalArgumentException if the client for the reservation is not this client.
+	 * Note: This method should not attempt to add the reservation to the corresponding tour.
+	 * @param res : Reservation object to be added
+	 */
+	public void addReservationo(Reservation res) {
+		//pass
+	}
 	
 
 	/**
@@ -71,23 +94,4 @@ public class Client {
 	public void setName(String name) {
 		this.name = name;
 	}
-
-	/**
-	 * @param contact the contact to set
-	 */
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
-
-	/**
-	 * @param myReservations the myReservations to set
-	 */
-	public void setMyReservations(SimpleArrayList<Reservation> myReservations) {
-		this.myReservations = myReservations;
-	}
-	
-	
-	
-	
-
 }
