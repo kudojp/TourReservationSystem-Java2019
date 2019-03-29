@@ -11,6 +11,9 @@ import java.time.LocalDate;
  *
  */
 public class RiverCruise extends Tour {
+	
+	/** prefix which represents EducationalTrip */
+	private static String prefix = "RC-";
 
 	/**
 	 * Constructs RiverCruise object.

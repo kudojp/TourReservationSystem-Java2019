@@ -11,6 +11,9 @@ import java.time.LocalDate;
  *
  */
 public class EducationalTrip extends Tour {
+	
+	/** prefix which represents EducationalTrip */
+	private static String prefix = "ED-";
 
 	/**
 	 * Constructs EducationalTrip object

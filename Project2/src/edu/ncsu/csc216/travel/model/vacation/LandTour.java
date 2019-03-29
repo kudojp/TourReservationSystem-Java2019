@@ -11,6 +11,9 @@ import java.time.LocalDate;
  *
  */
 public class LandTour extends Tour {
+	
+	/** prefix which represents EducationalTrip */
+	private static String prefix = "LT-";
 
 	/**
 	 * Constructs LandTour object
