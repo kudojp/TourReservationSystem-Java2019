@@ -9,10 +9,11 @@ import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
 import edu.ncsu.csc216.travel.model.participants.Client;
 
 /**
+ * Tour abstract class which is extended by 3 subclasses : EducationalTrip, LandTour, and RiverCruise classes.
  * @author dkudo
  *
  */
-public abstract class Tour {
+public abstract class Tour implements Comparable<Tour> {
 	/** name of this Tour */
 	private String name;
 	/** start time of this Tour */
@@ -77,15 +78,15 @@ public abstract class Tour {
 	 *  Returns the number spaces on this tour not yet reserved
 	 * @return : the number of left spaces
 	 */
-	public int numberOfClientsReservation() {
+	public int numberOfClientReservations() {
 		return 0;
 	}
 	
 	/**
-	 * 
-	 * @return
+	 * Returns the number of spaces left.
+	 * @return : number of spaces left
 	 */
-	public int spaceLeft() {
+	public int spacesLeft() {
 		return 0;
 	}
 	
@@ -146,8 +147,9 @@ public abstract class Tour {
 	}
 
 	/**
-	 * Retu
-	 * @return 
+	 * Returns Reservation object at given index.
+	 * @param i : index for searching
+	 * @return Reservation object searched
 	 */
 	public Reservation getReservation(int i) {
 		return null;
@@ -161,11 +163,19 @@ public abstract class Tour {
 		this.capacityFixed = true;
 	}
 	
-	
+	/**
+	 * Returns the summary description of this Tour.
+	 * @return : summary of this Tour
+	 */
 	public String summaryInfo() {
 		return "";
 	}
 	
+	/**
+	 * Returns the hashCode of this Tour.
+	 * Used in eauals() method.
+	 * @return : hashCode of this Tour
+	 */
 	public int hashCode() {
 		return 0;
 	}
@@ -179,6 +189,10 @@ public abstract class Tour {
 		return false;
 	}
 	
+	/**
+	 * Returns array including all data of this Tour.
+	 * @return : array representing this Tour
+	 */
 	public Object[] getAllData() {
 		return null;
 	}

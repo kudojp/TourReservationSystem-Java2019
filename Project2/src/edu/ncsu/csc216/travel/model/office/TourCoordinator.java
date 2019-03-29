@@ -5,6 +5,8 @@ package edu.ncsu.csc216.travel.model.office;
 
 import java.time.LocalDate;
 
+import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
+import edu.ncsu.csc216.travel.list_utils.SortedLinkedListWithIterator;
 import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.Reservation;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
@@ -16,6 +18,11 @@ import edu.ncsu.csc216.travel.model.vacation.Tour;
  * 
  */
 public class TourCoordinator implements TravelManager {
+	
+	/** List of customers */
+	private SimpleArrayList<Client> customer;
+	/** List of tours*/
+	private SortedLinkedListWithIterator<Tour> tours;
 
 	/**
 	 * Constructs TourCoord
