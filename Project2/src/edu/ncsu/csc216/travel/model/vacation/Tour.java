@@ -6,7 +6,7 @@ package edu.ncsu.csc216.travel.model.vacation;
 import java.time.LocalDate;
 
 import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
-import edu.ncsu.csc216.travel.model.participant.Client;
+import edu.ncsu.csc216.travel.model.participants.Client;
 
 /**
  * @author dkudo

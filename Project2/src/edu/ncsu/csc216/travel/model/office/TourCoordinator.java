@@ -5,7 +5,7 @@ package edu.ncsu.csc216.travel.model.office;
 
 import java.time.LocalDate;
 
-import edu.ncsu.csc216.travel.model.participant.Client;
+import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.Reservation;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
 

@@ -3,7 +3,7 @@
  */
 package edu.ncsu.csc216.travel.model.vacation;
 
-import edu.ncsu.csc216.travel.model.participant.Client;
+import edu.ncsu.csc216.travel.model.participants.Client;
 
 /**
  * Reservation class which represents the reservation by a Client

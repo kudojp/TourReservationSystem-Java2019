@@ -1,7 +1,7 @@
 /**
  * 
  */
-package edu.ncsu.csc216.travel.model.participant;
+package edu.ncsu.csc216.travel.model.participants;
 
 import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
 import edu.ncsu.csc216.travel.model.vacation.Reservation;
