@@ -4,7 +4,7 @@
 package edu.ncsu.csc216.travel.model.office;
 
 /**
- * DuplocateClientException class which is used which is used  when a duplicated client is attempted to be made.
+ * DuplicateClientException class which is used which is used  when a duplicated client is attempted to be made.
  * @author dkudo
  *
  */
