@@ -111,4 +111,23 @@ public class Client {
 	public String[] listOfReservations() {
 		return null;
 	}
+	
+	
+	/**
+	 * Returns String summary of this Client.
+	 * @return : summary 
+	 */
+	public String summaryInfo() {
+		return "";
+	}
+	
+	
+	/**
+	 * Returns hashCode of this Client object.
+	 * @return : hashCode 
+	 * 
+	 */
+	public int hashCode() {
+		return 0;
+	}
 }

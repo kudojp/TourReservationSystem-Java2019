@@ -15,6 +15,14 @@ import org.junit.Test;
 public class ClientTest {
 
 	/**
+	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#hashCode()}.
+	 */
+	@Test
+	public void testHashCode() {
+		fail("Not yet implemented");
+	}
+
+	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#Client(java.lang.String, java.lang.String)}.
 	 */
 	@Test
@@ -91,6 +99,14 @@ public class ClientTest {
 	 */
 	@Test
 	public void testListOfReservations() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#summaryInfo()}.
+	 */
+	@Test
+	public void testSummaryInfo() {
 		fail("Not yet implemented");
 	}
 
