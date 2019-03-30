@@ -70,8 +70,9 @@ public abstract class Tour implements Comparable<Tour> {
 	/**
 	 * Sets the capacity to given integer.
 	 * @param capacity : capacity which this Tour's capacity should be set on
+	 * @throws 
 	 */
-	protected void setCapacity(int capacity) {
+	protected void setCapacity(int capacity) throws CapacityException{
 		//PASS
 	}
 	
@@ -243,13 +244,13 @@ public abstract class Tour implements Comparable<Tour> {
 	public Reservation addOldReservation(Reservation res) throws CapacityException {
 		//Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.
 		//should ask the corresponding clients to add the reservation to their lists of reservations.
-		//This method should not be overrided under the assumption that any capacity expansion would have already taken place when the reservation was initially created.
+		//This method should not be overridden under the assumption that any capacity expansion would have already taken place when the reservation was initially created.
 		return null;
 	}
 	
 	/**
-	 * Cancels the given Reservation from the Reservaiton list of this Tour.
-	 * @param res Reservation object which should be cannceled
+	 * Cancels the given Reservation from the Reservation list of this Tour.
+	 * @param res Reservation object which should be cancelled
 	 */
 	public void cancelReservation(Reservation res) {
 		//pass
