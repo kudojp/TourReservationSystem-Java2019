@@ -94,4 +94,12 @@ public class Client {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	/**
+	 * TODO
+	 * @return : TODO
+	 */
+	private String[] listOfObservations() {
+		return null;
+	}
 }
