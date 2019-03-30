@@ -30,6 +30,16 @@ public class EducationalTrip extends Tour {
 	}
 
 	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.travel.model.vacation.Tour#getName()
+	 */
+	@Override
+	public String getName() {
+		// TODO Auto-generated method stub
+		return super.getName();
+	}
+
+	
+	/* (non-Javadoc)
 	 * @see edu.ncsu.csc216.travel.model.vacation.Tour#costFor(int)
 	 */
 	@Override
