@@ -8,7 +8,8 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author admin
+ * Test clss for Tour class.
+ * @author dkudo
  *
  */
 public class TourTest {

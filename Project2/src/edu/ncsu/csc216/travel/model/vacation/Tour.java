@@ -38,6 +38,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @param duration : duration of the Tour
 	 * @param basePrice : basePrice of the Tour
 	 * @param capacity : capacity of the Tour
+	 * @throws IllegalArgumentException : if any parameters are not valid 
 	 */
 	public Tour(String name, LocalDate start, int duration, int basePrice, int capacity) {
 		// The constructor should throw an IllegalArgumentException if any parameters are not valid 
@@ -55,7 +56,7 @@ public abstract class Tour implements Comparable<Tour> {
 	/**
 	 * Compares the given Tour object with this Tour object
 	 * @return −1 (if the given is smaller than this), 0 (if the given is equal to this), 1(if given is larger than this)
-	 * @param another : another Tour object tobe compared   
+	 * @param another : another Tour object to be compared   
 	 */
 	public int compareTo(Tour another) {
 		
@@ -173,7 +174,7 @@ public abstract class Tour implements Comparable<Tour> {
 	
 	/**
 	 * Returns the hashCode of this Tour.
-	 * Used in eauals() method.
+	 * Used in equals() method.
 	 * @return : hashCode of this Tour
 	 */
 	public int hashCode() {
@@ -222,8 +223,9 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @param i : number of parties including the Client
 	 * @return : Reservation object which is by the party
 	 * @throws CapacityException : if the tour cannot accommodate the number of people in the reservation party
+	 * @throws IllegalArgumentException : if any of parameters is invalid.
 	 */
-	public Reservation createReservationFor(Client c, int i) {
+	public Reservation createReservationFor(Client c, int i) throws CapacityException {
 		//Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.
 		//should ask the corresponding clients to add the reservation to their lists of reservations.
 		//EducationalTrip.createReservation() should override the parent’s method in order to attempt expanding the capacity when needed. 
@@ -236,8 +238,9 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @param res : Reservation object to be added
 	 * @return : Reservation object which is added
 	 * @throws CapacityException : if the tour cannot accommodate the number of people in the reservation party
+	 * @throws IllegalArgumentException : if parameter is invalid.
 	 */
-	public Reservation addOldReservation(Reservation res) {
+	public Reservation addOldReservation(Reservation res) throws CapacityException {
 		//Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.
 		//should ask the corresponding clients to add the reservation to their lists of reservations.
 		//This method should not be overrided under the assumption that any capacity expansion would have already taken place when the reservation was initially created.

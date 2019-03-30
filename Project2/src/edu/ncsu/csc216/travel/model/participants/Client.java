@@ -81,6 +81,7 @@ public class Client {
 	 * Throws an IllegalArgumentException if the client for the reservation is not this client.
 	 * Note: This method should not attempt to add the reservation to the corresponding tour.
 	 * @param res : Reservation object to be added
+	 * @throws IllegalArgumentException : if the client for the reservation is not for this client
 	 */
 	public void addReservation(Reservation res) {
 		//pass
