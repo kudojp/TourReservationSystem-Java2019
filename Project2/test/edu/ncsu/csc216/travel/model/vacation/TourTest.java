@@ -8,8 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Test class for Tour class
- * @author dkudo
+ * @author admin
  *
  */
 public class TourTest {
@@ -35,6 +34,14 @@ public class TourTest {
 	 */
 	@Test
 	public void testCompareTo() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#setCapacity(int)}.
+	 */
+	@Test
+	public void testSetCapacity() {
 		fail("Not yet implemented");
 	}
 

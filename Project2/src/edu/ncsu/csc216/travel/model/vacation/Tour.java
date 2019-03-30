@@ -70,7 +70,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * Sets the capacity to given integer.
 	 * @param capacity : capacity which this Tour's capacity should be set on
 	 */
-	private void setCapacity(int capacity) {
+	protected void setCapacity(int capacity) {
 		//PASS
 	}
 	
