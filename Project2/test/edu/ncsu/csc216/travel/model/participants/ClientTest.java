@@ -63,10 +63,10 @@ public class ClientTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#addReservationo(edu.ncsu.csc216.travel.model.vacation.Reservation)}.
+	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#addReservation(edu.ncsu.csc216.travel.model.vacation.Reservation)}.
 	 */
 	@Test
-	public void testAddReservationo() {
+	public void testAddReservation() {
 		fail("Not yet implemented");
 	}
 

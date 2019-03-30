@@ -82,7 +82,7 @@ public class Client {
 	 * Note: This method should not attempt to add the reservation to the corresponding tour.
 	 * @param res : Reservation object to be added
 	 */
-	public void addReservationo(Reservation res) {
+	public void addReservation(Reservation res) {
 		//pass
 	}
 	
