@@ -11,6 +11,7 @@ import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.CapacityException;
 import edu.ncsu.csc216.travel.model.vacation.Reservation;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
+import edu.ncsu.csc216.travel.ui.TravelGUI;
 
 /**
  * TourCoordinator class which provides the glue to coordinate the data for the backend model classes.
@@ -54,7 +55,7 @@ public class TourCoordinator implements TravelManager {
 	/**
 	 * Clears all client and tour data from the customer and tours lists, sets TourCoordinator.dataNotSaved to false, and notifies observers. 
 	 */
-	public void flushList() {
+	public void flushLists() {
 		// (Note that the other method that sets TourCoordinator.dataNotSaved to false is TourCoordinator.saveToFile().)
 	}
 	
@@ -66,6 +67,14 @@ public class TourCoordinator implements TravelManager {
 		return false;
 	}
 	
+	/**
+	 * TODO
+	 * @param travelGUI : TODO
+	 */
+	public void addObserver(TravelGUI travelGUI) {
+		// TODO Auto-generated method stub
+		
+	}	
 
 	/* (non-Javadoc)
 	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#setFilters(java.lang.String, int, int)
