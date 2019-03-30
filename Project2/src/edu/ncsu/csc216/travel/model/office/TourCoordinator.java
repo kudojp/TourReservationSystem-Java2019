@@ -4,6 +4,7 @@
 package edu.ncsu.csc216.travel.model.office;
 
 import java.time.LocalDate;
+import java.util.Observable;
 
 import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
 import edu.ncsu.csc216.travel.list_utils.SortedLinkedListWithIterator;
@@ -19,7 +20,7 @@ import edu.ncsu.csc216.travel.ui.TravelGUI;
  * @author dkudo
  * 
  */
-public class TourCoordinator implements TravelManager {
+public class TourCoordinator extends Observable implements TravelManager {
 	
 	/** true whenever the TourCoordinator data has not been saved to a file and false otherwise */
 	private boolean dataNotSaved;
