@@ -71,6 +71,14 @@ public class ClientTest {
 	}
 
 	/**
+	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#cancelReservation(edu.ncsu.csc216.travel.model.vacation.Reservation)}.
+	 */
+	@Test
+	public void testCancelReservation() {
+		fail("Not yet implemented");
+	}
+
+	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#setName(java.lang.String)}.
 	 */
 	@Test

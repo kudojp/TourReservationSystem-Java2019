@@ -86,6 +86,15 @@ public class Client {
 		//pass
 	}
 	
+	
+	/**
+	 * Cancels a given reservation.
+	 * @param res : reservation to be removed
+	 */
+	public void cancelReservation(Reservation res) {
+		//pass
+	}
+	
 
 	/**
 	 * Sets the name of this client
