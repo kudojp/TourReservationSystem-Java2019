@@ -31,10 +31,10 @@ public class ReservationTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Reservation#Reservation(edu.ncsu.csc216.travel.model.vacation.Tour, edu.ncsu.csc216.travel.model.participants.Client, int, java.lang.String)}.
+	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Reservation#Reservation(edu.ncsu.csc216.travel.model.vacation.Tour, edu.ncsu.csc216.travel.model.participants.Client, int, int)}.
 	 */
 	@Test
-	public void testReservationTourClientIntString() {
+	public void testReservationTourClientIntInt() {
 		fail("Not yet implemented");
 	}
 

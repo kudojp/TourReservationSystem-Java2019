@@ -51,7 +51,7 @@ public class Reservation {
 	 * @param numInParty : the number of party for this Reservation
 	 * @param code : Confirmation code of this Reservation
 	 */
-	public Reservation(Tour tour, Client client, int numInParty, String code) {
+	public Reservation(Tour tour, Client client, int numInParty, int code) {
 		//pass
 		
 	}
