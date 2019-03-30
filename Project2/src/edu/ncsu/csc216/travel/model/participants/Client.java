@@ -69,11 +69,11 @@ public class Client {
 	}
 	
 	/**
-	 * Returns number of total reservation by this client.
+	 * Returns number of total reservation cost by this client.
 	 * @return number of total reservation
 	 */
-	public int totalReservation() {
-		return this.totalReservation();
+	public int totalReservationCost() {
+		return 0;
 	}
 	
 	/**
