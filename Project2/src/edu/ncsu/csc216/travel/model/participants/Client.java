@@ -99,7 +99,7 @@ public class Client {
 	 * TODO
 	 * @return : TODO
 	 */
-	private String[] listOfReservations() {
+	public String[] listOfReservations() {
 		return null;
 	}
 }
