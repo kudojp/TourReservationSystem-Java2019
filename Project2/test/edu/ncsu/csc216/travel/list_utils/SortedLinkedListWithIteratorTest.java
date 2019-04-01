@@ -332,5 +332,9 @@ public class SortedLinkedListWithIteratorTest {
 		
 		assertFalse(c.hasNext());
 		
+		
+		
+		SortedLinkedListWithIterator<String> l2 = new SortedLinkedListWithIterator<String>();
+		assertEquals("[]", l2.toString());
 	}
 }

@@ -188,12 +188,19 @@ public class SortedLinkedListWithIterator<E extends Comparable<E>> implements So
 	 */
 	@Override
 	public String toString() {
-		String str  = "";
 		SimpleListIterator<E> c = this.iterator();
+		
+		// in the case where there is no element.
+		if (!c.hasNext()) {
+			return  "[]";
+		}
+		
+		// otherwise
+		String str  = "[";
 		while (c.hasNext()) {
 			str += c.next() + ",";
 		}
-		return "[" + str.substring(0, str.length() - 1) + "]";
+		return str.substring(0, str.length() - 1) + "]";
 	}
 	
 	
