@@ -30,7 +30,6 @@ package edu.ncsu.csc216.travel.list_utils;
  * @see AbstractSequentialList
  * @since 1.2
  */
-
 public interface SortedList<E extends Comparable<E>> {
 
 

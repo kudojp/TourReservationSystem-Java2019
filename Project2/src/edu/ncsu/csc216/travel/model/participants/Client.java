@@ -62,6 +62,7 @@ public class Client {
 	
 	/**
 	 * Returns the client’s reservation at the given position, where position numbering starts at 0.
+	 * @param i : index of Reservation to be returned
 	 * @return the reservation at given index
 	 */
 	public Reservation getReservation(int i) {
