@@ -28,11 +28,15 @@ public class SimpleArrayList<E> implements SimpleList<E> {
 	
 	/**
 	 * Constructs SimpleArrayList of a given size.
-	 * @param initialSize : internal maximum size for initialization
+	 * @param initialCap : internal maximum size for initialization
+	 * @throws IllegalArgumentException : if given capacity is 0 or less.
 	 */
 	@SuppressWarnings("unchecked")
-	public SimpleArrayList(int initialSize) {
-		this.list = (E[]) new Object[initialSize];
+	public SimpleArrayList(int initialCap) {
+		if (initialCap <= 0) {
+			throw new IllegalArgumentException();
+		}
+		this.list = (E[]) new Object[initialCap];
 		this.size = 0;
 	}
 	
@@ -76,13 +80,18 @@ public class SimpleArrayList<E> implements SimpleList<E> {
 	    // @throws IndexOutOfBoundsException if the index is out of range 
 	    //             (pos < 0 || pos > size())
 		
-		if (e == null) {
-			throw new NullPointerException();
-		}
 		
 		if (pos < 0 || pos > size()) {
 			throw new IndexOutOfBoundsException();
 		}		
+		
+		if (e == null) {
+			throw new NullPointerException();
+		}
+		
+		if (this.contains(e)) {
+			throw new IllegalArgumentException();
+		}
 		
 		// if the current array is full of elements
 		if (this.list.length == this.size()) {
