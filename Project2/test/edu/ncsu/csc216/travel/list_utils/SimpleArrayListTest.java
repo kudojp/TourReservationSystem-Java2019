@@ -119,7 +119,7 @@ public class SimpleArrayListTest {
 	}
 	
 	/**
-	 * Tests isEmpty() and contains() and get()
+	 * Tests isEmpty() and contains() and get() and indexOf()
 	 */
 	@Test
 	public void testOthers() {
@@ -144,7 +144,9 @@ public class SimpleArrayListTest {
 		
 		assertTrue(l.contains("a"));
 		assertFalse(l.contains("not"));
-			
 		
+		assertEquals(1, l.indexOf("b"));
+		assertEquals(-1, l.indexOf("not"));
+			
 	}
 }

@@ -144,7 +144,12 @@ public class SimpleArrayList<E> implements SimpleList<E> {
 	public int indexOf(E e) {
 		// @return the index of the first occurrence of the specified element in
 	    //         this list, or -1 if this list does not contain the element
-		return 0;
+		for (int i = 0 ; i < this.size ; i++) {
+			if (this.list[i] == e) {
+				return i;
+			}
+		}
+		return -1;
 	}
 
 }
