@@ -300,6 +300,21 @@ public class SortedLinkedListWithIteratorTest {
 	}
 	
 	/**
+	 * Tests toString() method.
+	 */
+	@Test
+	public void TestToString() {
+		SortedLinkedListWithIterator<String> list = new SortedLinkedListWithIterator<String>();
+
+		// Add some elements
+		list.add("c");
+		list.add("b");
+		list.add("a");
+		
+		assertEquals("[a,b,c]",list.toString());
+	}
+	
+	/**
 	 * Tests iterator() method and Cursor (i.e. inner class)
 	 */
 	@Test
@@ -316,8 +331,6 @@ public class SortedLinkedListWithIteratorTest {
 		assertEquals("b", c.next());
 		
 		assertFalse(c.hasNext());
-		
-		
 		
 	}
 }

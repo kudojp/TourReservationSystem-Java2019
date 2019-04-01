@@ -188,7 +188,12 @@ public class SortedLinkedListWithIterator<E extends Comparable<E>> implements So
 	 */
 	@Override
 	public String toString() {
-		return "";
+		String str  = "[";
+		SimpleListIterator<E> c = this.iterator();
+		while (c.hasNext()) {
+			str += c.next() + ",";
+		}
+		return str.substring(0, str.length() - 1) + "]";
 	}
 	
 	
