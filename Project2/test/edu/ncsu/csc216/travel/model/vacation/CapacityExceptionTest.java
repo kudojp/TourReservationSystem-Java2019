@@ -19,7 +19,8 @@ public class CapacityExceptionTest {
 	 */
 	@Test
 	public void testCapacityException() {
-		fail("Not yet implemented");
+		CapacityException e = new CapacityException();
+		assertEquals("Not enough space in selected tour for this party.", e.getMessage());
 	}
 
 	/**
@@ -27,7 +28,7 @@ public class CapacityExceptionTest {
 	 */
 	@Test
 	public void testCapacityExceptionString() {
-		fail("Not yet implemented");
-	}
+		CapacityException e = new CapacityException("my message");
+		assertEquals("my message", e.getMessage());	}
 
 }

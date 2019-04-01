@@ -207,7 +207,6 @@ public class SortedLinkedListWithIterator<E extends Comparable<E>> implements So
 	/**
 	 * Node class which is used for outer LinkedList.
 	 * @author dkudo
-	 * @param <E> : type of value stored in this node
 	 */
 	private class Node {
 		/** value held in this Node. */

@@ -303,7 +303,7 @@ public class SortedLinkedListWithIteratorTest {
 	 * Tests toString() method.
 	 */
 	@Test
-	public void TestToString() {
+	public void testToString() {
 		SortedLinkedListWithIterator<String> list = new SortedLinkedListWithIterator<String>();
 
 		// Add some elements
@@ -311,7 +311,7 @@ public class SortedLinkedListWithIteratorTest {
 		list.add("b");
 		list.add("a");
 		
-		assertEquals("[a, b, c]",list.toString());
+		assertEquals("[a, b, c]", list.toString());
 	}
 	
 	/**

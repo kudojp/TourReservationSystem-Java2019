@@ -63,7 +63,6 @@ public class SimpleArrayList<E> implements SimpleList<E> {
 		return false;
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public boolean add(E e) {
 		this.add(this.size(), e);

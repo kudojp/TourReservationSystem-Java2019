@@ -20,7 +20,7 @@ public class CapacityException extends Exception {
 	 * Constructs CapacityException with a default message.
 	 */
 	public CapacityException() {
-		// TODO Auto-generated constructor stub
+		this("Not enough space in selected tour for this party.");
 	}
 
 	/**
@@ -29,7 +29,6 @@ public class CapacityException extends Exception {
 	 */
 	public CapacityException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 
