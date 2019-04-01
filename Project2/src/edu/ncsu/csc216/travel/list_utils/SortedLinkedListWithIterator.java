@@ -198,9 +198,9 @@ public class SortedLinkedListWithIterator<E extends Comparable<E>> implements So
 		// otherwise
 		String str  = "[";
 		while (c.hasNext()) {
-			str += c.next() + ",";
+			str += c.next() + ", ";
 		}
-		return str.substring(0, str.length() - 1) + "]";
+		return str.substring(0, str.length() - 2) + "]";
 	}
 	
 	
