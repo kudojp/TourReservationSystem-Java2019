@@ -119,10 +119,10 @@ public abstract class Tour implements Comparable<Tour> {
 	/**
 	 * Sets the capacity to given integer.
 	 * @param capacity : capacity which this Tour's capacity should be set on
-	 * @throws CapacityException : 
 	 */
-	//protected void setCapacity(int capacity) throws CapacityException{
-	//}
+	public void setCapacity(int capacity) throws CapacityException{
+		this.capacity = capacity;
+	}
 	
 	
 	/**
@@ -362,7 +362,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * (Used only by Educational trip)
 	 */
 	public void fixCapacity() {
-		this.capacity *= 2;
+		this.capacity = this.capacity * 2;
 		this.capacityFixed = true;
 	}
 }
