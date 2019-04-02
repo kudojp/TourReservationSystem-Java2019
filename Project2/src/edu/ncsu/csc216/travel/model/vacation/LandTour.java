@@ -26,7 +26,9 @@ public class LandTour extends Tour {
 	 */
 	public LandTour(String name, LocalDate start, int duration, int basePrice, int capacity) {
 		super(name, start, duration, basePrice, capacity);
-		// TODO Auto-generated constructor stub
+		
+		// Land tour cannot double the capacity
+		super.fixCapacity();
 	}
 	
 	
@@ -36,8 +38,7 @@ public class LandTour extends Tour {
 	 */
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return super.getName();
+		return prefix + super.getName();
 	}
 
 
@@ -47,8 +48,15 @@ public class LandTour extends Tour {
 	 */
 	@Override
 	public double costFor(int i) {
-		// TODO Auto-generated method stub
-		return 0;
+		// For land tours, the cost is base price X party size except for parties of size 1. 
+		// For single-person parties, the cost is base price + 25% surcharge. For example, 
+		// suppose a land tour has a base cost of $1000. Then the cost of a reservation for two people is $2000, but the cost of a party of one is $1250.
+		
+		if (i == 1) {
+			return super.getBasePrice();
+		}
+		
+		return super.getBasePrice() * i;
 	}
 
 }

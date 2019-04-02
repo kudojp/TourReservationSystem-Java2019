@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * Test clss for Tour class.
+ * Test class for Tour class.
  * @author dkudo
  *
  */
@@ -27,7 +27,7 @@ public class TourTest {
 	 */
 	@Test
 	public void testTour() {
-		fail("Not yet implemented");
+		Tour t = new Tour();
 	}
 
 	/**

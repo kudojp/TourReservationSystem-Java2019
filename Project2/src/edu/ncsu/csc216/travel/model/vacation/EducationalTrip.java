@@ -26,7 +26,7 @@ public class EducationalTrip extends Tour {
 	 */
 	public EducationalTrip(String name, LocalDate start, int duration, int basePrice, int capacity) {
 		super(name, start, duration, basePrice, capacity);
-		// TODO Auto-generated constructor stub
+		
 	}
 
 	/* (non-Javadoc)
@@ -34,8 +34,7 @@ public class EducationalTrip extends Tour {
 	 */
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return super.getName();
+		return prefix + super.getName();
 	}
 
 	
@@ -44,8 +43,8 @@ public class EducationalTrip extends Tour {
 	 */
 	@Override
 	public double costFor(int i) {
-		// TODO Auto-generated method stub
-		return 0;
+		// For educational tours, the cost is base price X party size.
+		return super.getBasePrice() * i;
 	}
 
 }

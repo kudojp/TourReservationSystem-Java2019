@@ -27,24 +27,58 @@ public class ClientTest {
 	 */
 	@Test
 	public void testClient() {
-		fail("Not yet implemented");
+		
+		// if name is null
+		Client c = null;
+		try {
+			c = new Client(null, "123");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNull(c);
+		}
+		
+		// if name is empty String
+		try {
+			c = new Client("", "123");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNull(c);
+		}
+		
+		//if name does not begin with an alphabetic character
+
+		try {
+			c = new Client("111 john", "123");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("Client name must start with an alphabetic character.", e.getMessage());
+		}
+		
+		// if contact is null
+		try {
+			c = new Client("a", null);
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNull(c);
+		}
+		
+		// if contact is empty String
+		try {
+			c = new Client("a", "");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertNull(c);
+		}
+		
+		// valid case
+		c = new Client("a", "123");
+		assertEquals("a", c.getName());
+		assertEquals("123", c.getContact());
+		
+		
+		
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#getName()}.
-	 */
-	@Test
-	public void testGetName() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#getContact()}.
-	 */
-	@Test
-	public void testGetContact() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#getNumberOfReservations()}.
@@ -107,7 +141,11 @@ public class ClientTest {
 	 */
 	@Test
 	public void testSummaryInfo() {
-		fail("Not yet implemented");
+		Client c = new Client("a", "123");
+		assertEquals("a", c.getName());
+		assertEquals("123", c.getContact());
+		
+		assertEquals("a (123)", c.summaryInfo());
 	}
 
 }

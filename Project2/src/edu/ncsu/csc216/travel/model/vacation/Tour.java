@@ -23,7 +23,7 @@ public abstract class Tour implements Comparable<Tour> {
 	/** original capacity of this Tour */
 	private int capacity;
 	/** whether this Tour's capacity has been fixed and cannot extended anymore. */
-	private boolean capacityFixed;
+	private boolean capacityFixed = false;
 	/** base price of this Tour */
 	private int basePrice;
 	/** number of decided participants of this Tour */
@@ -46,11 +46,34 @@ public abstract class Tour implements Comparable<Tour> {
 		
 		// also, set capacityFixed = True only in ED, otherwise False
 		
+		
+		if (name == null || name.contentEquals("")) {
+			throw new IllegalArgumentException("Tour name is invalid.");
+		}
+		
+		
+		if (start == null) {
+			throw new IllegalArgumentException("Tour start date is invalid.");
+		}
+		
+		if (duration <= 0) {
+			throw new IllegalArgumentException("Tour duration is invalid.");
+		}
+		
+		if (basePrice <= 0) {
+			throw new IllegalArgumentException("Tour base price is invalid.");	
+		}
+		
+		if (capacity <= 0) {
+			throw new IllegalArgumentException("Tour capacity is invalid.");
+		}
+		
 		this.name = name;
 		this.start = start;
 		this.duration = duration;
 		this.basePrice = basePrice;
 		this.capacity = capacity;
+		
 	}
 	
 	/**
@@ -63,25 +86,51 @@ public abstract class Tour implements Comparable<Tour> {
 		// If two tours have the same start date, those two are ordered according to their names
 		// (where the comparison is made without regard to case). 
 		// If two tours have the same start date and the same name (ignoring case),
-		// they are ordered by their durations. No single tour is initially selected. 
+		// they are ordered by their durations. 
+		
+		// sorting by the start dates....
+		if (this.start.isBefore(another.getStartDate())) {
+			return -1;
+		} else if (this.start.isAfter(another.getStartDate())) {
+			return 1;
+		} else {
+			
+			// sorting by the names...
+			if (this.getName().toLowerCase().compareTo(another.getName().toLowerCase()) < 0) {
+				return -1;
+			} if (this.getName().toLowerCase().compareTo(another.getName().toLowerCase()) > 0) {
+				return 1;
+			} else {
+				
+				// sorting by the durations... 
+				if (this.getDuration() < another.getDuration()) {
+					return -1;
+				} else if (this.getDuration() < another.getDuration()) {
+					return 1;
+				}
+			}
+		}
+		
+		// if all of start dates, names, durations are the same...
 		return 0;
 	}
+	
 	
 	/**
 	 * Sets the capacity to given integer.
 	 * @param capacity : capacity which this Tour's capacity should be set on
-	 * @throws CapacityException : //TODO
+	 * @throws CapacityException : 
 	 */
-	protected void setCapacity(int capacity) throws CapacityException{
-		//PASS
-	}
+	//protected void setCapacity(int capacity) throws CapacityException{
+	//}
+	
 	
 	/**
-	 *  Returns the number spaces on this tour not yet reserved
-	 * @return : the number of left spaces
+	 *  Returns the number of Reservations
+	 * @return : the number reservations
 	 */
 	public int numberOfClientReservations() {
-		return 0;
+		return this.res.size();
 	}
 	
 	/**
@@ -89,7 +138,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return : number of spaces left
 	 */
 	public int spacesLeft() {
-		return 0;
+		return this.capacity - this.numParticipants;
 	}
 	
 	/**
@@ -105,7 +154,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return the start date
 	 */
 	public LocalDate getStartDate() {
-		return start;
+		return this.start;
 	}
 	
 	/**
@@ -113,7 +162,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return the end date
 	 */
 	public LocalDate getEndDate() {
-		return null;
+		return this.start.plusDays(this.duration);
 	}
 
 	/**
@@ -132,20 +181,13 @@ public abstract class Tour implements Comparable<Tour> {
 		return this.capacity;
 	}
 
-	/**
-	 * Returns whether the capacity of this Tour is already fixed and cannot be extended.
-	 * @return the capacityFixed : True if capacity is already fixed.
-	 */
-	public boolean isCapacityFixed() {
-		return capacityFixed;
-	}
 
 	/**
 	 * Returns the basePrice of this Tour
 	 * @return the basePrice
 	 */
 	public int getBasePrice() {
-		return basePrice;
+		return this.basePrice;
 	}
 
 	/**
@@ -154,51 +196,78 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return Reservation object searched
 	 */
 	public Reservation getReservation(int i) {
-		return null;
+		return this.res.get(i);
 	}
 
-	/**
-	 * Fix the capacity since when it is doubled once.
-	 * (Used only by Educational trip)
-	 */
-	public void fixCapacity() {
-		this.capacityFixed = true;
-	}
 	
 	/**
 	 * Returns the summary description of this Tour.
 	 * @return : summary of this Tour
 	 */
 	public String summaryInfo() {
-		return "";
-	}
-	
-	/**
-	 * Returns the hashCode of this Tour.
-	 * Used in equals() method.
-	 * @return : hashCode of this Tour
-	 */
-	public int hashCode() {
-		return 0;
+		// reference to USE-CASE 9
+		
+		return this.numParticipants + " " + this.getName() + " " 
+				+ this.getStartDate() + " " + this.getDuration() + "days"; 
+		
 	}
 
-	/* (non-Javadoc)
-	 * @see java.lang.Object#equals(java.lang.Object)
-	 */
-	@Override
-	public boolean equals(Object obj) {
-		//TODO
-		return false;
-	}
-	
 	/**
 	 * Returns array including all data of this Tour.
 	 * @return : array representing this Tour
 	 */
 	public Object[] getAllData() {
-		return null;
+		Object[] array = new Object[this.res.size()];
+		for (int i = 0 ; i < this.res.size() ; i++) {
+			array[i] = this.res.get(i);
+		}
+		return array;
 	}
 	
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + duration;
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((start == null) ? 0 : start.hashCode());
+		return result;
+	}
+
+	
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Tour other = (Tour) obj;
+		if (duration != other.duration)
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		if (start == null) {
+			if (other.start != null)
+				return false;
+		} else if (!start.equals(other.start))
+			return false;
+		return true;
+	}
+
+	
+
 	/**
 	 * Returns an array of strings representing the client’s reservations.
 	 * @return Array of strings each of them represents each reservation.
@@ -206,7 +275,11 @@ public abstract class Tour implements Comparable<Tour> {
 	public String[] listOfReservations() {
 		// The lines shown in Figure 13 of [UC8,S2] illustrates appropriate formatting for the strings in the array. 
 		// The return value should not be null, even if the tour has no reservations.
-		return null;
+		String[] array = new String[this.res.size()];
+		for (int i = 0 ; i < this.res.size() ; i++) {
+			array[i] = this.res.get(1).getClient().summaryInfo();
+		}
+		return array;
 	}
 	
 	/**
@@ -230,7 +303,22 @@ public abstract class Tour implements Comparable<Tour> {
 		//Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.
 		//should ask the corresponding clients to add the reservation to their lists of reservations.
 		//EducationalTrip.createReservation() should override the parent’s method in order to attempt expanding the capacity when needed. 
-		return null;
+		
+		if (this.capacity >= this.numParticipants + i) {
+			this.numParticipants += i;
+			return new Reservation(this, c, i);
+		}
+		
+		// if capacity can be doubled and it becomes enough...
+		if (!this.capacityFixed && this.capacity * 2 >= this.numParticipants + i) {
+			//double capacity and switch CapacityFixed to true
+			this.fixCapacity();
+			this.numParticipants += i;
+			return new Reservation(this, c, i);
+		}
+		
+		// in the case when there is no space
+		throw new CapacityException();
 	}
 	
 	/** 
@@ -253,11 +341,28 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @param res Reservation object which should be cancelled
 	 */
 	public void cancelReservation(Reservation res) {
-		//pass
+		for (int i = 0 ; i < this.res.size() ; i++) {
+			if (this.res.get(i).equals(res)){
+				this.res.remove(i);
+				break;
+			}
+		}
 	}
 	
-
+	/**
+	 * Returns whether the capacity of this Tour is already fixed and cannot be extended.
+	 * @return the capacityFixed : true if capacity is already fixed.
+	 */
+	public boolean isCapacityFixed() {
+		return capacityFixed;
+	}
 	
-	
-
+	/**
+	 * Fix the capacity since when it is doubled once.
+	 * (Used only by Educational trip)
+	 */
+	public void fixCapacity() {
+		this.capacity *= 2;
+		this.capacityFixed = true;
+	}
 }

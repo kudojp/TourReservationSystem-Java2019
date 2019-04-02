@@ -24,12 +24,25 @@ public class Client {
 	 *  If any actual parameters to a Client method are illegal, the method should throw an IllegalArgumentException
 	 * @param name : name of the client
 	 * @param contact : contact info of the client
+	 * @throws IllegalArgumentExcepiton : if any of parameters are illegal.
 	 */
 	public Client(String name, String contact) {
 		
 		// If any actual parameters to a Client method are illegal 
 		//(such as names not starting with alphabetic characters or indexes out of bounds),
 		//the method should throw an IllegalArgumentException
+		
+		if (name == null || name.equals("")) {
+			throw new IllegalArgumentException("Name cannot be blank.");
+		}
+		
+		if (!Character.isLetter(name.charAt(0))) {
+			throw new IllegalArgumentException("Client name must start with an alphabetic character.");
+		}
+		
+		if (contact == null || contact.equals("")) {
+			throw new IllegalArgumentException("Contact cannot be blank.");
+		}
 		
 		this.name = name;
 		this.contact = contact;
@@ -41,7 +54,7 @@ public class Client {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return this.name;
 	}
 
 	/**
@@ -49,7 +62,7 @@ public class Client {
 	 * @return the contact of this  client.
 	 */
 	public String getContact() {
-		return contact;
+		return this.contact;
 	}
 
 	/**
@@ -101,6 +114,7 @@ public class Client {
 	/**
 	 * Sets the name of this client
 	 * @param name the name to set
+	 * @throws IllegalArgumentException : if a parameter is illegal.
 	 */
 	public void setName(String name) {
 		this.name = name;
@@ -120,7 +134,7 @@ public class Client {
 	 * @return : summary 
 	 */
 	public String summaryInfo() {
-		return "";
+		return this.name + " (" + this.contact + ")";
 	}
 	
 	

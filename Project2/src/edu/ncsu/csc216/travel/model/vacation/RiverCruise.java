@@ -26,7 +26,9 @@ public class RiverCruise extends Tour {
 	 */
 	public RiverCruise(String name, LocalDate start, int duration, int basePrice, int capacity) {
 		super(name, start, duration, basePrice, capacity);
-		// TODO Auto-generated constructor stub
+		
+		// RiverCuise cannot double its capacity
+		super.fixCapacity();
 	}
 	
 	
@@ -37,8 +39,7 @@ public class RiverCruise extends Tour {
 	 */
 	@Override
 	public String getName() {
-		// TODO Auto-generated method stub
-		return super.getName();
+		return prefix + super.getName();
 	}
 
 
@@ -49,8 +50,11 @@ public class RiverCruise extends Tour {
 	 */
 	@Override
 	public double costFor(int i) {
-		// TODO Auto-generated method stub
-		return 0;
+		// For river cruises, the cost is base cost X number of people in party for parties of an even number of people. 
+		// For parties of an odd number of people, the cost is the same except for a 50% surcharge for one of the people. 
+		// For example, suppose a river cruise has a base cost of $1000. Then the cost of a reservation for 4 people is $4000, 
+		// but the cost of a party of five people is $5500.
+		return super.getBasePrice() * i + super.getBasePrice() / 2 * (i % 2);
 	}
 	
 	
