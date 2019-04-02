@@ -16,36 +16,11 @@ import org.junit.Test;
  */
 public class EducationalTripTest {
 
-	
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.EducationalTrip#costFor(int)}.
-	 */
-	@Test
-	public void testCostFor() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.EducationalTrip#EducationalTrip(java.lang.String, java.time.LocalDate, int, int, int)}.
-	 */
-	@Test
-	public void testEducationalTrip() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#hashCode()}.
-	 */
-	@Test
-	public void testHashCode() {
-		fail("Not yet implemented");
-	}
-
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#Tour(java.lang.String, java.time.LocalDate, int, int, int)}.
 	 */
 	@Test
-	public void testTour() {
+	public void testEducationalTrip() {
 		Tour t = null;
 		try {
 			t = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
@@ -112,6 +87,19 @@ public class EducationalTripTest {
 		
 }
 
+	
+	
+	/**
+	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.EducationalTrip#costFor(int)}.
+	 */
+	@Test
+	public void testCostFor() {
+		 EducationalTrip et = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		 assertEquals(500, (int)et.costFor(1));
+		 assertEquals(1000, (int)et.costFor(2));
+	}
+
+	
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#compareTo(edu.ncsu.csc216.travel.model.vacation.Tour)}.
 	 */
@@ -125,7 +113,9 @@ public class EducationalTripTest {
 	 */
 	@Test
 	public void testSetCapacity() {
-		fail("Not yet implemented");
+		EducationalTrip et = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		Eet.setCapacity(100);
+		assertEquals(100, et.getCapacity());
 	}
 
 	/**

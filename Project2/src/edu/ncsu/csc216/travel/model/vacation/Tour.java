@@ -324,16 +324,25 @@ public abstract class Tour implements Comparable<Tour> {
 	/** 
 	 * Adds Reservation object to this Tour's reservation list
 	 * This is used when the Reservations are loaded in from a file.
-	 * @param res : Reservation object to be added
+	 * @param newRes : Reservation object to be added
 	 * @return : Reservation object which is added
 	 * @throws CapacityException : if the tour cannot accommodate the number of people in the reservation party
 	 * @throws IllegalArgumentException : if parameter is invalid.
 	 */
-	public Reservation addOldReservation(Reservation res) throws CapacityException {
-		//Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) and an IllegalArgumentException if any parameters are illegal.
+	public Reservation addOldReservation(Reservation newRes) throws CapacityException {
+		// Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) 
+		// IllegalArgumentException if any parameters are illegal.
 		//should ask the corresponding clients to add the reservation to their lists of reservations.
 		//This method should not be overridden under the assumption that any capacity expansion would have already taken place when the reservation was initially created.
-		return null;
+		
+		if (newRes == null || newRes.getNumInParty() > this.capacity) {
+			throw new IllegalArgumentException();
+		}
+		// add newRes to the Reservation list of this Tour
+		this.res.add(newRes);
+		// add newRes to the list of a corresponding Client
+		newRes.getClient().addReservation(newRes);
+		return newRes;
 	}
 	
 	/**
