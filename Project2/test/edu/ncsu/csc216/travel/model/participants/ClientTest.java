@@ -19,22 +19,15 @@ import edu.ncsu.csc216.travel.model.vacation.Tour;
  *
  */
 public class ClientTest {
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#hashCode()}.
-	 */
-	@Test
-	public void testHashCode() {
-		fail("Not yet implemented");
-	}
 	
 	/**
 	 * Test method for cancelReservation()
 	 */
 	@Test
 	public void testCancelReservation() {
-		fail("Not yet implemented");
+		fail();
 	}
+	
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#Client(java.lang.String, java.lang.String)}.
@@ -162,6 +155,35 @@ public class ClientTest {
 		assertEquals("a (123)", c.summaryInfo());
 	}
 
+
+	/**
+	 * Test method for hashCode() and Equals()
+	 */
+	@Test
+	public void testEquals() {
+		Client c1 = new Client("client1", "contact1");
+		// equal
+		Client c2 = new Client("client1", "contact1");
+		// different client name
+		Client c3 = new Client("client2", "contact1");
+		// different contact name
+		Client c4 = new Client("client1", "contact2");
+		//completely different
+		Client c5 = new Client("client2", "contact2");
+		
+		// test hashCode()
+		assertEquals(c1.hashCode(), c2.hashCode());
+		assertNotEquals(c1.hashCode(), c3.hashCode());
+		assertNotEquals(c1.hashCode(), c4.hashCode());
+		assertNotEquals(c1.hashCode(), c5.hashCode());
+		
+		
+		// test equals()
+		assertTrue(c1.equals(c2));
+		assertFalse(c1.equals(c3));
+		assertFalse(c1.equals(c4));
+		assertFalse(c1.equals(c5));
+	}
 	
 	
 }
