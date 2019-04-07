@@ -38,9 +38,12 @@ public class Reservation {
 	 * @param tour ; Tour object for this Reservation
 	 * @param client : Client object of this Reservation
 	 * @param numInParty : the number of party for this Reservation
+	 * @throws IllegalArgumentException : if any parameter is invalid.
 	 */
 	public Reservation(Tour tour, Client client, int numInParty) {
-		//pass
+		
+		
+		this.tour = tour;
 		
 	}
 	

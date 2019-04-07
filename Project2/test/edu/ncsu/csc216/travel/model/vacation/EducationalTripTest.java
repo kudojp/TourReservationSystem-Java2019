@@ -9,6 +9,8 @@ import java.time.LocalDate;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.travel.model.participants.Client;
+
 /**
  * Test class for EducationTrip class.
  * @author dkudo
@@ -34,7 +36,7 @@ public class EducationalTripTest {
 		assertEquals(500, t.getBasePrice());
 		assertEquals(50, t.getCapacity());
 		assertEquals(7, t.getDuration());
-		//assertEquals( t.getReservation());
+		
 	
 		
 		// invalid  : name = null;
@@ -105,7 +107,40 @@ public class EducationalTripTest {
 	 */
 	@Test
 	public void testCompareTo() {
-		fail("Not yet implemented");
+		EducationalTrip t1 = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		
+		// name alphabetically earlier
+		EducationalTrip t2 = new EducationalTrip("a", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		// name alphabetically earlier
+		EducationalTrip t3 = new EducationalTrip("z", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		
+		assertEquals(1, t1.compareTo(t2));
+		assertEquals(-1, t1.compareTo(t3));
+		
+		
+		// same name but start date earlier
+		EducationalTrip t4 = new EducationalTrip("Name", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		// same name but start date later
+		EducationalTrip t5 = new EducationalTrip("Name", LocalDate.of(2019, 12, 11), 7, 500, 50);
+		
+		assertEquals(1, t1.compareTo(t4));
+		assertEquals(-1, t1.compareTo(t5));
+		
+		// same name, same start date, but duration shorter
+		EducationalTrip t6 = new EducationalTrip("Name", LocalDate.of(2019, 11, 11), 6, 500, 50);
+		// same name, same start date, but duration longer
+		EducationalTrip t7 = new EducationalTrip("Name", LocalDate.of(2019, 11, 11), 8, 500, 50);
+		
+		assertEquals(1, t1.compareTo(t6));
+		assertEquals(-1, t1.compareTo(t7));
+		
+		// same name, same start date, same duration
+		EducationalTrip t8 = new EducationalTrip("Name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		
+		assertEquals(0, t1.compareTo(t8));
+		
+	
+		
 	}
 
 	/**
@@ -113,97 +148,135 @@ public class EducationalTripTest {
 	 */
 	@Test
 	public void testSetCapacity() {
-		EducationalTrip et = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
-		Eet.setCapacity(100);
-		assertEquals(100, et.getCapacity());
+		EducationalTrip et = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 40);
+	
+		
+		// try to set capacity less than or equal to 0
+		try {
+			et.setCapacity(39);
+			fail();
+		} catch (CapacityException e) {
+			assertEquals(40, et.getCapacity());
+		}
+		
+		// double the capacity.
+		try {
+			et.setCapacity(80);
+		} catch (CapacityException e) {
+			fail();
+		}
+		assertEquals(80, et.getCapacity());
+		assertTrue(et.isCapacityFixed());
+		
 	}
-
+	
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#numberOfClientReservations()}.
+	 * Test method for createReservationFor()
 	 */
 	@Test
 	public void testNumberOfClientReservations() {
-		fail("Not yet implemented");
+
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		
+		try {
+			t1.createReservationFor(null, 10);
+			fail();
+		} catch(IllegalArgumentException e) {
+			assertEquals(0, t1.numberOfClientReservations());
+		} catch(CapacityException e) {
+			fail();
+		}
+			
+		try {
+			t1.createReservationFor(new Client("name1", "contact1"), 0);
+			fail();
+		} catch(IllegalArgumentException e) {
+			assertEquals(0, t1.numberOfClientReservations());
+		} catch(CapacityException e) {
+			fail();
+		}	
+		
+
+		try {
+			t1.createReservationFor(new Client("name1", "contact1"), 10);
+		} catch(IllegalArgumentException e) {
+			fail();
+		} catch(CapacityException e) {
+			fail();
+		}
+		assertEquals(1, t1.numberOfClientReservations());
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#spacesLeft()}.
-	 */
-	@Test
-	public void testSpacesLeft() {
-		fail("Not yet implemented");
-	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#getStartDate()}.
+	 * Test method for numberOfClientReservaiton(), spacesLeft(), getAllData()
 	 */
 	@Test
-	public void testGetStartDate() {
-		fail("Not yet implemented");
+	public void testReservations() {
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		
+		try {
+			t1.createReservationFor(new Client("name1", "contact1"), 10);
+			t1.createReservationFor(new Client("name2", "contact2"), 20);
+			t1.createReservationFor(new Client("name3", "contact3"), 30);
+		} catch (Exception e) {
+			fail();
+		}
+		assertEquals(3, t1.numberOfClientReservations());
+		assertEquals(40, t1.spacesLeft());
+		
+		// get the first reservation
+		assertEquals("name1", t1.getReservation(0).getClient().getName());
+		assertEquals("contact1", t1.getReservation(0).getClient().getContact());
+		assertEquals(10, t1.getReservation(0).getNumInParty());
+		
+		// get the second reservation
+		assertEquals("name1", t1.getReservation(0).getClient().getName());
+		assertEquals("contact1", t1.getReservation(0).getClient().getContact());
+		assertEquals(10, t1.getReservation(0).getNumInParty());
+		
+		// get the last reservation
+		assertEquals("name1", t1.getReservation(0).getClient().getName());
+		assertEquals("contact1", t1.getReservation(0).getClient().getContact());
+		assertEquals(10, t1.getReservation(0).getNumInParty());
+		
+		
+		// get all data in this tour.
+		Object[] allData = t1.getAllData();
+		
+		// get the first reservation
+		assertEquals("name1", ((Reservation)allData[0]).getClient().getName());
+		assertEquals("contact1", ((Reservation)allData[0]).getClient().getContact());
+		assertEquals(10, ((Reservation)allData[0]).getNumInParty());
+		
+		// get the second reservation
+		assertEquals("name2", ((Reservation)allData[1]).getClient().getName());
+		assertEquals("contact2", ((Reservation)allData[1]).getClient().getContact());
+		assertEquals(20, ((Reservation)allData[1]).getNumInParty());
+		
+		// get the last reservation
+		assertEquals("name2", t1.getReservation(2).getClient().getName());
+		assertEquals("contact2", t1.getReservation(2).getClient().getContact());
+		assertEquals(10, t1.getReservation(2).getNumInParty());
+		
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#getEndDate()}.
-	 */
-	@Test
-	public void testGetEndDate() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#getDuration()}.
-	 */
-	@Test
-	public void testGetDuration() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#getCapacity()}.
-	 */
-	@Test
-	public void testGetCapacity() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#isCapacityFixed()}.
-	 */
-	@Test
-	public void testIsCapacityFixed() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#getBasePrice()}.
-	 */
-	@Test
-	public void testGetBasePrice() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#getReservation(int)}.
-	 */
-	@Test
-	public void testGetReservation() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#fixCapacity()}.
-	 */
-	@Test
-	public void testFixCapacity() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#summaryInfo()}.
 	 */
 	@Test
 	public void testSummaryInfo() {
-		fail("Not yet implemented");
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		try {
+			t1.createReservationFor(new Client("name1", "contact1"), 10);
+			t1.createReservationFor(new Client("name2", "contact2"), 20);
+			t1.createReservationFor(new Client("name3", "contact3"), 30);
+		} catch (Exception e) {
+			fail();
+		}
+		
+		assertEquals("3 ED-name1: 10/11/19 7 days", t1.summaryInfo());
 	}
 
 	/**
@@ -211,32 +284,50 @@ public class EducationalTripTest {
 	 */
 	@Test
 	public void testEqualsObject() {
-		fail("Not yet implemented");
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		// equal
+		EducationalTrip t2 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 300, 40);
+		// different name
+		EducationalTrip t3 = new EducationalTrip("name3", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		// different start date
+		EducationalTrip t4 = new EducationalTrip("name1", LocalDate.of(2019, 10, 12), 7, 500, 50);
+		// different duration
+		EducationalTrip t5 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 3, 500, 50);
+		
+		
+		assertTrue(t1.equals(t2));
+		assertFalse(t1.equals(t3));
+		assertFalse(t1.equals(t4));
+		assertFalse(t1.equals(t5));
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#getAllData()}.
-	 */
-	@Test
-	public void testGetAllData() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#listOfReservations()}.
 	 */
 	@Test
 	public void testListOfReservations() {
-		fail("Not yet implemented");
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		
+		Client c1 = new Client("name1", "contact1");
+		Client c2 = new Client("name2", "contact2");
+		Client c3 = new Client("name3", "contact3");
+		
+		try {
+			t1.createReservationFor(c1, 10);
+			t1.createReservationFor(c2, 20);
+			t1.createReservationFor(c3, 30);
+		} catch (Exception e) {
+			fail();
+		}
+		
+		String[] list = t1.listOfReservations();
+		assertEquals(c1.summaryInfo(), list[0]);
+		assertEquals(c2.summaryInfo(), list[1]);
+		assertEquals(c3.summaryInfo(), list[2]);
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#createReservationFor(edu.ncsu.csc216.travel.model.participants.Client, int)}.
-	 */
-	@Test
-	public void testCreateReservationFor() {
-		fail("Not yet implemented");
-	}
+
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#addOldReservation(edu.ncsu.csc216.travel.model.vacation.Reservation)}.
@@ -251,7 +342,18 @@ public class EducationalTripTest {
 	 */
 	@Test
 	public void testCancelReservation() {
-		fail("Not yet implemented");
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		try {
+			t1.createReservationFor(new Client("name1", "contact1"), 10);
+			t1.createReservationFor(new Client("name2", "contact2"), 20);
+			t1.createReservationFor(new Client("name3", "contact3"), 30);
+		} catch (Exception e) {
+			fail();
+		}
+		assertEquals(3, t1.numberOfClientReservations());
+		
+		t1.cancelReservation(new Reservation(t1, new Client("name1", "contact1"), 10));
+		assertEquals(2, t1.numberOfClientReservations());
 	}
 
 }

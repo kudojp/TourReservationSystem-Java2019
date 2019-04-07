@@ -5,6 +5,8 @@ package edu.ncsu.csc216.travel.model.vacation;
 
 import java.time.LocalDate;
 
+import edu.ncsu.csc216.travel.model.participants.Client;
+
 /**
  * Class of Educational Tour
  * @author dkudo
@@ -25,9 +27,29 @@ public class EducationalTrip extends Tour {
 	 * @throws IllegalArgumentException : if any parameters are not valid (including the parameter corresponding to capacity)
 	 */
 	public EducationalTrip(String name, LocalDate start, int duration, int basePrice, int capacity) {
-		super(name, start, duration, basePrice, capacity);
-		
+		super(name, start, duration, basePrice, capacity);	
 	}
+
+	
+	
+	
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.travel.model.vacation.Tour#createReservationFor(edu.ncsu.csc216.travel.model.participants.Client, int)
+	 */
+	@Override
+	public Reservation createReservationFor(Client c, int i) throws CapacityException {
+		Reservation res = null;
+		
+		try {
+			res = super.createReservationFor(c, i);
+		} catch(CapacityException cp) {
+			// double the capacity
+			super.setCapacity(super.getCapacity() * 2);
+			res = super.createReservationFor(c, i);
+		}
+		return res;
+	}
+
 
 	/* (non-Javadoc)
 	 * @see edu.ncsu.csc216.travel.model.vacation.Tour#getName()

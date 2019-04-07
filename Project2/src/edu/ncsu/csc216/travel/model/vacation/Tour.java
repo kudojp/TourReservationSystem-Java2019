@@ -23,7 +23,7 @@ public abstract class Tour implements Comparable<Tour> {
 	/** original capacity of this Tour */
 	private int capacity;
 	/** whether this Tour's capacity has been fixed and cannot extended anymore. */
-	private boolean capacityFixed = false;
+	private boolean capacityFixed = true;
 	/** base price of this Tour */
 	private int basePrice;
 	/** number of decided participants of this Tour */
@@ -73,6 +73,7 @@ public abstract class Tour implements Comparable<Tour> {
 		this.duration = duration;
 		this.basePrice = basePrice;
 		this.capacity = capacity;
+		this.res = new SimpleArrayList<Reservation>();
 		
 	}
 	
@@ -105,7 +106,7 @@ public abstract class Tour implements Comparable<Tour> {
 				// sorting by the durations... 
 				if (this.getDuration() < another.getDuration()) {
 					return -1;
-				} else if (this.getDuration() < another.getDuration()) {
+				} else if (this.getDuration() > another.getDuration()) {
 					return 1;
 				}
 			}
@@ -115,14 +116,6 @@ public abstract class Tour implements Comparable<Tour> {
 		return 0;
 	}
 	
-	
-	/**
-	 * Sets the capacity to given integer.
-	 * @param capacity : capacity which this Tour's capacity should be set on
-	 */
-	public void setCapacity(int capacity) throws CapacityException{
-		this.capacity = capacity;
-	}
 	
 	
 	/**
@@ -165,6 +158,7 @@ public abstract class Tour implements Comparable<Tour> {
 		return this.start.plusDays(this.duration);
 	}
 
+	
 	/**
 	 * Returns the duration of this Tour
 	 * @return the duration of this Tour.
@@ -173,6 +167,7 @@ public abstract class Tour implements Comparable<Tour> {
 		return this.duration;
 	}
 
+	
 	/**
 	 * Returns the capacity of this Tour.
 	 * @return the capacity
@@ -207,8 +202,9 @@ public abstract class Tour implements Comparable<Tour> {
 	public String summaryInfo() {
 		// reference to USE-CASE 9
 		
-		return this.numParticipants + " " + this.getName() + " " 
-				+ this.getStartDate() + " " + this.getDuration() + "days"; 
+		LocalDate date = this.getStartDate();
+		return this.numberOfClientReservations() + " " + this.getName() + ": " 
+				+ date.getMonthValue() + "/" + date.getDayOfMonth() + "/" + date.getYear()%100 + " " + this.getDuration() + " days"; 
 		
 	}
 
@@ -277,7 +273,7 @@ public abstract class Tour implements Comparable<Tour> {
 		// The return value should not be null, even if the tour has no reservations.
 		String[] array = new String[this.res.size()];
 		for (int i = 0 ; i < this.res.size() ; i++) {
-			array[i] = this.res.get(1).getClient().summaryInfo();
+			array[i] = this.res.get(i).getClient().summaryInfo();
 		}
 		return array;
 	}
@@ -304,45 +300,50 @@ public abstract class Tour implements Comparable<Tour> {
 		//should ask the corresponding clients to add the reservation to their lists of reservations.
 		//EducationalTrip.createReservation() should override the parent’s method in order to attempt expanding the capacity when needed. 
 		
-		if (this.capacity >= this.numParticipants + i) {
-			this.numParticipants += i;
-			return new Reservation(this, c, i);
+		if (c == null || i <= 0) {
+			throw new IllegalArgumentException();
 		}
 		
-		// if capacity can be doubled and it becomes enough...
-		if (!this.capacityFixed && this.capacity * 2 >= this.numParticipants + i) {
-			//double capacity and switch CapacityFixed to true
-			this.fixCapacity();
+		if (this.capacity >= this.numParticipants + i) {
 			this.numParticipants += i;
-			return new Reservation(this, c, i);
+			Reservation newRes = new Reservation(this, c, i);
+			
+			//add this new reservation to the Tour object
+			this.res.add(newRes);
+			//add this new reservation to the Client object
+			c.addReservation(newRes);
+			return newRes;
 		}
 		
 		// in the case when there is no space
 		throw new CapacityException();
 	}
 	
+	
+	
+	
 	/** 
 	 * Adds Reservation object to this Tour's reservation list
 	 * This is used when the Reservations are loaded in from a file.
-	 * @param newRes : Reservation object to be added
+	 * @param oldRes : Reservation object to be added
 	 * @return : Reservation object which is added
 	 * @throws CapacityException : if the tour cannot accommodate the number of people in the reservation party
 	 * @throws IllegalArgumentException : if parameter is invalid.
 	 */
-	public Reservation addOldReservation(Reservation newRes) throws CapacityException {
+	public Reservation addOldReservation(Reservation oldRes) throws CapacityException {
 		// Should throw a CapacityException if the tour cannot accommodate the number of people in the reservation party ([UC10, E1]) 
 		// IllegalArgumentException if any parameters are illegal.
-		//should ask the corresponding clients to add the reservation to their lists of reservations.
-		//This method should not be overridden under the assumption that any capacity expansion would have already taken place when the reservation was initially created.
+		// should ask the corresponding clients to add the reservation to their lists of reservations.
+		// This method should not be overridden under the assumption that any capacity expansion would have already taken place when the reservation was initially created.
 		
-		if (newRes == null || newRes.getNumInParty() > this.capacity) {
+		if (oldRes == null || oldRes.getNumInParty() > this.capacity) {
 			throw new IllegalArgumentException();
 		}
-		// add newRes to the Reservation list of this Tour
-		this.res.add(newRes);
-		// add newRes to the list of a corresponding Client
-		newRes.getClient().addReservation(newRes);
-		return newRes;
+		// add oldRes to the Reservation list of this Tour
+		this.res.add(oldRes);
+		// add oldRes to the list of a corresponding Client
+		oldRes.getClient().addReservation(oldRes);
+		return oldRes;
 	}
 	
 	/**
@@ -366,12 +367,25 @@ public abstract class Tour implements Comparable<Tour> {
 		return capacityFixed;
 	}
 	
+	
 	/**
-	 * Fix the capacity since when it is doubled once.
-	 * (Used only by Educational trip)
+	 * Sets the capacity to given integer.
+	 * @param capacity : capacity which this Tour's capacity should be set on
+	 * @throws CapacityException : if a user tries to set a capacity below the number of current participants,
+	 * 								 or if the capacity is less than 1.
+	 */
+	protected void setCapacity(int capacity) throws CapacityException{
+		if (capacity < this.capacity || capacity < 1) {
+			throw new CapacityException();
+		}
+		this.capacity = capacity;
+		this.fixCapacity();
+	}
+	
+	/**
+	 * Fix the capacity when it would no longer be doubled.
 	 */
 	public void fixCapacity() {
-		this.capacity = this.capacity * 2;
 		this.capacityFixed = true;
 	}
 }
