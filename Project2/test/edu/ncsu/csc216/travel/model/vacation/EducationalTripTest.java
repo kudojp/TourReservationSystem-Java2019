@@ -276,7 +276,7 @@ public class EducationalTripTest {
 			fail();
 		}
 		
-		assertEquals("3 ED-name1: 10/11/19 7 days", t1.summaryInfo());
+		assertEquals("ED-name1: 10/11/19 7 days", t1.summaryInfo());
 	}
 
 	/**

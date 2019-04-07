@@ -5,7 +5,13 @@ package edu.ncsu.csc216.travel.model.participants;
 
 import static org.junit.Assert.*;
 
+import java.time.LocalDate;
+
 import org.junit.Test;
+
+import edu.ncsu.csc216.travel.model.vacation.EducationalTrip;
+import edu.ncsu.csc216.travel.model.vacation.Reservation;
+import edu.ncsu.csc216.travel.model.vacation.Tour;
 
 /**
  * Test class for Client class.
@@ -19,6 +25,14 @@ public class ClientTest {
 	 */
 	@Test
 	public void testHashCode() {
+		fail("Not yet implemented");
+	}
+	
+	/**
+	 * Test method for cancelReservation()
+	 */
+	@Test
+	public void testCancelReservation() {
 		fail("Not yet implemented");
 	}
 
@@ -73,68 +87,68 @@ public class ClientTest {
 		// valid case
 		c = new Client("a", "123");
 		assertEquals("a", c.getName());
-		assertEquals("123", c.getContact());
-		
-		
-		
+		assertEquals("123", c.getContact());	
 	}
 
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#getNumberOfReservations()}.
-	 */
-	@Test
-	public void testGetNumberOfReservations() {
-		fail("Not yet implemented");
-	}
+
+
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#getReservation(int)}.
-	 */
-	@Test
-	public void testGetReservation() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#totalReservationCost()}.
-	 */
-	@Test
-	public void testTotalReservationCost() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#addReservation(edu.ncsu.csc216.travel.model.vacation.Reservation)}.
+	 * Test method for addReservation(), listOfReservation(), totalReservationCost(), getReservation()
 	 */
 	@Test
 	public void testAddReservation() {
-		fail("Not yet implemented");
+		
+		Client c = new Client("a", "123");
+		Client otherClient = new Client("b", "123");
+		
+		// valid1
+		Tour et  = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		Reservation r = new Reservation(et, c, 3);
+		try {
+			c.addReservation(r);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		
+		//vaild2
+		Tour et2  = new EducationalTrip("name2", LocalDate.of(2019, 11, 12), 7, 500, 50);
+		Reservation r2 = new Reservation(et2, c, 5);
+		try {
+			c.addReservation(r2);
+		} catch(IllegalArgumentException e) {
+			fail();
+		}
+		
+		//invalid (client for the reservation is not for this client)
+		Tour et3  = new EducationalTrip("name2", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		Reservation r3 = new Reservation(et3, otherClient, 7);
+		try {
+			c.addReservation(r3);
+			fail();
+		} catch(IllegalArgumentException e) {
+			//pass
+		}
+		
+		
+		// test getNumberOfReservations
+		assertEquals(2, c.getNumberOfReservations());
+		
+		// test getReservation()
+		assertEquals(r, c.getReservation(0));
+		assertEquals(r2, c.getReservation(1));
+		
+		// test listOfReservations()
+		assertEquals("3 ED-name: 11/11/19 7 days", c.listOfReservations()[0]);
+		assertEquals("5 ED-name2: 11/12/19 7 days", c.listOfReservations()[1]);
+		
+		// test totalReservationCost()
+		assertEquals(4000, c.totalReservationCost());
+		
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#cancelReservation(edu.ncsu.csc216.travel.model.vacation.Reservation)}.
-	 */
-	@Test
-	public void testCancelReservation() {
-		fail("Not yet implemented");
-	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#setName(java.lang.String)}.
-	 */
-	@Test
-	public void testSetName() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#listOfReservations()}.
-	 */
-	@Test
-	public void testListOfReservations() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.participants.Client#summaryInfo()}.
@@ -148,4 +162,6 @@ public class ClientTest {
 		assertEquals("a (123)", c.summaryInfo());
 	}
 
+	
+	
 }

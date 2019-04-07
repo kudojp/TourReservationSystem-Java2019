@@ -24,7 +24,7 @@ public class Client {
 	 *  If any actual parameters to a Client method are illegal, the method should throw an IllegalArgumentException
 	 * @param name : name of the client
 	 * @param contact : contact info of the client
-	 * @throws IllegalArgumentExcepiton : if any of parameters are illegal.
+	 * @throws IllegalArgumentException : if any of parameters are illegal.
 	 */
 	public Client(String name, String contact) {
 		
@@ -70,7 +70,7 @@ public class Client {
 	 * @return the number of reservations
 	 */
 	public int getNumberOfReservations() {
-		return 0;
+		return this.myReservations.size();
 	}
 	
 	/**
@@ -79,7 +79,7 @@ public class Client {
 	 * @return the reservation at given index
 	 */
 	public Reservation getReservation(int i) {
-		return null;
+		return this.myReservations.get(i);
 	}
 	
 	/**
@@ -87,18 +87,26 @@ public class Client {
 	 * @return number of total reservation
 	 */
 	public int totalReservationCost() {
-		return 0;
+		int total = 0;
+		for (int i = 0 ; i < this.getNumberOfReservations() ; i++) {
+			total += this.myReservations.get(i).getCost();
+		}
+		return total;
 	}
 	
 	/**
 	 * Adds a Reservation object to the this Client’s list.
-	 * Throws an IllegalArgumentException if the client for the reservation is not this client.
 	 * Note: This method should not attempt to add the reservation to the corresponding tour.
 	 * @param res : Reservation object to be added
 	 * @throws IllegalArgumentException : if the client for the reservation is not for this client
 	 */
 	public void addReservation(Reservation res) {
-		//pass
+		
+		if (!res.getClient().equals(this)) {
+			throw new IllegalArgumentException();
+		}
+		
+		this.myReservations.add(res);
 	}
 	
 	
@@ -110,22 +118,20 @@ public class Client {
 		//pass
 	}
 	
-
-	/**
-	 * Sets the name of this client
-	 * @param name the name to set
-	 * @throws IllegalArgumentException : if a parameter is illegal.
-	 */
-	public void setName(String name) {
-		this.name = name;
-	}
 	
 	/**
-	 * TODO
-	 * @return : TODO
+	 * Returns the array of String objects which represents Reservations made by this Client
+	 * @return : String array with Reservation descriptions
 	 */
 	public String[] listOfReservations() {
-		return null;
+		
+		// Reference to UC9
+		String[] list = new String[this.getNumberOfReservations()];
+		for (int i = 0 ; i < this.getNumberOfReservations() ; i++) {
+			list[i] = this.myReservations.get(i).displayReservationTour();
+		}
+		return list;
+		
 	}
 	
 	
@@ -136,14 +142,44 @@ public class Client {
 	public String summaryInfo() {
 		return this.name + " (" + this.contact + ")";
 	}
-	
-	
-	/**
-	 * Returns hashCode of this Client object.
-	 * @return : hashCode 
-	 * 
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
 	 */
+	@Override
 	public int hashCode() {
-		return 0;
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((contact == null) ? 0 : contact.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		return result;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Client other = (Client) obj;
+		if (contact == null) {
+			if (other.contact != null)
+				return false;
+		} else if (!contact.equals(other.contact))
+			return false;
+		if (name == null) {
+			if (other.name != null)
+				return false;
+		} else if (!name.equals(other.name))
+			return false;
+		return true;
+	}
+	
+	
+	
 }

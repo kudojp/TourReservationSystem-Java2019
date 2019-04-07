@@ -17,7 +17,7 @@ public class Reservation {
 	/** Generator which determines the confirmation code of the next reservation */
 	private static int codeGenerator;
 	/** Code which is the highest in all the Reservation objects */
-	private static int maxCode;
+	private static int maxCode = 999999;
 	/** confirmation code of this Reservation object */
 	private String confirmationCode;
 	/** number of people for this Reservation object*/
@@ -32,7 +32,6 @@ public class Reservation {
 	
 	//Creates a “temporary” reservation with the parameter information (client, tour, number in party, then optional confirmation code).
 	// It is the responsibility of the Tour to determine whether it has the capacity to accommodate the reservation.
-	
 	/** Creates a “temporary” reservation with the parameter information (client, tour, number in party, then optional confirmation code). 
 	 *  It is the responsibility of the Tour to determine whether it has the capacity to accommodate the reservation.
 	 * @param tour ; Tour object for this Reservation
@@ -42,9 +41,19 @@ public class Reservation {
 	 */
 	public Reservation(Tour tour, Client client, int numInParty) {
 		
+		// create Reservation not from a file.
+		if (tour == null || client == null || numInParty <= 0) {
+			throw new IllegalArgumentException();
+		}
+		this.theTour = tour;
+		this.theClient = client;
+		this.numInParty = numInParty;
+		this.confirmationCode = String.format("%06d", codeGenerator);
 		
-		this.tour = tour;
-		
+		if (codeGenerator == maxCode) {
+			codeGenerator = 0;
+		}
+		codeGenerator += 1;
 	}
 	
 	/** Creates a “temporary” reservation with the parameter information (client, tour, number in party, then optional confirmation code). 
@@ -53,10 +62,25 @@ public class Reservation {
 	 * @param client : Client object of this Reservation
 	 * @param numInParty : the number of party for this Reservation
 	 * @param code : Confirmation code of this Reservation
+	 * @throws IllegalArgumentException : if any parameter is invalid.
 	 */
 	public Reservation(Tour tour, Client client, int numInParty, int code) {
-		//pass
+		if (tour == null || client == null || numInParty <= 0 || code < 0 || 999999 <= code ) {
+			throw new IllegalArgumentException();
+		}
+		this.theTour = tour;
+		this.theClient = client;
+		this.numInParty = numInParty;
+		this.confirmationCode = String.format("%06d", code);
 		
+		// if the confirmation code from a file of this line is bigger than codeGenerator
+		if (code > codeGenerator) {
+			codeGenerator = code + 1;
+		}
+		
+		if (codeGenerator == maxCode) {
+			codeGenerator = 0;
+		}
 	}
 
 	/**
@@ -64,7 +88,7 @@ public class Reservation {
 	 * @return the confirmationCode
 	 */
 	public String getConfirmationCode() {
-		return confirmationCode;
+		return this.confirmationCode;
 	}
 
 	/**
@@ -72,7 +96,7 @@ public class Reservation {
 	 * @return the numInParty
 	 */
 	public int getNumInParty() {
-		return numInParty;
+		return this.numInParty;
 	}
 
 	/**
@@ -80,7 +104,7 @@ public class Reservation {
 	 * @return the cost
 	 */
 	public double getCost() {
-		return cost;
+		return this.theTour.costFor(this.numInParty);
 	}
 
 	/**
@@ -88,7 +112,7 @@ public class Reservation {
 	 * @return the theTour
 	 */
 	public Tour getTour() {
-		return theTour;
+		return this.theTour;
 	}
 
 	/**
@@ -96,7 +120,7 @@ public class Reservation {
 	 * @return the theClient
 	 */
 	public Client getClient() {
-		return theClient;
+		return this.theClient;
 	}
 	
 	/**
@@ -112,7 +136,8 @@ public class Reservation {
 	 */
 	public String displayReservationTour() {
 		//displays in Figure 13 of [UC8,S2] 
-		return "";
+		//like  " 4 Tetterton Travels (James T) "
+		return this.getNumInParty() + " " + this.getTour().summaryInfo();
 	}
 	
 	/**
@@ -121,7 +146,7 @@ public class Reservation {
 	 */
 	public String displayReservationClient() {
 		// Figure 14 of [UC9,S2] respectively
-		return "";
+		return this.getNumInParty() + " " + this.getClient().summaryInfo();
 	}
 	
 	/**
@@ -129,16 +154,74 @@ public class Reservation {
 	 */
 	public static void resetCodeGenerator() {
 		//Sets codeGenerator to 0. Used for testing only.
+		codeGenerator = 0;
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((confirmationCode == null) ? 0 : confirmationCode.hashCode());
+		result = prime * result + numInParty;
+		result = prime * result + ((theClient == null) ? 0 : theClient.hashCode());
+		result = prime * result + ((theTour == null) ? 0 : theTour.hashCode());
+		return result;
+	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Reservation other = (Reservation) obj;
+		if (confirmationCode == null) {
+			if (other.confirmationCode != null)
+				return false;
+		} else if (!confirmationCode.equals(other.confirmationCode))
+			return false;
+		if (numInParty != other.numInParty)
+			return false;
+		if (theClient == null) {
+			if (other.theClient != null)
+				return false;
+		} else if (!theClient.equals(other.theClient))
+			return false;
+		if (theTour == null) {
+			if (other.theTour != null)
+				return false;
+		} else if (!theTour.equals(other.theTour))
+			return false;
+		return true;
+	}
+	
+	
+	
+	
+	
+	
 	
 	/**
 	 * Returns the has Code of this Reservation object.
 	 * Used for equals() method.
 	 * @return : hashCode of this object.
 	 */
+	
+	
+	
+	/**
 	public int hashCode() {
 		return 0;
 	}
+	*/
 	
 	/**
 	 * Compares this Reservation with a given Object.
@@ -146,9 +229,13 @@ public class Reservation {
 	 * TODO(What is equals??)
 	 * @param another : a object given to be compared
 	 */
+	
+	
+	/**
 	public boolean equals(Object another) {
 		return false;
 	}
+	*/
 	
 	
 }

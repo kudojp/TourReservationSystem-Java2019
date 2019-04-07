@@ -203,7 +203,7 @@ public abstract class Tour implements Comparable<Tour> {
 		// reference to USE-CASE 9
 		
 		LocalDate date = this.getStartDate();
-		return this.numberOfClientReservations() + " " + this.getName() + ": " 
+		return this.getName() + ": " 
 				+ date.getMonthValue() + "/" + date.getDayOfMonth() + "/" + date.getYear()%100 + " " + this.getDuration() + " days"; 
 		
 	}
