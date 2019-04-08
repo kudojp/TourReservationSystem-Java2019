@@ -237,18 +237,15 @@ public class LandTourTest {
 		assertEquals(10, t1.getReservation(0).getNumInParty());
 		
 		
-		// get all data in this tour.
+		// get all data in the first tour.
 		Object[] allData = t1.getAllData();
 		
 		// get the first reservation
-		assertEquals("name1", ((Reservation)allData[0]).getClient().getName());
-		assertEquals("contact1", ((Reservation)allData[0]).getClient().getContact());
-		assertEquals(10, ((Reservation)allData[0]).getNumInParty());
-		
-		// get the second reservation
-		assertEquals("name2", ((Reservation)allData[1]).getClient().getName());
-		assertEquals("contact2", ((Reservation)allData[1]).getClient().getContact());
-		assertEquals(20, ((Reservation)allData[1]).getNumInParty());
+		assertEquals("LT-name1", allData[0]);
+		assertEquals(LocalDate.of(2019, 10, 11), allData[1]);
+		assertEquals(7, allData[2]);
+		assertEquals(500, allData[3]);
+		assertEquals(50, allData[4]);
 		
 	}
 
@@ -297,7 +294,7 @@ public class LandTourTest {
 	 */
 	@Test
 	public void testListOfReservations() {
-		LandTour t1 = new LandTour("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
 		
 		Client c1 = new Client("name1", "contact1");
 		Client c2 = new Client("name2", "contact2");
@@ -306,15 +303,16 @@ public class LandTourTest {
 		try {
 			t1.createReservationFor(c1, 10);
 			t1.createReservationFor(c2, 20);
+			
 		} catch (Exception e) {
 			fail();
 		}
 		
 		String[] list = t1.listOfReservations();
-		assertEquals(c1.summaryInfo(), list[0]);
-		assertEquals(c2.summaryInfo(), list[1]);
+		assertEquals("10 " + c1.summaryInfo(), list[0]);
+		assertEquals("20 " + c2.summaryInfo(), list[1]);
+		
 	}
-
 
 
 	/**

@@ -252,23 +252,15 @@ public class EducationalTripTest {
 		assertEquals(10, t1.getReservation(0).getNumInParty());
 		
 		
-		// get all data in this tour.
+		// get all data in the first tour.
 		Object[] allData = t1.getAllData();
 		
 		// get the first reservation
-		assertEquals("name1", ((Reservation)allData[0]).getClient().getName());
-		assertEquals("contact1", ((Reservation)allData[0]).getClient().getContact());
-		assertEquals(10, ((Reservation)allData[0]).getNumInParty());
-		
-		// get the second reservation
-		assertEquals("name2", ((Reservation)allData[1]).getClient().getName());
-		assertEquals("contact2", ((Reservation)allData[1]).getClient().getContact());
-		assertEquals(20, ((Reservation)allData[1]).getNumInParty());
-		
-		// get the last reservation
-		assertEquals("name3", t1.getReservation(2).getClient().getName());
-		assertEquals("contact3", t1.getReservation(2).getClient().getContact());
-		assertEquals(30, t1.getReservation(2).getNumInParty());
+		assertEquals("ED-name1", allData[0]);
+		assertEquals(LocalDate.of(2019, 10, 11), allData[1]);
+		assertEquals(7, allData[2]);
+		assertEquals(500, allData[3]);
+		assertEquals(100, allData[4]);
 		
 	}
 
@@ -333,9 +325,9 @@ public class EducationalTripTest {
 		}
 		
 		String[] list = t1.listOfReservations();
-		assertEquals(c1.summaryInfo(), list[0]);
-		assertEquals(c2.summaryInfo(), list[1]);
-		assertEquals(c3.summaryInfo(), list[2]);
+		assertEquals("10 " + c1.summaryInfo(), list[0]);
+		assertEquals("20 " + c2.summaryInfo(), list[1]);
+		assertEquals("30 " + c3.summaryInfo(), list[2]);
 	}
 
 
