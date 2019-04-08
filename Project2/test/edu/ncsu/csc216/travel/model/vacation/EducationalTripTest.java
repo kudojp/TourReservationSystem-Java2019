@@ -401,12 +401,4 @@ public class EducationalTripTest {
 		assertEquals(r2, t1.getReservation(0));
 		assertEquals(r3, t1.getReservation(1));
 	}
-	
-	/**
-	 * Test method for getAllData() for no reservation
-	 */
-	@Test
-	public void testCancelReservation() {
-	
-
 }
