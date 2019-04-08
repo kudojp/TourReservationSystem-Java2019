@@ -168,6 +168,16 @@ public class EducationalTripTest {
 		assertEquals(80, et.getCapacity());
 		assertTrue(et.isCapacityFixed());
 		
+		// double the capacity again (should fail).
+		try {
+			et.setCapacity(160);
+			fail();
+		} catch (CapacityException e) {
+			// pass
+		}
+		assertEquals(80, et.getCapacity());
+		assertTrue(et.isCapacityFixed());
+		
 	}
 	
 	/**

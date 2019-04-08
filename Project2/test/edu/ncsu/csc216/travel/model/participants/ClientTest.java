@@ -195,6 +195,7 @@ public class ClientTest {
 		assertFalse(c1.equals(c3));
 		assertFalse(c1.equals(c4));
 		assertFalse(c1.equals(c5));
+		assertFalse(c1.equals(null));
 	}
 	
 	

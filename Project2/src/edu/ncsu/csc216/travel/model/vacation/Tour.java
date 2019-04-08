@@ -47,7 +47,7 @@ public abstract class Tour implements Comparable<Tour> {
 		// also, set capacityFixed = True only in ED, otherwise False
 		
 		
-		if (name == null || name.equals("")) {
+		if (name == null || name.trim().length() <= 0) {
 			throw new IllegalArgumentException("Tour name is invalid.");
 		}
 		
@@ -393,7 +393,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return the capacityFixed : true if capacity is already fixed.
 	 */
 	public boolean isCapacityFixed() {
-		return capacityFixed;
+		return this.capacityFixed;
 	}
 	
 	
