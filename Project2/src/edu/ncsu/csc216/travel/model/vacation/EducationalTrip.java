@@ -38,16 +38,18 @@ public class EducationalTrip extends Tour {
 	 */
 	@Override
 	public Reservation createReservationFor(Client c, int i) throws CapacityException {
-		Reservation res = null;
 		
 		try {
-			res = super.createReservationFor(c, i);
+			return super.createReservationFor(c, i);
 		} catch(CapacityException cp) {
-			// double the capacity
-			super.setCapacity(super.getCapacity() * 2);
-			res = super.createReservationFor(c, i);
+			// double the capacity if it makes capable to accomodate
+			if (!super.isCapacityFixed() || super.spacesLeft() + super.getCapacity() >= i) {
+				super.setCapacity(super.getCapacity() * 2);
+				return super.createReservationFor(c, i);
+			}
 		}
-		return res;
+		// in the case when there is no space
+		throw new CapacityException();
 	}
 
 

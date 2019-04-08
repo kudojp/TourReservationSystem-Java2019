@@ -219,8 +219,9 @@ public class EducationalTripTest {
 			t1.createReservationFor(new Client("name1", "contact1"), 10);
 			t1.createReservationFor(new Client("name2", "contact2"), 20);
 			t1.createReservationFor(new Client("name3", "contact3"), 30);
-		} catch (Exception e) {
-			fail();
+		} catch (CapacityException e) {
+			System.out.println(t1.numberOfClientReservations());
+			fail(e.getMessage());
 		}
 		assertEquals(3, t1.numberOfClientReservations());
 		assertEquals(40, t1.spacesLeft());
@@ -255,9 +256,9 @@ public class EducationalTripTest {
 		assertEquals(20, ((Reservation)allData[1]).getNumInParty());
 		
 		// get the last reservation
-		assertEquals("name2", t1.getReservation(2).getClient().getName());
-		assertEquals("contact2", t1.getReservation(2).getClient().getContact());
-		assertEquals(10, t1.getReservation(2).getNumInParty());
+		assertEquals("name3", t1.getReservation(2).getClient().getName());
+		assertEquals("contact3", t1.getReservation(2).getClient().getContact());
+		assertEquals(30, t1.getReservation(2).getNumInParty());
 		
 	}
 
@@ -338,22 +339,30 @@ public class EducationalTripTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#cancelReservation(edu.ncsu.csc216.travel.model.vacation.Reservation)}.
+	 * Test method for cancselReservation() and spaaceLeft()
 	 */
 	@Test
 	public void testCancelReservation() {
 		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		
+		Reservation r1 = null;
+		Reservation r2 = null;
+		Reservation r3 = null;
 		try {
-			t1.createReservationFor(new Client("name1", "contact1"), 10);
-			t1.createReservationFor(new Client("name2", "contact2"), 20);
-			t1.createReservationFor(new Client("name3", "contact3"), 30);
+			r1 = t1.createReservationFor(new Client("name1", "contact1"), 10);
+			assertEquals(40, t1.spacesLeft());
+			r2 = t1.createReservationFor(new Client("name2", "contact2"), 20);
+			assertEquals(20, t1.spacesLeft());
+			r3 = t1.createReservationFor(new Client("name3", "contact3"), 30);
+			assertEquals(40, t1.spacesLeft());
 		} catch (Exception e) {
 			fail();
 		}
 		assertEquals(3, t1.numberOfClientReservations());
 		
-		t1.cancelReservation(new Reservation(t1, new Client("name1", "contact1"), 10));
-		assertEquals(2, t1.numberOfClientReservations());
+		t1.cancelReservation(r1);
+		assertEquals(r2, t1.getReservation(0));
+		assertEquals(r3, t1.getReservation(1));
 	}
 
 }

@@ -115,7 +115,12 @@ public class Client {
 	 * @param res : reservation to be removed
 	 */
 	public void cancelReservation(Reservation res) {
-		//pass
+		for (int i = 0 ; i < this.myReservations.size() ; i++) {
+			if (this.myReservations.get(i).equals(res)) {
+				this.myReservations.remove(i);
+				break;
+			}
+		}
 	}
 	
 	

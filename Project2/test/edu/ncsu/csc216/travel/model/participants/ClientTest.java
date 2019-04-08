@@ -25,7 +25,19 @@ public class ClientTest {
 	 */
 	@Test
 	public void testCancelReservation() {
-		fail();
+		Client c = new Client("a", "123");
+		Tour et  = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		Reservation r1 = new Reservation(et, c, 3);
+		Reservation r2 = new Reservation(et, c, 4);
+		Reservation r3 = new Reservation(et, c, 5);
+		
+		c.addReservation(r1);
+		c.addReservation(r2);
+		c.addReservation(r3);
+		
+		c.cancelReservation(r2);
+		assertEquals(r1, c.getReservation(0));
+		assertEquals(r3, c.getReservation(1));
 	}
 	
 

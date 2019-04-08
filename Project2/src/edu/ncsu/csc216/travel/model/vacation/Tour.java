@@ -23,7 +23,7 @@ public abstract class Tour implements Comparable<Tour> {
 	/** original capacity of this Tour */
 	private int capacity;
 	/** whether this Tour's capacity has been fixed and cannot extended anymore. */
-	private boolean capacityFixed = true;
+	private boolean capacityFixed;
 	/** base price of this Tour */
 	private int basePrice;
 	/** number of decided participants of this Tour */
@@ -305,13 +305,14 @@ public abstract class Tour implements Comparable<Tour> {
 		}
 		
 		if (this.capacity >= this.numParticipants + i) {
-			this.numParticipants += i;
 			Reservation newRes = new Reservation(this, c, i);
 			
 			//add this new reservation to the Tour object
 			this.res.add(newRes);
 			//add this new reservation to the Client object
 			c.addReservation(newRes);
+			//add number of participants
+			this.numParticipants += i;
 			return newRes;
 		}
 		
@@ -343,6 +344,8 @@ public abstract class Tour implements Comparable<Tour> {
 		this.res.add(oldRes);
 		// add oldRes to the list of a corresponding Client
 		oldRes.getClient().addReservation(oldRes);
+		// add number of participants
+		this.numParticipants += oldRes.getNumInParty();
 		return oldRes;
 	}
 	
@@ -352,9 +355,15 @@ public abstract class Tour implements Comparable<Tour> {
 	 */
 	public void cancelReservation(Reservation res) {
 		for (int i = 0 ; i < this.res.size() ; i++) {
+			//System.out.println( this.res.get(i).getTour().equals(res.getTour()));
+			//System.out.println( this.res.get(i).getClient().equals(res.getClient()));
 			if (this.res.get(i).equals(res)){
+				// remove number of participants
+				this.numParticipants -= res.getNumInParty();
+				
 				this.res.remove(i);
-				break;
+				//System.out.println(i);
+				this.res.size();
 			}
 		}
 	}
