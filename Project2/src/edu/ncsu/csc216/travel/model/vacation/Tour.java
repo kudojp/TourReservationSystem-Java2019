@@ -204,7 +204,7 @@ public abstract class Tour implements Comparable<Tour> {
 		
 		LocalDate date = this.getStartDate();
 		return this.getName() + ": " 
-				+ date.getMonthValue() + "/" + date.getDayOfMonth() + "/" + date.getYear()%100 + " " + this.getDuration() + " days"; 
+				+ (int)date.getMonthValue() + "/" + (int)date.getDayOfMonth() + "/" + (int)date.getYear()%100 + " " + this.getDuration() + " days"; 
 		
 	}
 
