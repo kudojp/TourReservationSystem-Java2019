@@ -54,7 +54,7 @@ public class RiverCruise extends Tour {
 		// For parties of an odd number of people, the cost is the same except for a 50% surcharge for one of the people. 
 		// For example, suppose a river cruise has a base cost of $1000. Then the cost of a reservation for 4 people is $4000, 
 		// but the cost of a party of five people is $5500.
-		return super.getBasePrice() * i + super.getBasePrice() / 2 * (i % 2);
+		return super.getBasePrice() * i + super.getBasePrice() / 2. * (i % 2.);
 	}
 	
 	
