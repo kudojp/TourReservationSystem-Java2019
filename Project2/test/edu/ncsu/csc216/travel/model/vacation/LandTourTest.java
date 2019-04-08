@@ -31,7 +31,7 @@ public class LandTourTest {
 		}
 		assertEquals("LT-name", t.getName());
 		assertEquals(LocalDate.of(2019, 11, 11), t.getStartDate());
-		assertEquals(LocalDate.of(2019, 11, 18), t.getEndDate());
+		assertEquals(LocalDate.of(2019, 11, 17), t.getEndDate());
 		assertEquals(7, t.getDuration());
 		assertEquals(500, t.getBasePrice());
 		assertEquals(50, t.getCapacity());

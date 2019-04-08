@@ -155,7 +155,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return the end date
 	 */
 	public LocalDate getEndDate() {
-		return this.start.plusDays(this.duration);
+		return this.start.plusDays(this.duration - 1);
 	}
 
 	
