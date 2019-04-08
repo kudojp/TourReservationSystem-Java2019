@@ -218,12 +218,11 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return : array representing this Tour
 	 */
 	public Object[] getAllData() {
-		Object[] array = new Object[this.res.size()];
-		for (int i = 0 ; i < this.res.size() ; i++) {
-			array[i] = this.res.get(i);
-		}
-		return array;
+		
+		Object[] ret = {this.name, this.start, this.duration, this.basePrice, this.capacity};
+		return ret;
 	}
+		
 	
 
 	/* (non-Javadoc)
