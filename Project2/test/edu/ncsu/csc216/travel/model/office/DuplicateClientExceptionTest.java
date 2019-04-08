@@ -19,7 +19,8 @@ public class DuplicateClientExceptionTest {
 	 */
 	@Test
 	public void testDuplicateClientException() {
-		fail("Not yet implemented");
+		DuplicateClientException e = new DuplicateClientException();
+		assertEquals("Client is already registered.", e.getMessage());
 	}
 
 	/**
@@ -27,7 +28,10 @@ public class DuplicateClientExceptionTest {
 	 */
 	@Test
 	public void testDuplicateClientExceptionString() {
-		fail("Not yet implemented");
+		DuplicateClientException e = new DuplicateClientException("my message");
+		assertEquals("my message", e.getMessage());
 	}
+	
+
 
 }

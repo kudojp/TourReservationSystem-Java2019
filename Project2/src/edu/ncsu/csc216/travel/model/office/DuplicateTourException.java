@@ -17,7 +17,7 @@ public class DuplicateTourException extends Exception {
 	 * Creates DuplicateTourException with a default message.
 	 */
 	public DuplicateTourException() {
-		// TODO Auto-generated constructor stub
+		this("Tour is already registered.");
 	}
 
 	/**
@@ -26,8 +26,10 @@ public class DuplicateTourException extends Exception {
 	 */
 	public DuplicateTourException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
+		
 	}
+
+
 
 
 }

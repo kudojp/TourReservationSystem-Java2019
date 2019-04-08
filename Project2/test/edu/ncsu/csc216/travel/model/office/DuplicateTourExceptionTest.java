@@ -7,6 +7,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.travel.model.vacation.CapacityException;
+
 /**
  * Test class for DuplicateTourException class.
  * @author dkudo
@@ -19,7 +21,8 @@ public class DuplicateTourExceptionTest {
 	 */
 	@Test
 	public void testDuplicateTourException() {
-		fail("Not yet implemented");
+		DuplicateTourException e = new DuplicateTourException("my message");
+		assertEquals("my message", e.getMessage());
 	}
 
 	/**
@@ -27,7 +30,9 @@ public class DuplicateTourExceptionTest {
 	 */
 	@Test
 	public void testDuplicateTourExceptionString() {
-		fail("Not yet implemented");
+		DuplicateTourException e = new DuplicateTourException();
+		assertEquals("Tour is already registered.", e.getMessage());
 	}
+
 
 }

@@ -10,23 +10,26 @@ package edu.ncsu.csc216.travel.model.office;
  */
 public class DuplicateClientException extends Exception {
 
-	/** serialVersionUID used for this Exception */
+	/**
+	 * serialVersionUID
+	 */
 	private static final long serialVersionUID = 1L;
 
+	
 	/**
-	 * Created DuplicatedClienException with a default error message.
+	 * Constructs DuplicateException with a default message.
 	 */
 	public DuplicateClientException() {
-		// TODO Auto-generated constructor stub
+		this("Client is already registered.");
 	}
 
 	/**
-	 * Creates DuplicatedClientException with a given error message.
-	 * @param message : error message
+	 * Constructs DulicateException with a given message.
+	 * @param message : message of this Exception
 	 */
 	public DuplicateClientException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
+
 
 }
