@@ -268,7 +268,7 @@ public class EducationalTripTest {
 	 */
 	@Test
 	public void testSummaryInfo() {
-		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		EducationalTrip t1 = new EducationalTrip("name1", LocalDate.of(2009, 9, 9), 7, 500, 50);
 		try {
 			t1.createReservationFor(new Client("name1", "contact1"), 10);
 			t1.createReservationFor(new Client("name2", "contact2"), 20);
@@ -277,7 +277,7 @@ public class EducationalTripTest {
 			fail();
 		}
 		
-		assertEquals("ED-name1: 10/11/19 7 days", t1.summaryInfo());
+		assertEquals("ED-name1: 09/09/09 7 days", t1.summaryInfo());
 	}
 
 	/**
