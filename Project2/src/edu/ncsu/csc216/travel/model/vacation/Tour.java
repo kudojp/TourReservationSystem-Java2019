@@ -47,7 +47,7 @@ public abstract class Tour implements Comparable<Tour> {
 		// also, set capacityFixed = True only in ED, otherwise False
 		
 		
-		if (name == null || name.contentEquals("")) {
+		if (name == null || name.equals("")) {
 			throw new IllegalArgumentException("Tour name is invalid.");
 		}
 		
