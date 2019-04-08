@@ -390,7 +390,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 * 								 or if the capacity is less than 1.
 	 */
 	protected void setCapacity(int capacity) throws CapacityException{
-		if (capacity < this.capacity || capacity < 1) {
+		if (capacity < this.capacity || capacity < 1 || this.capacityFixed) {
 			throw new CapacityException();
 		}
 		this.capacity = capacity;
