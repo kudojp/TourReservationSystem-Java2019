@@ -50,6 +50,11 @@ public class TravelWriter {
 			}
 			
 			// write Tour info
+			TourCoordinator cd = TourCoordinator.getInstance();
+			// set filter to all kinds and all durations to get full data.
+			
+			
+			
 			//for (int i = 0 ; i < TourCoordinator.getInstance().listClients().) {
 			//	fw.write(str);
 			//	fw.write("\n");

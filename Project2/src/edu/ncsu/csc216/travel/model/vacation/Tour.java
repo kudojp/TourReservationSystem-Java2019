@@ -230,7 +230,7 @@ public abstract class Tour implements Comparable<Tour> {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + duration;
-		result = prime * result + ((name == null) ? 0 : name.hashCode());
+		result = prime * result + ((name == null) ? 0 : name.toLowerCase().hashCode());
 		result = prime * result + ((start == null) ? 0 : start.hashCode());
 		return result;
 	}
@@ -253,7 +253,7 @@ public abstract class Tour implements Comparable<Tour> {
 		if (name == null) {
 			if (other.name != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!name.toLowerCase().equals(other.name.toLowerCase()))
 			return false;
 		if (start == null) {
 			if (other.start != null)
