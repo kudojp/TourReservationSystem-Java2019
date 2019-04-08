@@ -45,6 +45,7 @@ public class EducationalTrip extends Tour {
 			// double the capacity if it makes capable to accomodate
 			if (!super.isCapacityFixed() || super.spacesLeft() + super.getCapacity() >= i) {
 				super.setCapacity(super.getCapacity() * 2);
+				super.fixCapacity();
 				return super.createReservationFor(c, i);
 			}
 		}

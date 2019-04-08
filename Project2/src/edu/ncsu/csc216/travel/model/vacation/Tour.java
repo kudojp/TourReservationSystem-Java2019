@@ -305,8 +305,9 @@ public abstract class Tour implements Comparable<Tour> {
 			throw new IllegalArgumentException();
 		}
 		
+		Reservation newRes = new Reservation(this, c, i);
+		
 		if (this.capacity >= this.numParticipants + i) {
-			Reservation newRes = new Reservation(this, c, i);
 			
 			//add this new reservation to the Tour object
 			this.res.add(newRes);
@@ -315,6 +316,19 @@ public abstract class Tour implements Comparable<Tour> {
 			//add number of participants
 			this.numParticipants += i;
 			return newRes;
+		}
+		
+		if (!this.isCapacityFixed() || this.spacesLeft() + this.getCapacity() >= i) {
+			this.setCapacity(this.getCapacity() * 2);
+
+			//add this new reservation to the Tour object
+			this.res.add(newRes);
+			//add this new reservation to the Client object
+			c.addReservation(newRes);
+			//add number of participants
+			this.numParticipants += i;
+			return newRes;
+			
 		}
 		
 		// in the case when there is no space

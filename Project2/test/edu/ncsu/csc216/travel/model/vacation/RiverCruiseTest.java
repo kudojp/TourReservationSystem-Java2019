@@ -160,13 +160,14 @@ public class RiverCruiseTest {
 			assertEquals(40, et.getCapacity());
 		}
 		
-		// double the capacity.
+		// impossible to double the capacity.
 		try {
 			et.setCapacity(80);
-		} catch (CapacityException e) {
 			fail();
+		} catch (CapacityException e) {
+			//pass
 		}
-		assertEquals(80, et.getCapacity());
+		assertEquals(40, et.getCapacity());
 		assertTrue(et.isCapacityFixed());
 		
 	}
