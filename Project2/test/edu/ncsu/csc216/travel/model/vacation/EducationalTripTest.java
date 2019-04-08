@@ -339,6 +339,15 @@ public class EducationalTripTest {
 		Reservation r1 = new Reservation(t1, new Client("name1", "contact1"), 10);
 		Reservation r2 = new Reservation(t1, new Client("name1", "contact1"), 20);
 		Reservation r3 = new Reservation(t1, new Client("name1", "contact1"), 30);
+		
+		try {
+			t1.addOldReservation(null);
+		} catch (IllegalArgumentException e) {
+			//pass
+		} catch (CapacityException e) {
+			fail();
+		}
+		
 		try {
 			t1.addOldReservation(r1);
 			t1.addOldReservation(r2);

@@ -170,25 +170,67 @@ public class ReservationTest {
 	 */
 	@Test
 	public void testCancel() {
-		fail("Not yet implemented");
+		EducationalTrip t1 = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		EducationalTrip t2 = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 40);
+		Client c1 = new Client("name1", "contact1");
+		Client c2 = new Client("name2", "contact2");
+		
+		Reservation r1 = new Reservation(t1, c1, 10, 1);
+		Reservation r2 = new Reservation(t1, c2, 10, 2);
+		Reservation r3 = new Reservation(t2, c1, 10, 3);
+		
+		
+		try {
+			t1.addOldReservation(r1);
+			t1.addOldReservation(r2);
+			t2.addOldReservation(r3);
+			
+		} catch (CapacityException e) {
+			fail();
+		}
+		
+		r1.cancel();
+		// check that this reservation is removed t1 
+		assertEquals(1, t1.numberOfClientReservations());
+		assertEquals(r2, t1.getReservation(0));
+		
+		// check that this reservation is removed from c1
+		assertEquals(1, c1.getNumberOfReservations());
+		assertEquals(r3, c1.getReservation(0));
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Reservation#equals(java.lang.Object)}.
+	 * Test method for hashCode() and equals() methods
 	 */
 	@Test
-	public void testEqualsObject() {
-		fail("Not yet implemented");
+	public void testHashAndEqualsObject() {
+		EducationalTrip t1 = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		EducationalTrip t2 = new EducationalTrip("name2", LocalDate.of(2019, 11, 11), 7, 500, 50);
+		Reservation r1 = new Reservation(t1, new Client("name1", "contact1"), 10, 1);
+		// different tour
+		Reservation r2 = new Reservation(t2, new Client("name1", "contact1"), 10, 1);
+		// different client
+		Reservation r3 = new Reservation(t1, new Client("name2", "contact1"), 10, 1);
+		// different duration
+		Reservation r4 = new Reservation(t1, new Client("name1", "contact1"), 11, 1);
+		// different confirmation code
+		Reservation r5 = new Reservation(t1, new Client("name1", "contact1"), 10, 11);
+		
+		assertEquals(r1.hashCode(), r1.hashCode());
+		assertNotEquals(r1.hashCode(), r2.hashCode());
+		assertNotEquals(r1.hashCode(), r3.hashCode());
+		assertNotEquals(r1.hashCode(), r4.hashCode());
+		assertNotEquals(r1.hashCode(), r5.hashCode());
+		
+		
+		
+		assertTrue(r1.equals(r1));
+		assertFalse(r1.equals(r2));
+		assertFalse(r1.equals(r3));
+		assertFalse(r1.equals(r4));
+		assertFalse(r1.equals(r5));
+		
 	}
 	
-	
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Reservation#hashCode()}.
-	 */
-	@Test
-	public void testHashCode() {
-		fail("Not yet implemented");
-	}
-
 
 }

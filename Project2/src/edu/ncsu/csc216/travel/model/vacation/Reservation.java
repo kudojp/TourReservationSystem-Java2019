@@ -127,7 +127,8 @@ public class Reservation {
 	 * Cancels this Reservation.
 	 */
 	public void cancel() {
-		//TODO
+		this.theClient.cancelReservation(this);
+		this.theTour.cancelReservation(this);
 	}
 	
 	/**
