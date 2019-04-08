@@ -68,7 +68,7 @@ public abstract class Tour implements Comparable<Tour> {
 			throw new IllegalArgumentException("Tour capacity is invalid.");
 		}
 		
-		this.name = name;
+		this.name = name.trim();
 		this.start = start;
 		this.duration = duration;
 		this.basePrice = basePrice;
