@@ -335,9 +335,27 @@ public class EducationalTripTest {
 	 */
 	@Test
 	public void testAddOldReservation() {
-		fail("Not yet implemented");
+		Tour t1 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
+		Reservation r1 = new Reservation(t1, new Client("name1", "contact1"), 10);
+		Reservation r2 = new Reservation(t1, new Client("name1", "contact1"), 20);
+		Reservation r3 = new Reservation(t1, new Client("name1", "contact1"), 30);
+		try {
+			t1.addOldReservation(r1);
+			t1.addOldReservation(r2);
+		} catch (CapacityException e) {
+			fail();
+		}
+		
+		try {
+			t1.addOldReservation(r3);
+			fail();
+		} catch (CapacityException e) {
+			assertEquals(2, t1.listOfReservations().length);
+		}
+		
+		
 	}
-
+	
 	/**
 	 * Test method for cancselReservation() and spaaceLeft()
 	 */

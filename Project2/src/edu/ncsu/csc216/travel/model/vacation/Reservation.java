@@ -202,40 +202,5 @@ public class Reservation {
 			return false;
 		return true;
 	}
-	
-	
-	
-	
-	
-	
-	
-	/**
-	 * Returns the has Code of this Reservation object.
-	 * Used for equals() method.
-	 * @return : hashCode of this object.
-	 */
-	
-	
-	
-	/**
-	public int hashCode() {
-		return 0;
-	}
-	*/
-	
-	/**
-	 * Compares this Reservation with a given Object.
-	 * @return true : if this object is equals to the given object
-	 * TODO(What is equals??)
-	 * @param another : a object given to be compared
-	 */
-	
-	
-	/**
-	public boolean equals(Object another) {
-		return false;
-	}
-	*/
-	
-	
+
 }

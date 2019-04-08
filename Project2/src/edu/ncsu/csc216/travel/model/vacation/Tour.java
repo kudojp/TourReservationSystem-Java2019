@@ -337,9 +337,14 @@ public abstract class Tour implements Comparable<Tour> {
 		// should ask the corresponding clients to add the reservation to their lists of reservations.
 		// This method should not be overridden under the assumption that any capacity expansion would have already taken place when the reservation was initially created.
 		
-		if (oldRes == null || oldRes.getNumInParty() > this.capacity) {
+		if (oldRes == null) {
 			throw new IllegalArgumentException();
 		}
+		
+		if (oldRes.getNumInParty() > this.spacesLeft()){
+			throw new CapacityException();
+		}
+		
 		// add oldRes to the Reservation list of this Tour
 		this.res.add(oldRes);
 		// add oldRes to the list of a corresponding Client
