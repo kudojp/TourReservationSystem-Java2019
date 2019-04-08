@@ -189,8 +189,12 @@ public abstract class Tour implements Comparable<Tour> {
 	 * Returns Reservation object at given index.
 	 * @param i : index for searching
 	 * @return Reservation object searched
+	 * @throws ILlegalArgumentException : if the index is out
 	 */
 	public Reservation getReservation(int i) {
+		if (i < 0 || this.res.size() <= i) {
+			throw new IllegalArgumentException();
+		}
 		return this.res.get(i);
 	}
 
