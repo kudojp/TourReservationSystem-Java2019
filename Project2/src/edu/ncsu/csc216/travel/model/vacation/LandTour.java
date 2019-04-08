@@ -53,7 +53,7 @@ public class LandTour extends Tour {
 		// suppose a land tour has a base cost of $1000. Then the cost of a reservation for two people is $2000, but the cost of a party of one is $1250.
 		
 		if (i == 1) {
-			return super.getBasePrice();
+			return super.getBasePrice() * 1.25;
 		}
 		
 		return super.getBasePrice() * i;
