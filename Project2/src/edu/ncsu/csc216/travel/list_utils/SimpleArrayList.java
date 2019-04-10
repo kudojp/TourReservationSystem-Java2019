@@ -103,7 +103,7 @@ public class SimpleArrayList<E> implements SimpleList<E> {
 		}
 		if (0 < this.size) {
 			for (int i = this.size - 1 ; pos <= i ; i--) {
-				this.list[i+1] = this.list[i];
+				this.list[i + 1] = this.list[i];
 			}
 		}
 		this.list[pos] = e;
