@@ -232,7 +232,7 @@ public abstract class Tour implements Comparable<Tour> {
 		}
 		
 		
-		Object[] ret = {this.getName(), String.format("%02d", (int)date.getMonthValue()) + "/" + String.format("%02d", (int)date.getDayOfMonth()) + "/" + String.format("%02d", (int)date.getYear() % 100) + " ",
+		Object[] ret = {this.getName(), String.format("%02d", (int)date.getMonthValue()) + "/" + String.format("%02d", (int)date.getDayOfMonth()) + "/" + String.format("%02d", (int)date.getYear() % 100),
 						this.getDuration(), "$" + this.getBasePrice(), cap};
 		return ret;
 	}
