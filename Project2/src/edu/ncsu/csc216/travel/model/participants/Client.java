@@ -42,7 +42,7 @@ public class Client {
 			throw new IllegalArgumentException("Client name must start with an alphabetic character.");
 		}
 		
-		if (contact == null || contact.equals("")) {
+		if (contact == null || contact.trim().length() <= 0) {
 			throw new IllegalArgumentException("Contact cannot be blank.");
 		}
 		
