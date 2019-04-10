@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 /**
- * @author admin
+ * @author dkudo
  *
  */
 public class TourCoordinatorTest {
@@ -18,7 +18,7 @@ public class TourCoordinatorTest {
 	 */
 	@Test
 	public void testGetInstance() {
-		fail("Not yet implemented");
+		assertNotNull(TourCoordinator.getInstance());
 	}
 
 	/**
