@@ -312,6 +312,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public Reservation addNewReservation(int clientIndex, int filteredTourIndex, int numInParty)
 			throws CapacityException {
+		
+		
+		
+		// Capacity for the tour should be checked before new reservation is added to client
 		// TODO Auto-generated method stub
 		return null;
 	}

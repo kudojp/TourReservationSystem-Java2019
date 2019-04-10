@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.travel.model.vacation.EducationalTrip;
@@ -19,6 +20,15 @@ import edu.ncsu.csc216.travel.model.vacation.Tour;
  *
  */
 public class ClientTest {
+	
+	/* *
+	 * Sets up the Reservation class
+	 * Resets confirmation code.
+	 */
+	@Before
+    public void setUp() {
+      Reservation.resetCodeGenerator();
+    }
 	
 	/**
 	 * Test method for cancelReservation()
@@ -145,8 +155,8 @@ public class ClientTest {
 		assertEquals(r2, c.getReservation(1));
 		
 		// test listOfReservations()
-		assertEquals("3 ED-name: 11/11/19 7 days", c.listOfReservations()[0]);
-		assertEquals("5 ED-name2: 11/12/19 7 days", c.listOfReservations()[1]);
+		assertEquals("000000 3 ED-name: 11/11/19 7 days", c.listOfReservations()[0]);
+		assertEquals("000001 5 ED-name2: 11/12/19 7 days", c.listOfReservations()[1]);
 		
 		// test totalReservationCost()
 		assertEquals(4000, c.totalReservationCost());

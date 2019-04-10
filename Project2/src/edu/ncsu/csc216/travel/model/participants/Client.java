@@ -152,7 +152,7 @@ public class Client {
 		// Reference to UC9
 		String[] list = new String[this.getNumberOfReservations()];
 		for (int i = 0 ; i < this.getNumberOfReservations() ; i++) {
-			list[i] = this.myReservations.get(i).displayReservationTour();
+			list[i] = this.myReservations.get(i).getConfirmationCode() + " " + this.myReservations.get(i).displayReservationTour();
 		}
 		return list;
 		
