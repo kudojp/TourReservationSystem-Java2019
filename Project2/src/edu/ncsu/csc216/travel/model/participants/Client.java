@@ -32,7 +32,7 @@ public class Client {
 		//(such as names not starting with alphabetic characters or indexes out of bounds),
 		//the method should throw an IllegalArgumentException
 		
-		if (name == null || name.equals("")) {
+		if (name == null || name.trim().equals("")) {
 			throw new IllegalArgumentException("Name cannot be blank.");
 		}
 		
