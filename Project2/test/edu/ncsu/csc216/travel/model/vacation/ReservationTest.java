@@ -106,7 +106,7 @@ public class ReservationTest {
 			valid1 = new Reservation(t1, new Client("name1", "contact1"), 5, 5);
 		} catch (Exception e) {
 			fail();
-		}
+		} 
 		assertEquals("000005", valid1.getConfirmationCode());
 		
 		// reservation from a file 2

@@ -167,9 +167,6 @@ public class Reservation {
 		final int prime = 31;
 		int result = 1;
 		result = prime * result + ((confirmationCode == null) ? 0 : confirmationCode.hashCode());
-		result = prime * result + numInParty;
-		result = prime * result + ((theClient == null) ? 0 : theClient.hashCode());
-		result = prime * result + ((theTour == null) ? 0 : theTour.hashCode());
 		return result;
 	}
 
@@ -190,19 +187,9 @@ public class Reservation {
 				return false;
 		} else if (!confirmationCode.equals(other.confirmationCode))
 			return false;
-		if (numInParty != other.numInParty)
-			return false;
-		if (theClient == null) {
-			if (other.theClient != null)
-				return false;
-		} else if (!theClient.equals(other.theClient))
-			return false;
-		if (theTour == null) {
-			if (other.theTour != null)
-				return false;
-		} else if (!theTour.equals(other.theTour))
-			return false;
 		return true;
 	}
+
+
 
 }
