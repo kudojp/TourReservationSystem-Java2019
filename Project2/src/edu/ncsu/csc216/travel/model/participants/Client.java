@@ -38,7 +38,7 @@ public class Client {
 		
 		char c = name.charAt(0);
 		
-		if (!('a' < c || c < 'z') && !('A' < c || c < 'Z')) {
+		if (!('a' < c && c < 'z') && !('A' < c && c < 'Z')) {
 			throw new IllegalArgumentException("Client name must start with an alphabetic character.");
 		}
 		
