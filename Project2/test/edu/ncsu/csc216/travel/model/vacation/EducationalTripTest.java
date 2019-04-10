@@ -150,10 +150,17 @@ public class EducationalTripTest {
 	public void testSetCapacity() {
 		EducationalTrip et = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 40);
 	
+		try {
+			et.createReservationFor(new Client("name1", "contact1"), 20);
+		} catch(IllegalArgumentException e) {
+			fail();
+		} catch(CapacityException e) {
+			fail();
+		}
 		
 		// try to set capacity less than or equal to 0
 		try {
-			et.setCapacity(39);
+			et.setCapacity(19);
 			fail();
 		} catch (CapacityException e) {
 			assertEquals(40, et.getCapacity());
