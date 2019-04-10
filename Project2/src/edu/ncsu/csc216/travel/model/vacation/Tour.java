@@ -359,6 +359,10 @@ public abstract class Tour implements Comparable<Tour> {
 			throw new IllegalArgumentException();
 		}
 		
+		if (!oldRes.getTour().getName().substring(0, 2).equals(this.getName().substring(0, 2))) {
+			throw new IllegalArgumentException();
+		}
+		
 		if (oldRes.getNumInParty() > this.spacesLeft()){
 			throw new CapacityException();
 		}
