@@ -393,8 +393,14 @@ public abstract class Tour implements Comparable<Tour> {
 	/**
 	 * Cancels the given Reservation from the Reservation list of this Tour.
 	 * @param res Reservation object which should be cancelled
+	 * @throws IllegalArgumentException : if the given object is not in the reservation list of this Tour.
 	 */
 	public void cancelReservation(Reservation res) {
+		
+		if (this.res.contains(res)) {
+			throw new IllegalArgumentException();
+		}
+		
 		for (int i = 0 ; i < this.res.size() ; i++) {
 			//System.out.println( this.res.get(i).getTour().equals(res.getTour()));
 			//System.out.println( this.res.get(i).getClient().equals(res.getClient()));

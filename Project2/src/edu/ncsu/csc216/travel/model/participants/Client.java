@@ -132,12 +132,17 @@ public class Client {
 	/**
 	 * Cancels a given reservation.
 	 * @param res : reservation to be removed
+	 * @throws IllegalArgumentException : if the given object is not in the reservation list of this Tour.
 	 */
 	public void cancelReservation(Reservation res) {
+		
+		if (!this.myReservations.contains(res)) {
+			throw new IllegalArgumentException();
+		}
+		
 		for (int i = 0 ; i < this.myReservations.size() ; i++) {
 			if (this.myReservations.get(i).equals(res)) {
 				this.myReservations.remove(i);
-				break;
 			}
 		}
 	}
