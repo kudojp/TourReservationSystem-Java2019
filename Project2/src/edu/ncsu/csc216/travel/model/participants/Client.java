@@ -36,7 +36,7 @@ public class Client {
 			throw new IllegalArgumentException("Name cannot be blank.");
 		}
 		
-		char c = name.charAt(0);
+		char c = name.trim().charAt(0);
 		
 		if (!('a' <= c && c <= 'z') && !('A' <= c && c <= 'Z')) {
 			throw new IllegalArgumentException("Client name must start with an alphabetic character.");
@@ -46,8 +46,8 @@ public class Client {
 			throw new IllegalArgumentException("Contact cannot be blank.");
 		}
 		
-		this.name = name;
-		this.contact = contact;
+		this.name = name.trim();
+		this.contact = contact.trim();
 		this.myReservations = new SimpleArrayList<Reservation>();
 	}
 
@@ -177,12 +177,12 @@ public class Client {
 		if (contact == null) {
 			if (other.contact != null)
 				return false;
-		} else if (!contact.equals(other.contact))
+		} else if (!contact.toLowerCase().equals(other.contact.toLowerCase()))
 			return false;
 		if (name == null) {
 			if (other.name != null)
 				return false;
-		} else if (!name.equals(other.name))
+		} else if (!name.toLowerCase().equals(other.name.toLowerCase()))
 			return false;
 		return true;
 	}
