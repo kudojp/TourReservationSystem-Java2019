@@ -243,10 +243,11 @@ public class RiverCruiseTest {
 		
 		// get the first reservation
 		assertEquals("RC-name1", allData[0]);
-		assertEquals(LocalDate.of(2019, 10, 11), allData[1]);
+		assertEquals("10/11/19", allData[1]);
 		assertEquals(7, allData[2]);
-		assertEquals(500, allData[3]);
-		assertEquals(50, allData[4]);
+		assertEquals("$500", allData[3]);
+		assertEquals("50", allData[4]);
+		
 		
 	}
 
