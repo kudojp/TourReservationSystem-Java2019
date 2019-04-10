@@ -95,7 +95,7 @@ public class Client {
 	 * @throws IllegalArgumentException : if given index is out of 
 	 */
 	public Reservation getReservation(int i) {
-		if (i < 0 || this.getNumberOfReservations() < i) {
+		if (i < 0 || this.getNumberOfReservations() <= i) {
 			throw new IllegalArgumentException();
 		}
 		return this.myReservations.get(i);
