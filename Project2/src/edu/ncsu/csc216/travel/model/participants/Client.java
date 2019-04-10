@@ -32,19 +32,32 @@ public class Client {
 		//(such as names not starting with alphabetic characters or indexes out of bounds),
 		//the method should throw an IllegalArgumentException
 		
+		
+		// name check
 		if (name == null || name.trim().equals("")) {
 			throw new IllegalArgumentException("Name cannot be blank.");
 		}
 		
-		char c = name.trim().charAt(0);
+		char nameChar = name.trim().charAt(0);
 		
-		if (!('a' <= c && c <= 'z') && !('A' <= c && c <= 'Z')) {
+		
+		if (!('a' <= nameChar && nameChar <= 'z') && !('A' <= nameChar && nameChar <= 'Z')) {
 			throw new IllegalArgumentException("Client name must start with an alphabetic character.");
 		}
 		
-		if (contact == null || contact.trim().length() <= 0) {
+		
+		// contact check
+		if (contact == null || contact.trim().equals("")) {
 			throw new IllegalArgumentException("Contact cannot be blank.");
 		}
+		
+		char contactChar = contact.trim().charAt(0);
+		
+		if (!('a' <= contactChar && contactChar <= 'z') && !('A' <= contactChar && contactChar <= 'Z')
+				&& !('0' <= contactChar && contactChar <= '9')) {
+			throw new IllegalArgumentException("Contact must start with an alphabetic or digit character.");
+		}
+		
 		
 		this.name = name.trim();
 		this.contact = contact.trim();
