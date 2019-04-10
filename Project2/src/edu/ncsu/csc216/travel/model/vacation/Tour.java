@@ -397,7 +397,7 @@ public abstract class Tour implements Comparable<Tour> {
 	 */
 	public void cancelReservation(Reservation res) {
 		
-		if (this.res.contains(res)) {
+		if (!this.res.contains(res)) {
 			throw new IllegalArgumentException();
 		}
 		
