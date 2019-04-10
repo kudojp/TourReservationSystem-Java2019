@@ -291,7 +291,7 @@ public abstract class Tour implements Comparable<Tour> {
 		// The return value should not be null, even if the tour has no reservations.
 		String[] array = new String[this.res.size()];
 		for (int i = 0 ; i < this.res.size() ; i++) {
-			array[i] = this.res.get(i).getConfirmationCode() + " " + this.res.get(i).displayReservationClient();
+			array[i] = this.res.get(i).displayReservationClient();
 		}
 		return array;
 	}
