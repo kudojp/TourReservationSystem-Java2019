@@ -36,7 +36,9 @@ public class Client {
 			throw new IllegalArgumentException("Name cannot be blank.");
 		}
 		
-		if (!Character.isLetter(name.charAt(0))) {
+		char c = name.charAt(0);
+		
+		if (!('a' < c || c < 'z') && !('A' < c || c < 'Z')) {
 			throw new IllegalArgumentException("Client name must start with an alphabetic character.");
 		}
 		
