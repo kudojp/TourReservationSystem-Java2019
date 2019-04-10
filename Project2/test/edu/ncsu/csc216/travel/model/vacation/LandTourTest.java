@@ -7,6 +7,7 @@ import static org.junit.Assert.*;
 
 import java.time.LocalDate;
 
+import org.junit.Before;
 import org.junit.Test;
 
 import edu.ncsu.csc216.travel.model.participants.Client;
@@ -17,6 +18,15 @@ import edu.ncsu.csc216.travel.model.participants.Client;
  *
  */
 public class LandTourTest {
+	
+	/* *
+	 * Sets up the Reservation class
+	 * Resets confirmation code.
+	 */
+	@Before
+    public void setUp() {
+      Reservation.resetCodeGenerator();
+    }
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#Tour(java.lang.String, java.time.LocalDate, int, int, int)}.
@@ -310,8 +320,8 @@ public class LandTourTest {
 		}
 		
 		String[] list = t1.listOfReservations();
-		assertEquals("10 " + c1.summaryInfo(), list[0]);
-		assertEquals("20 " + c2.summaryInfo(), list[1]);
+		assertEquals("000000 10 " + c1.summaryInfo(), list[0]);
+		assertEquals("000001 20 " + c2.summaryInfo(), list[1]);
 		
 	}
 
