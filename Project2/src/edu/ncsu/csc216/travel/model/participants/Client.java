@@ -92,8 +92,12 @@ public class Client {
 	 * Returns the client’s reservation at the given position, where position numbering starts at 0.
 	 * @param i : index of Reservation to be returned
 	 * @return the reservation at given index
+	 * @throws IllegalArgumentException : if given index is out of 
 	 */
 	public Reservation getReservation(int i) {
+		if (i < 0 || this.getNumberOfReservations() < i) {
+			throw new IllegalArgumentException();
+		}
 		return this.myReservations.get(i);
 	}
 	
