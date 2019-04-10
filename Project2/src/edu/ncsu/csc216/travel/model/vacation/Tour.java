@@ -218,8 +218,22 @@ public abstract class Tour implements Comparable<Tour> {
 	 * @return : array representing this Tour
 	 */
 	public Object[] getAllData() {
+	// 1) Preemptively converting all values to Strings
+	// 2) Trimming the name
+	// 3) Manually inputting logic to format the date as: MM/DD/YYYY
+	// 4) Adding "$" as a prefix to the base price
+	// 5) Adding logic to add "*" to the end of the capacity if the capacity can still be expanded
 		
-		Object[] ret = {this.getName(), this.getStartDate(), this.getDuration(), this.getBasePrice(), this.getCapacity()};
+		LocalDate date = this.getStartDate();
+		String cap = "" + this.getCapacity();
+		
+		if (!this.isCapacityFixed()) {
+			cap += "*";
+		}
+		
+		
+		Object[] ret = {this.getName(), String.format("%02d", (int)date.getMonthValue()) + "/" + String.format("%02d", (int)date.getDayOfMonth()) + "/" + String.format("%02d", (int)date.getYear() % 100) + " ",
+						this.getDuration(), "$" + this.getBasePrice(), cap};
 		return ret;
 	}
 		
