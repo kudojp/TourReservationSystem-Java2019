@@ -324,7 +324,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 			newTour = new EducationalTrip(name, startDate, duration, basePrice, capacity);
 		} else {
 			System.out.println("TourCoordinator.addNewTour() had an error.");
-			throw new IllegalArgumentException("TourCoordinator.addNewTour() had an error.");
+			throw new IllegalArgumentException("TourCoordinator.addNewTour() received " + kind + " as the kind.");
 		}
 		
 		// if this is an already existing tour,,,
