@@ -316,15 +316,15 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		Tour newTour = null; 
 		
-		if (kind.equals("RC")) {
+		if (kind.equals("River Cruise")) {
 			newTour = new RiverCruise(name, startDate, duration, basePrice, capacity);
-		} else if (kind.equals("LT")) {
+		} else if (kind.equals("Land Tour")) {
 			newTour = new LandTour(name, startDate, duration, basePrice, capacity);
-		} else if (kind.equals("ED")) {
+		} else if (kind.equals("Education")) {
 			newTour = new EducationalTrip(name, startDate, duration, basePrice, capacity);
 		} else {
 			System.out.println("TourCoordinator.addNewTour() had an error.");
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("TourCoordinator.addNewTour() had an error.");
 		}
 		
 		// if this is an already existing tour,,,
