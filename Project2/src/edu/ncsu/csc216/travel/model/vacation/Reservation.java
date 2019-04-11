@@ -134,12 +134,12 @@ public class Reservation {
 	
 	/**
 	 * Returns the String which represents the Tour of this Reservation.
-	 * @return : Tour description
+	 * @return Tour description
 	 */
 	public String displayReservationTour() {
 		//displays in Figure 13 of [UC8,S2] 
 		//like  " 4 Tetterton Travels (James T) "
-		return this.getNumInParty() + " " + this.getTour().summaryInfo();
+		return String.format("%4d", this.getNumInParty()) + " " + this.getTour().summaryInfo();
 	}
 	
 	/**
@@ -148,7 +148,7 @@ public class Reservation {
 	 */
 	public String displayReservationClient() {
 		// Figure 14 of [UC9,S2] respectively
-		return this.getNumInParty() + " " + this.getClient().summaryInfo();
+		return String.format("%4d", this.getNumInParty()) + " " + this.getClient().summaryInfo();
 	}
 	
 	/**
