@@ -51,10 +51,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.dataNotSaved = true;
 		this.customer = new SimpleArrayList<Client>();
 		this.tours = new SortedLinkedListWithIterator<Tour>();
-		this.kindFilter = "all";
+		this.kindFilter = "Any";
 		this.durationMaxFilter = Integer.MAX_VALUE;
 		this.durationMinFilter = 0;
-		this.filteredTours = new SimpleArrayList<Tour>();
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 	}
 	
 	/**
@@ -334,6 +334,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		this.tours.add(newTour);
 		
+		// Needed to update filteredTours
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
+		
 		this.dataNotSaved = true;
 		return newTour;
 	}
@@ -360,10 +363,20 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public Reservation addNewReservation(int clientIndex, int filteredTourIndex, int numInParty)
 			throws CapacityException {
 		
+		Client c = this.customer.get(clientIndex);
+		Tour t = this.filteredTours.get(filteredTourIndex);
 		
 		
-		// Capacity for the tour should be checked before new reservation is added to client
-		// TODO Auto-generated method stub
+		// Here, CapacityException may be thrown when capacity over!
+		Reservation newReservation = t.createReservationFor(c, numInParty);
+		
+		// When you reach here, it means there was enough space in the specified Tour.
+		// and the new Reservation has been added to the list hold by that Tour.
+		
+		
+		// I DON'T have to add new Reservation to the reservation list hold by the specified client.
+		// It is already done in Tour.createReservationFor(c, numInParty);
+		////   c.addReservation(newReservation);
 		
 		this.dataNotSaved = true;
 		return null;
@@ -373,8 +386,17 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#addOldReservation(edu.ncsu.csc216.travel.model.participants.Client, edu.ncsu.csc216.travel.model.vacation.Tour, int, int)
 	 */
 	@Override
-	public Reservation addOldReservation(Client c, Tour t, int numInParty, int confCode) throws CapacityException {
-		// TODO Auto-generated method stub
+	public Reservation addOldReservation(Client c, Tour t, int numInParty, int confCode) 
+			throws CapacityException {
+		
+		// Here, CapacityException may be thrown when capacity over!
+		Reservation newReservation = t.createReservationFor(c, numInParty);
+		
+		// When you reach here, it means there was enough space in the specified Tour.
+		// and the new Reservation has been added to the list hold by that Tour.
+		
+		// I have to add new Reservation to the reservation list hold by the specified client.
+		c.addReservation(newReservation);
 		
 		this.dataNotSaved = true;
 		return null;

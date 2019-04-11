@@ -59,9 +59,9 @@ public class TravelWriter {
 				Object[] eachTour = TourCoordinator.getInstance().filteredTourData()[i];
 				// print (#name:  date  duration   $cost  capacity) of this tour
 				fw.write("#" + eachTour[0] + ":  " + eachTour[1] + "  " +
-						eachTour[2] + "   $" + eachTour[3] + "  " + eachTour[4] + "\n");
+						eachTour[2] + "   " + eachTour[3] + "  " + eachTour[4] + "\n");
 				
-				// print all the reservatios made for that Tour 
+				// print all the reservations made for that Tour 
 				for (String eachStringReservation : TourCoordinator.getInstance().reservationsForATour(i)) {
 					fw.write(eachStringReservation + "\n");
 				}
