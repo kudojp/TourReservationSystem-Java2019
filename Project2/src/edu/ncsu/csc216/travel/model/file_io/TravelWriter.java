@@ -37,6 +37,8 @@ public class TravelWriter {
 			throw new IllegalArgumentException("File not saved.");
 		}
 		
+		TourCoordinator.getInstance().setFilters("Any", 0, Integer.MAX_VALUE);
+		
 		try {
 			// construct a filewriter.
 			FileWriter fw = new FileWriter(new File(filename));

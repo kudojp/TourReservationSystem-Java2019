@@ -19,7 +19,7 @@ import edu.ncsu.csc216.travel.model.participants.Client;
  */
 public class EducationalTripTest {
 
-	/* *
+	/**
 	 * Sets up the Reservation class
 	 * Resets confirmation code.
 	 */

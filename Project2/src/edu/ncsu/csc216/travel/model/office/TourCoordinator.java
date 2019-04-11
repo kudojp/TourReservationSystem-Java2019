@@ -10,7 +10,10 @@ import edu.ncsu.csc216.travel.list_utils.SortedLinkedListWithIterator;
 import edu.ncsu.csc216.travel.model.file_io.TravelWriter;
 import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.CapacityException;
+import edu.ncsu.csc216.travel.model.vacation.EducationalTrip;
+import edu.ncsu.csc216.travel.model.vacation.LandTour;
 import edu.ncsu.csc216.travel.model.vacation.Reservation;
+import edu.ncsu.csc216.travel.model.vacation.RiverCruise;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
 import edu.ncsu.csc216.travel.ui.TravelGUI;
 
@@ -49,8 +52,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.customer = new SimpleArrayList<Client>();
 		this.tours = new SortedLinkedListWithIterator<Tour>();
 		this.kindFilter = "all";
-		this.durationMaxFilter = 100000000;
+		this.durationMaxFilter = Integer.MAX_VALUE;
 		this.durationMinFilter = 0;
+		this.filteredTours = new SimpleArrayList<Tour>();
 	}
 	
 	/**
@@ -106,6 +110,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 */
 	@Override
 	public void setFilters(String kind, int min, int max) {
+		// note : rbtnLabels = {"Any", "River Cruise", "Land Tour", "Education"}
 		
 		if (min > max) {
 			throw new IllegalArgumentException();
@@ -114,6 +119,31 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.kindFilter = kind;
 		this.durationMinFilter = min;
 		this.durationMaxFilter = max;
+		
+		// set the field : filteredTours 
+		filteredTours = new SimpleArrayList<Tour>();
+		
+		// for each Tour in the 
+		for (int i = 0 ; i < this.tours.size() ; i++) {
+			
+			// check if the duration is in filtered range (inclusively)
+			if (this.durationMinFilter <= this.tours.get(i).getDuration()
+					|| this.tours.get(i).getDuration() <= this.durationMaxFilter) {
+			
+				if (this.kindFilter.equals("Any")) {
+					filteredTours.add(this.tours.get(i));
+				} else if (this.kindFilter.equals("River Cruise") &&
+						this.tours.get(i).getName().substring(0, 2).equals("RC")) {
+					filteredTours.add(this.tours.get(i));
+				} else if (this.kindFilter.equals("Land Tour") &&
+						this.tours.get(i).getName().substring(0, 2).equals("LT")) {
+					filteredTours.add(this.tours.get(i));
+				} else if (this.kindFilter.equals("Education") &&
+						this.tours.get(i).getName().substring(0, 2).equals("EDå")) {
+					filteredTours.add(this.tours.get(i));
+				}
+			}
+		}
 	}
 
 	/* (non-Javadoc)
@@ -126,6 +156,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		resToBeDeleted.cancel();
 		
+		this.dataNotSaved = true;
 		return resToBeDeleted;
 	}
 
@@ -151,6 +182,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 			tourToBeDeleted.getReservation(i).cancel();
 		}
 		
+		this.dataNotSaved = true;
 		return tourToBeDeleted;
 	}
 
@@ -183,7 +215,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		for (int i = 0 ; i < this.customer.size() ; i++) {
 			clients[i] = this.customer.get(i).summaryInfo();
 		}
-		return null;
+		return clients;
 	}
 
 	/* (non-Javadoc)
@@ -191,38 +223,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 */
 	@Override
 	public Object[][] filteredTourData() {
-		
-		// rbtnLabels = {"Any", "River Cruise", "Land Tour", "Education"}
-		
-		filteredTours = new SimpleArrayList<Tour>();
-		
-		// for each Tour in the 
-		for (int i = 0 ; i < this.tours.size() ; i++) {
-			
-			// check if the duration is in filtered range (inclusively)
-			if (this.durationMinFilter <= this.tours.get(i).getDuration()
-					|| this.tours.get(i).getDuration() <= this.durationMaxFilter) {
-			
-				if (this.kindFilter.equals("Any")) {
-					filteredTours.add(this.tours.get(i));
-				} else if (this.kindFilter.equals("River Cruise") &&
-						this.tours.get(i).getName().substring(0, 2).equals("RC")) {
-					filteredTours.add(this.tours.get(i));
-				} else if (this.kindFilter.equals("Land Tour") &&
-						this.tours.get(i).getName().substring(0, 2).equals("LT")) {
-					filteredTours.add(this.tours.get(i));
-				} else if (this.kindFilter.equals("Education") &&
-						this.tours.get(i).getName().substring(0, 2).equals("EDå")) {
-					filteredTours.add(this.tours.get(i));
-				}
-			}
-		}
-		
 		// Convert SimpleArrayList to Object[][] to be returned
-		Object[][] array2D = new Object[filteredTours.size()][filteredTours.get(0).getAllData().length];
+		Object[][] array2D = new Object[this.filteredTours.size()][5];
 		
-		for (int i = 0 ; i < filteredTours.size() ; i++) {
-			array2D[i] = filteredTours.get(i).getAllData();
+		for (int i = 0 ; i < this.filteredTours.size() ; i++) {
+			array2D[i] = this.filteredTours.get(i).getAllData();
 		}
 		
 		return array2D;
@@ -284,7 +289,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public void saveFile(String filename) {
 		
 		// make sure that change the filter before writing a file.
-		this.setFilters("Any", 0, Integer.MAX_VALUE);
+		// Note for change : This is called inside of TravelWriter.writeTravelData(filename);
+		// this.setFilters("Any", 0, Integer.MAX_VALUE);
+		
+		
 		TravelWriter.writeTravelData(filename);
 		
 		// switch dataNotSaved to false.
@@ -304,14 +312,48 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public Tour addNewTour(String kind, String name, LocalDate startDate, int duration, int basePrice, int capacity)
 			throws DuplicateTourException {
-		// TODO Auto-generated method stub
-		return null;
+		// rbtnLabels = {"Any", "River Cruise", "Land Tour", "Education"}
+		
+		Tour newTour = null; 
+		
+		if (kind.equals("River Cruise")) {
+			newTour = new RiverCruise(name, startDate, duration, basePrice, capacity);
+		} else if (kind.equals("Land Tour")) {
+			newTour = new LandTour(name, startDate, duration, basePrice, capacity);
+		} else if (kind.equals("Education")) {
+			newTour = new EducationalTrip(name, startDate, duration, basePrice, capacity);
+		} else {
+			System.out.println("TourCoordinator.addNewTour() had an error.");
+			throw new IllegalArgumentException();
+		}
+		
+		// if this is an already existing tour,,,
+		if (this.tours.contains(newTour)) {
+			throw new DuplicateTourException();
+		}
+		
+		this.tours.add(newTour);
+		
+		this.dataNotSaved = true;
+		return newTour;
 	}
 
 	@Override
 	public Client addNewClient(String contact, String userName) throws DuplicateClientException {
-		// TODO Auto-generated method stub
-		return null;
+		// Take care that order of contact and userName or opposite
+		// when constructing with Client()
+		
+		Client newClient = new Client(userName, contact);
+		
+		// if this is an already existing tour,,,
+		if (this.customer.contains(newClient)) {
+			throw new DuplicateClientException();
+		}
+		
+		this.customer.add(newClient);
+		
+		this.dataNotSaved = true;
+		return newClient;
 	}
 
 	@Override
@@ -322,6 +364,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// Capacity for the tour should be checked before new reservation is added to client
 		// TODO Auto-generated method stub
+		
+		this.dataNotSaved = true;
 		return null;
 	}
 
@@ -331,6 +375,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public Reservation addOldReservation(Client c, Tour t, int numInParty, int confCode) throws CapacityException {
 		// TODO Auto-generated method stub
+		
+		this.dataNotSaved = true;
 		return null;
 	}
 	
