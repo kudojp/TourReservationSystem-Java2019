@@ -343,9 +343,9 @@ public class EducationalTripTest {
 		}
 		
 		String[] list = t1.listOfReservations();
-		assertEquals("000000 10 " + c1.summaryInfo(), list[0]);
-		assertEquals("000001 20 " + c2.summaryInfo(), list[1]);
-		assertEquals("000002 30 " + c3.summaryInfo(), list[2]);
+		assertEquals("000000  10 " + c1.summaryInfo(), list[0]);
+		assertEquals("000001  20 " + c2.summaryInfo(), list[1]);
+		assertEquals("000002  30 " + c3.summaryInfo(), list[2]);
 	}
 
 

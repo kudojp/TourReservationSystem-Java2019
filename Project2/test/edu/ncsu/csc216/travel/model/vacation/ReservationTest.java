@@ -48,24 +48,24 @@ public class ReservationTest {
 		assertEquals("name1", valid1.getClient().getName());
 		assertEquals("contact1", valid1.getClient().getContact());
 		assertEquals("000000", valid1.getConfirmationCode());
-		assertEquals("5 ED-name: 11/11/19 7 days", valid1.displayReservationTour());
-		assertEquals("5 name1 (contact1)", valid1.displayReservationClient());	
+		assertEquals("000000   5 ED-name: 11/11/19 7 days", valid1.displayReservationTour());
+		assertEquals("000000   5 name1 (contact1)", valid1.displayReservationClient());	
 		
 		// valid construction 2 (Even though this is over capacity, this wont fail since it is Tour's responsibility to check the capacity problem.)
 		Reservation valid2 = null;
 		try {
-			valid2 = new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name2", "contact2"), 1000);
+			valid2 = new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name2", "contact2"), 100);
 		} catch (Exception e) {
 			fail();
 		}
-		assertEquals(1000, valid2.getNumInParty());
-		assertEquals(500000, Math.round(valid2.getCost()));
+		assertEquals(100, valid2.getNumInParty());
+		assertEquals(50000, Math.round(valid2.getCost()));
 		assertEquals(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), valid2.getTour());
 		assertEquals("name2", valid2.getClient().getName());
 		assertEquals("contact2", valid2.getClient().getContact());
 		assertEquals("000001", valid2.getConfirmationCode());
-		assertEquals("1000 ED-name: 11/11/19 7 days", valid2.displayReservationTour());
-		assertEquals("1000 name2 (contact2)", valid2.displayReservationClient());	
+		assertEquals("000001 100 ED-name: 11/11/19 7 days", valid2.displayReservationTour());
+		assertEquals("000001 100 name2 (contact2)", valid2.displayReservationClient());	
 		
 		// Tour is null
 		try {

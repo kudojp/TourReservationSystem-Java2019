@@ -321,8 +321,8 @@ public class RiverCruiseTest {
 		}
 		
 		String[] list = t1.listOfReservations();
-		assertEquals("000000 10 " + c1.summaryInfo(), list[0]);
-		assertEquals("000001 20 " + c2.summaryInfo(), list[1]);
+		assertEquals("000000  10 " + c1.summaryInfo(), list[0]);
+		assertEquals("000001  20 " + c2.summaryInfo(), list[1]);
 		
 	}
 
