@@ -106,6 +106,7 @@ public interface TravelManager {
    
    /**
     * Get the list of tour data filtered according to filter settings
+    * Each row holds {name, date, duration, cost, capacity} of a Tour.
     * @return tour data list (each row represents a trip)
     */
    public Object[][] filteredTourData();

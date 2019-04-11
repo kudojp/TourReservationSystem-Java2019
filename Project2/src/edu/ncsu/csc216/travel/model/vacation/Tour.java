@@ -214,7 +214,8 @@ public abstract class Tour implements Comparable<Tour> {
 	}
 
 	/**
-	 * Returns array including all data of this Tour.
+	 * Returns array including all data of this Tour,
+	 * which are {name, date, duration, cost, capacity}
 	 * @return : array representing this Tour
 	 */
 	public Object[] getAllData() {

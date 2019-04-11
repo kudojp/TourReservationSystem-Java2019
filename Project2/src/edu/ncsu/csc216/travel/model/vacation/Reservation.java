@@ -23,7 +23,8 @@ public class Reservation {
 	/** number of people for this Reservation object*/
 	private int numInParty;
 	/** Cost of this Reservation */
-	private double cost;
+	//private double cost;
+	
 	/** Tour of this Reservation */
 	private Tour theTour;
 	/** Client of this Reservation */

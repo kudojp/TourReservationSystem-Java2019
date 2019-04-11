@@ -26,44 +26,48 @@ public class TravelWriter {
 		// clients from file >  clients added > 
 		// # tour > [[ reservations from file > reservations added (from earlier) ]]
 		// # tour > [[ reservations from file > reservations added (from earlier) ]]
-		// # tour > [[ reservations from file > reservations added (from earlier) ]]
-
+		// # tour > [[ reservations from file > reservations added (from earlier) ]]	
 		
 		
 		// If the filename entered by the user is blank, just whitespace, or does not end with .md, 
 		// an error dialog opens with the message “File not saved.” 
 		// The user clicks OK, closing the dialog and aborting the file save operation.
-		
 		if (filename == null || filename.trim().length() <= 3 || 
 				!filename.substring(filename.length() - 3).equals(".md")){
 			throw new IllegalArgumentException("File not saved.");
 		}
 		
-		
 		try {
+			// construct a filewriter.
 			FileWriter fw = new FileWriter(new File(filename));
 			
-			// write Clients info
-			for (String str : TourCoordinator.getInstance().listClients()) {
-				fw.write(str);
-				fw.write("\n");
+			
+			// get all Clients info. 
+			String[] allClients = TourCoordinator.getInstance().listClients();
+			// write all the Clients info.
+			for (String eachClient : allClients) {
+				fw.write(eachClient + "\n");
 			}
+			fw.write("\n");
 			
-			// write Tour info
-			TourCoordinator cd = TourCoordinator.getInstance();
-			// set filter to all kinds and all durations to get full data.
-			
-			
-			
-			//for (int i = 0 ; i < TourCoordinator.getInstance().listClients().) {
-			//	fw.write(str);
-			//	fw.write("\n");
-			//}
-			
-			
+			// get number of all Tours data
+			int numTours = TourCoordinator.getInstance().filteredTourData().length;
+			// for each Tour
+			for (int i = 0 ; i < numTours ; i++ ) {
+				Object[] eachTour = TourCoordinator.getInstance().filteredTourData()[i];
+				// print (#name:  date  duration   $cost  capacity) of this tour
+				fw.write("#" + eachTour[0] + ":  " + eachTour[1] + "  " +
+						eachTour[2] + "   $" + eachTour[3] + "  " + eachTour[4] + "\n");
+				
+				// print all the reservatios made for that Tour 
+				for (String eachStringReservation : TourCoordinator.getInstance().reservationsForATour(i)) {
+					fw.write(eachStringReservation + "\n");
+				}
+			}
+			fw.close();
 			
 		} catch (IOException e) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Error when writing a file.");
 		}
 	}
 		
