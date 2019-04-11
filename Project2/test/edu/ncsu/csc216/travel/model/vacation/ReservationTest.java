@@ -207,7 +207,7 @@ public class ReservationTest {
 		EducationalTrip t1 = new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50);
 		EducationalTrip t2 = new EducationalTrip("name2", LocalDate.of(2019, 11, 11), 7, 500, 50);
 		Reservation r1 = new Reservation(t1, new Client("name1", "contact1"), 10, 1);
-		// different tour
+		// different tour 
 		Reservation r2 = new Reservation(t2, new Client("name1", "contact1"), 10, 1);
 		// different client
 		Reservation r3 = new Reservation(t1, new Client("name2", "contact1"), 10, 1);
@@ -217,17 +217,17 @@ public class ReservationTest {
 		Reservation r5 = new Reservation(t1, new Client("name1", "contact1"), 10, 11);
 		
 		assertEquals(r1.hashCode(), r1.hashCode());
-		assertNotEquals(r1.hashCode(), r2.hashCode());
-		assertNotEquals(r1.hashCode(), r3.hashCode());
-		assertNotEquals(r1.hashCode(), r4.hashCode());
+		assertEquals(r1.hashCode(), r2.hashCode());
+		assertEquals(r1.hashCode(), r3.hashCode());
+		assertEquals(r1.hashCode(), r4.hashCode());
 		assertNotEquals(r1.hashCode(), r5.hashCode());
 		
 		
 		
 		assertTrue(r1.equals(r1));
-		assertFalse(r1.equals(r2));
-		assertFalse(r1.equals(r3));
-		assertFalse(r1.equals(r4));
+		assertTrue(r1.equals(r2));
+		assertTrue(r1.equals(r3));
+		assertTrue(r1.equals(r4));
 		assertFalse(r1.equals(r5));
 		
 	}
