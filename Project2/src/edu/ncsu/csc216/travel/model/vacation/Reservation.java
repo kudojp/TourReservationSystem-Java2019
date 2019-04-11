@@ -75,7 +75,7 @@ public class Reservation {
 		this.confirmationCode = String.format("%06d", code);
 		
 		// if the confirmation code from a file of this line is bigger than codeGenerator
-		if (code > codeGenerator) {
+		if (code >= codeGenerator) {
 			codeGenerator = code + 1;
 			if (codeGenerator == maxCode + 1) {
 				codeGenerator = 0;

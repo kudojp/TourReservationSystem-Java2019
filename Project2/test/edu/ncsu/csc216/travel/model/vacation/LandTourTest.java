@@ -370,7 +370,7 @@ public class LandTourTest {
 		
 		Reservation r1 = null;
 		Reservation r2 = null;
-		Reservation r3 = null;
+		
 		try {
 			r1 = t1.createReservationFor(new Client("name1", "contact1"), 10);
 			assertEquals(40, t1.spacesLeft());
