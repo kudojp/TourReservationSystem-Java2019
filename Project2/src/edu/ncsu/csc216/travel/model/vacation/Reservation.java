@@ -139,7 +139,7 @@ public class Reservation {
 	public String displayReservationTour() {
 		//displays in Figure 13 of [UC8,S2] 
 		//like  " 4 Tetterton Travels (James T) "
-		return String.format("%4d", this.getNumInParty()) + " " + this.getTour().summaryInfo();
+		return this.confirmationCode + String.format("%4d", this.getNumInParty()) + " " + this.getTour().summaryInfo();	
 	}
 	
 	/**
@@ -148,7 +148,7 @@ public class Reservation {
 	 */
 	public String displayReservationClient() {
 		// Figure 14 of [UC9,S2] respectively
-		return String.format("%4d", this.getNumInParty()) + " " + this.getClient().summaryInfo();
+		return this.confirmationCode + String.format("%4d", this.getNumInParty()) + " " + this.getClient().summaryInfo();
 	}
 	
 	/**
