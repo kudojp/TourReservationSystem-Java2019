@@ -66,7 +66,7 @@ public class Reservation {
 	 * @throws IllegalArgumentException : if any parameter is invalid.
 	 */
 	public Reservation(Tour tour, Client client, int numInParty, int code) {
-		if (tour == null || client == null || numInParty <= 0 || code < 0 || 999999 <= code ) {
+		if (tour == null || client == null || numInParty <= 0 || code < 0 || 999999 < code ) {
 			throw new IllegalArgumentException();
 		}
 		this.theTour = tour;
