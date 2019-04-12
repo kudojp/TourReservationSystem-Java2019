@@ -139,6 +139,7 @@ public class TourCoordinatorTest {
 		Tour t3 = new LandTour("lt", LocalDate.of(2019, 1, 1), 3, 200, 100);
 		Tour t4 = new RiverCruise("rc1", LocalDate.of(2019, 1, 1), 4, 200, 100);
 		Tour t5 = new RiverCruise("rc2", LocalDate.of(2019, 1, 1), 5, 200, 100);
+	
 		
 		// try to add valid tours.
 		try {			
@@ -170,6 +171,13 @@ public class TourCoordinatorTest {
 			assertEquals("TourCoordinator.addNewTour() received No Kind as the kind.", e.getMessage());
 		} catch (DuplicateTourException dte) {
 			//pass
+		}
+		
+		//try to add duplicate methods.
+		try {
+			tc.addNewTour("Land Tour", "et1", LocalDate.of(2019, 1, 1), 1, 200, 100);
+		} catch (DuplicateTourException dte) {
+			assertEquals("Tour is already registered.", dte.getMessage());
 		}
 		
 		//try to add duplicate methods.

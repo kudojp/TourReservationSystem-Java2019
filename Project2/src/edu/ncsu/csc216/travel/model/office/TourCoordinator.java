@@ -385,15 +385,15 @@ public class TourCoordinator extends Observable implements TravelManager {
 			
 			if (!each.getName().substring(2).toLowerCase().equals(newTour.getName().substring(2).toLowerCase())) {
 				break;
-			}else if (each.getBasePrice() != newTour.getBasePrice()) {
+			} else if (each.getBasePrice() != newTour.getBasePrice()) {
 				break;
-			}else if(each.getCapacity() != newTour.getCapacity()) {
+			} else if(each.getCapacity() != newTour.getCapacity()) {
 				break;
-			}else if(each.getDuration() != newTour.getDuration()) {
+			} else if(each.getDuration() != newTour.getDuration()) {
 				break;
-			}else if(!each.getStartDate().equals(newTour.getStartDate())) {
+			} else if(!each.getStartDate().equals(newTour.getStartDate())) {
 				break;
-			}else {
+			} else {
 				throw new DuplicateTourException();
 			}
 		}
@@ -406,11 +406,6 @@ public class TourCoordinator extends Observable implements TravelManager {
 
 		this.dataNotSaved = true;
 		
-		
-		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
-		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
-				
-
 		return newTour;
 	}
 
