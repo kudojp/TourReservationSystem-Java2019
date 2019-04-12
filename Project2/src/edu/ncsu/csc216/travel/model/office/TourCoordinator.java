@@ -40,7 +40,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	private int durationMaxFilter;
 	
 	/** list of filtered Tours in the current setting */
-	SimpleArrayList<Tour> filteredTours;
+	private SimpleArrayList<Tour> filteredTours;
 
 	/**
 	 * Constructs TourCoordinator object.
@@ -76,8 +76,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public void flushLists() {
 		// (Note that the other method that sets TourCoordinator.dataNotSaved to false is TourCoordinator.saveToFile().)
 	
-		this.customer = new SimpleArrayList<Client>();
-		this.tours = new SortedLinkedListWithIterator<Tour>();
+		instance = new TourCoordinator();
+		
 		this.dataNotSaved = false;
 		
 		super.setChanged();
@@ -121,7 +121,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.durationMaxFilter = max;
 		
 		// set the field : filteredTours 
-		filteredTours = new SimpleArrayList<Tour>();
+		this.filteredTours = new SimpleArrayList<Tour>();
 		
 		// for each Tour in the 
 		for (int i = 0 ; i < this.tours.size() ; i++) {
@@ -131,16 +131,16 @@ public class TourCoordinator extends Observable implements TravelManager {
 					|| this.tours.get(i).getDuration() <= this.durationMaxFilter) {
 			
 				if (this.kindFilter.equals("Any")) {
-					filteredTours.add(this.tours.get(i));
+					this.filteredTours.add(this.tours.get(i));
 				} else if (this.kindFilter.equals("River Cruise") &&
 						this.tours.get(i).getName().substring(0, 2).equals("RC")) {
-					filteredTours.add(this.tours.get(i));
+					this.filteredTours.add(this.tours.get(i));
 				} else if (this.kindFilter.equals("Land Tour") &&
 						this.tours.get(i).getName().substring(0, 2).equals("LT")) {
-					filteredTours.add(this.tours.get(i));
+					this.filteredTours.add(this.tours.get(i));
 				} else if (this.kindFilter.equals("Education") &&
 						this.tours.get(i).getName().substring(0, 2).equals("EDå")) {
-					filteredTours.add(this.tours.get(i));
+					this.filteredTours.add(this.tours.get(i));
 				}
 			}
 		}

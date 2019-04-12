@@ -4,8 +4,6 @@
 package edu.ncsu.csc216.travel.model.file_io;
 
 import static org.junit.Assert.*;
-
-import java.io.File;
 import java.time.LocalDate;
 
 import org.junit.Before;
