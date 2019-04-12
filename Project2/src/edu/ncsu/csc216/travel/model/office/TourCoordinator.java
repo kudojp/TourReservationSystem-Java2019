@@ -52,8 +52,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.customer = new SimpleArrayList<Client>();
 		this.tours = new SortedLinkedListWithIterator<Tour>();
 		this.kindFilter = "Any";
-		this.durationMaxFilter = Integer.MAX_VALUE;
 		this.durationMinFilter = 0;
+		this.durationMaxFilter = Integer.MAX_VALUE;
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 	}
 	
@@ -76,14 +76,16 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public void flushLists() {
 		// (Note that the other method that sets TourCoordinator.dataNotSaved to false is TourCoordinator.saveToFile().)
 	
-		instance = new TourCoordinator();
+		this.customer = new SimpleArrayList<Client>();
+		this.tours = new SortedLinkedListWithIterator<Tour>();
+		this.kindFilter = "Any";
+		this.durationMinFilter = 0;
+		this.durationMaxFilter = Integer.MAX_VALUE;
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 		
 		this.dataNotSaved = false;
-		
 		super.setChanged();
 		super.notifyObservers(this);
-	
-	
 	}
 	
 	/**
@@ -122,6 +124,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// set the field : filteredTours 
 		this.filteredTours = new SimpleArrayList<Tour>();
+		
+		System.out.println(this.tours.size());
 		
 		// for each Tour in the 
 		for (int i = 0 ; i < this.tours.size() ; i++) {

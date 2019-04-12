@@ -30,6 +30,7 @@ public class TravelWriterTest {
 	@Before
     public void setUp() {
       Reservation.resetCodeGenerator();
+
     }
 	
 
@@ -108,5 +109,31 @@ public class TravelWriterTest {
 		
 	}
 
+	
+	@Test
+	public void testNoClientNoTourCase() {
+		TourCoordinator tc = TourCoordinator.getInstance();
+		tc.flushLists();
+		try {
+			tc.addNewClient("contact1", "user1");
+			tc.addNewClient("contact2", "user2");
+			tc.addNewClient("contact3", "user3");
+		} catch (DuplicateClientException e) {
+			fail();
+		}
+		
+		try {
+			tc.addNewTour("Education", "et1", LocalDate.of(2019, 1, 1), 1, 200, 100);
+			tc.addNewTour("Education", "et2", LocalDate.of(2019, 1, 1), 2, 200, 100);
+			tc.addNewTour("Land Tour", "lt", LocalDate.of(2019, 1, 1), 3, 200, 100);
+			tc.addNewTour("River Cruise", "rc1", LocalDate.of(2019, 1, 1), 4, 200, 100);
+			tc.addNewTour("River Cruise", "rc2", LocalDate.of(2019, 1, 1), 5, 200, 100);
+		} catch (DuplicateTourException e) {
+			fail();
+		}
+		
+		
+		TravelWriter.writeTravelData("test-files/actualOutputFile2.md");
+	}
 
 }
