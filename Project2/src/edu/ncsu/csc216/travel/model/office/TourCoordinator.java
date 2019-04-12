@@ -84,8 +84,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 		
 		this.dataNotSaved = false;
-		super.setChanged();
-		super.notifyObservers(this);
+		//super.setChanged();
+		//super.notifyObservers(this);
 	}
 	
 	/**
