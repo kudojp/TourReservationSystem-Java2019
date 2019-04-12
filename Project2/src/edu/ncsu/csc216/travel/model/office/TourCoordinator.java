@@ -125,8 +125,6 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// set the field : filteredTours 
 		this.filteredTours = new SimpleArrayList<Tour>();
 		
-		System.out.println(this.tours.size());
-		
 		// for each Tour in the 
 		for (int i = 0 ; i < this.tours.size() ; i++) {
 			
