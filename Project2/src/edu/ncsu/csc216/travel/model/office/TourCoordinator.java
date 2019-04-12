@@ -160,7 +160,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 			throw new IllegalArgumentException();
 		}
 		
-		// client to e deleted
+		// client to of this reservation to be deleted
 		Client c = this.customer.get(clientIndex);
 		// reservation to be deleted
 		Reservation resToBeDeleted = c.getReservation(reservationIndex);
@@ -177,6 +177,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public Tour cancelTour(int filteredTourIndex) {
 		
+		// To remove a Tour, I have to 
+		// remove the tour from the tour-list in TourCoordinator
+		// remove the reservations having made for the tour
+		
+		
 		// throw IAE if the given index is out of bounds
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
 			throw new IllegalArgumentException();
@@ -184,9 +189,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		Tour tourToBeDeleted = this.filteredTours.get(filteredTourIndex);
 		
-		
 		// cancel reservations made for this Tour.
-		for (int i = 0 ; i < tourToBeDeleted.numberOfClientReservations() ; i++) {
+		///THIS REMOVING SHOULD BE DONE FROM TAIL !!!!!
+		int numRes = tourToBeDeleted.numberOfClientReservations();
+		for (int i = numRes - 1 ; i <= 0 ; i--) {
 			tourToBeDeleted.getReservation(i).cancel();
 		}
 			

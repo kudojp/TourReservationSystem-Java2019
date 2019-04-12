@@ -308,13 +308,17 @@ public class TourCoordinatorTest {
 		Reservation canceledR = tc.cancelReservation(0, 1);
 		assertEquals(res2, canceledR);
 		
-		// remove the 3rd Tour(lts)
+		// remove the 3rd Tour(rc)
+		// ERROR HERE!!!!!!!
 		Tour canceledT = tc.cancelTour(2);
 		assertEquals(rc, canceledT);
 		
+		//should throw IAE below
+		//assertEquals(0, tc.reservationsForATour(2));
+		
 		assertEquals(20000, Math.round(tc.totalClientCost(0)));
 		assertEquals(10000, Math.round(tc.totalClientCost(1)));
-		assertEquals(10000, Math.round(tc.totalClientCost(2)));
+		assertEquals(0, Math.round(tc.totalClientCost(2)));
 		
 		
 		//assert that the reservation is removed from client c1
