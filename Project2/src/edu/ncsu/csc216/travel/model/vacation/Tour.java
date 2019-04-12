@@ -263,9 +263,18 @@ public abstract class Tour implements Comparable<Tour> {
 			return true;
 		if (obj == null)
 			return false;
-		if (getClass() != obj.getClass())
+		
+		///// If the only kind is different, obj is considered to be equal
+		//if (getClass() != obj.getClass())
+		//return false;
+		
+		Tour other = null;
+		try {
+			other = (Tour) obj;
+		} catch (ClassCastException e) {
 			return false;
-		Tour other = (Tour) obj;
+		}
+		
 		if (duration != other.duration)
 			return false;
 		if (name == null) {
