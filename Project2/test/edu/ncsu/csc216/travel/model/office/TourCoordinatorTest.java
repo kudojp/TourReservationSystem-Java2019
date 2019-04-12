@@ -20,8 +20,8 @@ import edu.ncsu.csc216.travel.model.vacation.RiverCruise;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
 
 /**
+ * Test class for TourCoordinator class,
  * @author dkudo
- *
  */
 public class TourCoordinatorTest {
 	
@@ -36,24 +36,10 @@ public class TourCoordinatorTest {
     public void setUp() {
       Reservation.resetCodeGenerator();
       tc.flushLists();
+      assertFalse(tc.dataShouldBeSaved());
     }
 
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#flushLists()}.
-	 */
-	@Test
-	public void testFlushLists() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#dataShouldBeSaved()}.
-	 */
-	@Test
-	public void testDataShouldBeSaved() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#addObserver(edu.ncsu.csc216.travel.ui.TravelGUI)}.
@@ -64,11 +50,12 @@ public class TourCoordinatorTest {
 	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#setFilters(java.lang.String, int, int)}.
+	 * Test method for setFilters().
+	 * Also, reservationForATour and ReservationForAClient is tested here.
 	 */
 	@Test
 	public void testSetFilters() {
-		fail("Not yet implemented");
+		
 	}
 
 	/**
@@ -111,21 +98,6 @@ public class TourCoordinatorTest {
 		fail("Not yet implemented");
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#reservationsForAClient(int)}.
-	 */
-	@Test
-	public void testReservationsForAClient() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#reservationsForATour(int)}.
-	 */
-	@Test
-	public void testReservationsForATour() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#loadFile(java.lang.String)}.
@@ -252,11 +224,13 @@ public class TourCoordinatorTest {
 			assertEquals("Tour is already registered.", dte.getMessage());
 		}
 		
+		assertTrue(tc.dataShouldBeSaved());
+		
 	}
 
 
 	/**
-	 * Test method for addNewReservation() and addOldReservation() methods.
+	 * Test method for addNewReservation() and addOldReservation() and cancelReservation() methods.
 	 */
 	@Test
 	public void testAddOldAndNewReservations() {
@@ -345,14 +319,25 @@ public class TourCoordinatorTest {
 		} catch (CapacityException e){
 			fail();
 		}
+		
+		// cancel the 1st client(c1)'s  2nd reservation 
+		// which is oldReesrvation 000250 client 1 for et(50)
+		tc.cancelReservation(0, 1);
+		
+		
+		//assert that the reservation is removed from client c1
+		assertEquals(2, tc.reservationsForAClient(0).length);
+		assertEquals("000500  50 ED-et: 01/01/19 1 days", tc.reservationsForAClient(0)[0]);
+		assertEquals("000501  50 ED-et: 01/01/19 1 days", tc.reservationsForAClient(0)[1]);
+		
+		//assert that the reservation is removed from tour c1
+		assertEquals(2, tc.reservationsForATour(0).length);
+		assertEquals("000500  50 user1 (contact1)", tc.reservationsForATour(0)[0]);
+		assertEquals("000501  50 user1 (contact1)", tc.reservationsForATour(0)[1]);
+		
+		assertTrue(tc.dataShouldBeSaved());
+		
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#addOldReservation(edu.ncsu.csc216.travel.model.participants.Client, edu.ncsu.csc216.travel.model.vacation.Tour, int, int)}.
-	 */
-	@Test
-	public void testAddOldReservation() {
-		fail("Not yet implemented");
-	}
 
 }
