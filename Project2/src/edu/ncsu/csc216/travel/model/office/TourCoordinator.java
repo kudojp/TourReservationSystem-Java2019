@@ -139,7 +139,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 						&& this.tours.get(i).getName().substring(0, 2).equals("LT")) {
 					this.filteredTours.add(this.tours.get(i));
 				} else if ((this.kindFilter.equals("Education") || this.kindFilter.equals("ED") )
-						&& this.tours.get(i).getName().substring(0, 2).equals("EDå")) {
+						&& this.tours.get(i).getName().substring(0, 2).equals("ED")) {
 					this.filteredTours.add(this.tours.get(i));
 				}
 			}
@@ -383,7 +383,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		////   c.addReservation(newReservation);
 		
 		this.dataNotSaved = true;
-		return null;
+		return newReservation;
 	}
 
 	/* (non-Javadoc)
@@ -394,19 +394,15 @@ public class TourCoordinator extends Observable implements TravelManager {
 			throws CapacityException {
 		
 		// Here, CapacityException may be thrown when capacity over!
-		Reservation newReservation = t.createReservationFor(c, numInParty);
+		Reservation oldReservation = t.createReservationFor(c, numInParty);
 		
 		// When you reach here, it means there was enough space in the specified Tour.
 		// and the new Reservation has been added to the list hold by that Tour.
 		
 		// I have to add new Reservation to the reservation list hold by the specified client.
-		c.addReservation(newReservation);
+		c.addReservation(oldReservation);
 		
 		this.dataNotSaved = true;
-		return null;
+		return oldReservation;
 	}
-	
-	
-	
-
 }
