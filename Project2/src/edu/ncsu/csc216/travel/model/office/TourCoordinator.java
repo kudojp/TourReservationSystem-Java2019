@@ -36,7 +36,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	private String kindFilter;
 	/** integer which represents the input of min duration for filtering */
 	private int durationMinFilter;
-	/** integer which represents the inpur of max duration for filtering */
+	/** integer which represents the input of max duration for filtering */
 	private int durationMaxFilter;
 	
 	/** list of filtered Tours in the current setting */
@@ -316,11 +316,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		Tour newTour = null; 
 		
-		if (kind.equals("River Cruise")) {
+		if (kind.equals("River Cruise") || kind.equals("RC") ) {
 			newTour = new RiverCruise(name, startDate, duration, basePrice, capacity);
-		} else if (kind.equals("Land Tour")) {
+		} else if (kind.equals("Land Tour") || kind.equals("LT") ) {
 			newTour = new LandTour(name, startDate, duration, basePrice, capacity);
-		} else if (kind.equals("Education")) {
+		} else if (kind.equals("Education") || kind.equals("ED") ) {
 			newTour = new EducationalTrip(name, startDate, duration, basePrice, capacity);
 		} else {
 			System.out.println("TourCoordinator.addNewTour() had an error.");
