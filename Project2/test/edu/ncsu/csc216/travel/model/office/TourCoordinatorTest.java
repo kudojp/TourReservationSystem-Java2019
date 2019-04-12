@@ -9,7 +9,6 @@ import java.time.LocalDate;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.omg.CORBA.TCKind;
 
 import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.CapacityException;
@@ -44,15 +43,6 @@ public class TourCoordinatorTest {
 
 
 	/**
-	 * Test method for setFilters(), filteredTourData()
-	 */
-	@Test
-	public void testSetFilters() {
-		
-	}
-
-
-	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#cancelTour(int)}.
 	 */
 	@Test
@@ -60,19 +50,12 @@ public class TourCoordinatorTest {
 		fail("Not yet implemented");
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#listClients()}.
-	 */
-	@Test
-	public void testListClients() {
-		fail("Not yet implemented");
-	}
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#filteredTourData()}.
+	 * Test method setFilters(), filteredTourData()
 	 */
 	@Test
-	public void testFilteredTourData() {
+	public void testFilteres() {
 		fail("Not yet implemented");
 	}
 
@@ -215,7 +198,15 @@ public class TourCoordinatorTest {
 
 	/**
 	 * Test method for addNewReservation,addOldReservation(), 
-	 * cancelReservation(), totalClientCost()
+	 * cancelReservation(), cancelTour(), totalClientCost()
+	 * 
+	 * First 3 clients and 3 tours(et, lt, rc)
+	 * Reservations are : 
+	 * c1>et, c1>et, c1>et, c2>lt, c2>rc, c3>rc   
+	 * 
+	 * Then the Reservation(3rd  1>et) and Tour rc are removed.
+	 * and the reservations left are : 
+	 * c1>et, c1>et, c2>lt, c3 
 	 */
 	@Test
 	public void testAddOldAndNewReservations() {
@@ -244,7 +235,7 @@ public class TourCoordinatorTest {
 			fail();
 		}
 		
-		
+		Reservation res2 = null;
 		// add Reservations
 		try {
 			// add oldReesrvation 000500 client 1 for et(50)  ::: total 10k
@@ -254,7 +245,7 @@ public class TourCoordinatorTest {
 			assertEquals("000500", res1.getConfirmationCode());
 			
 			// add oldReesrvation 000250 client 1 for et(50)   :::total 10k
-			Reservation res2 = tc.addOldReservation(c1, et, 50, 250);
+			res2 = tc.addOldReservation(c1, et, 50, 250);
 			assertEquals(et, res2.getTour());
 			assertEquals(c1, res2.getClient());
 			assertEquals("000250", res2.getConfirmationCode());
@@ -287,12 +278,19 @@ public class TourCoordinatorTest {
 			} catch (CapacityException ce) {
 				//pass
 			}
-			
-			// reservation 000002 client 3 for rc (50)
-			Reservation res5 = tc.addNewReservation(2, 2, 50);
+
+			// reservation 000503 client 2 for rc (50)
+			Reservation res5 = tc.addNewReservation(1, 2, 50);
 			assertEquals(rc, res5.getTour());
-			assertEquals(c3, res5.getClient());
+			assertEquals(c2, res5.getClient());
 			//assertEquals("000503", res5.getConfirmationCode());
+			
+			// reservation 000504 client 3 for rc (50)
+			Reservation res6 = tc.addNewReservation(2, 2, 50);
+			assertEquals(rc, res6.getTour());
+			assertEquals(c3, res6.getClient());
+			//assertEquals("000503", res5.getConfirmationCode());
+			
 			// another client 3 for rc (100) should throw capacity exception
 			try {
 				tc.addNewReservation(2, 2, 100);
@@ -305,14 +303,18 @@ public class TourCoordinatorTest {
 			fail();
 		}
 		
-		assertEquals(30000, Math.round(tc.totalClientCost(0)));
-		assertEquals(10000, Math.round(tc.totalClientCost(1)));
-		assertEquals(10000, Math.round(tc.totalClientCost(2)));
-		
-		
 		// cancel the 1st client(c1)'s  2nd reservation 
 		// which is oldReesrvation 000250 client 1 for et(50)
-		tc.cancelReservation(0, 1);
+		Reservation canceledR = tc.cancelReservation(0, 1);
+		assertEquals(res2, canceledR);
+		
+		// remove the 3rd Tour(lts)
+		Tour canceledT = tc.cancelTour(2);
+		assertEquals(rc, canceledT);
+		
+		assertEquals(20000, Math.round(tc.totalClientCost(0)));
+		assertEquals(10000, Math.round(tc.totalClientCost(1)));
+		assertEquals(10000, Math.round(tc.totalClientCost(2)));
 		
 		
 		//assert that the reservation is removed from client c1
@@ -324,6 +326,17 @@ public class TourCoordinatorTest {
 		assertEquals(2, tc.reservationsForATour(0).length);
 		assertEquals("000500  50 user1 (contact1)", tc.reservationsForATour(0)[0]);
 		assertEquals("000501  50 user1 (contact1)", tc.reservationsForATour(0)[1]);
+		
+		//assert that there is no River Cruise any more
+		tc.setFilters("RC", 0, 10000);
+		assertEquals(0, tc.filteredTourData().length);
+		
+		tc.setFilters("All", 0, 10000);
+		//assert that reservation for rc is removed from c2 and c3
+		assertEquals(1, tc.reservationsForAClient(1).length);
+		assertEquals("000503  50 LT-lt: 01/01/19 3 days", tc.reservationsForAClient(1)[0]);
+		assertEquals(0, tc.reservationsForAClient(2).length);
+		assertEquals("000503  50 LT-lt: 01/01/19 3 days", tc.reservationsForAClient(2)[0]);
 		
 		assertTrue(tc.dataShouldBeSaved());
 		

@@ -350,6 +350,7 @@ public abstract class Tour implements Comparable<Tour> {
 		}
 		
 		// in the case when there is no space
+		newRes.cancel();
 		throw new CapacityException();
 	}
 	

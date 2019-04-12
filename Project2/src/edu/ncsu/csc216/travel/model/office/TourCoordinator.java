@@ -151,7 +151,18 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 */
 	@Override
 	public Reservation cancelReservation(int clientIndex, int reservationIndex) {
+		
+		//throw IAE when the given index is out of bounds
+		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
+			throw new IllegalArgumentException();
+		}
+		if (reservationIndex < 0 || this.reservationsForAClient(clientIndex).length <= reservationIndex) {
+			throw new IllegalArgumentException();
+		}
+		
+		// client to e deleted
 		Client c = this.customer.get(clientIndex);
+		// reservation to be deleted
 		Reservation resToBeDeleted = c.getReservation(reservationIndex);
 		
 		resToBeDeleted.cancel();
@@ -165,11 +176,21 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 */
 	@Override
 	public Tour cancelTour(int filteredTourIndex) {
+		
+		// throw IAE if the given index is out of bounds
+		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
+			throw new IllegalArgumentException();
+		}
+		
 		Tour tourToBeDeleted = this.filteredTours.get(filteredTourIndex);
 		
-		// remove from filtered Tours
-		this.filteredTours.remove(filteredTourIndex);
 		
+		// cancel reservations made for this Tour.
+		for (int i = 0 ; i < tourToBeDeleted.numberOfClientReservations() ; i++) {
+			tourToBeDeleted.getReservation(i).cancel();
+		}
+			
+			
 		// remove this Tour.
 		for (int i = 0 ; i < this.tours.size() ; i++) {
 			if (this.tours.get(i).equals(tourToBeDeleted)) {
@@ -177,10 +198,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 			}
 		}
 		
-		// cancel reservations made for this Tour.
-		for (int i = 0 ; i < tourToBeDeleted.numberOfClientReservations() ; i++) {
-			tourToBeDeleted.getReservation(i).cancel();
-		}
+		// reset the filter
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 		
 		this.dataNotSaved = true;
 		return tourToBeDeleted;
@@ -191,6 +210,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 */
 	@Override
 	public double totalClientCost(int clientIndex) {
+		
+		// throws IAE if the given index is out of bounds.
+		if (clientIndex < 0 || this.customer.size() <= clientIndex) {
+			throw new IllegalArgumentException();
+		}
 		
 		// Client we are thinking
 		Client c = this.customer.get(clientIndex);
