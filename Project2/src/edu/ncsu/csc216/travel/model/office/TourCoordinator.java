@@ -71,7 +71,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	
 	
 	/**
-	 * Clears all client and tour data from the customer and tours lists, sets TourCoordinator.dataNotSaved to false, and notifies observers. 
+	 * Clears all client and tour data from the customer and tours lists, 
+	 * sets TourCoordinator.dataNotSaved to false, and notifies observers. 
 	 */
 	public void flushLists() {
 		// (Note that the other method that sets TourCoordinator.dataNotSaved to false is TourCoordinator.saveToFile().)
@@ -144,6 +145,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 				}
 			}
 		}
+		
+		super.setChanged();
+		super.notifyObservers(this);
 	}
 
 	/* (non-Javadoc)
@@ -168,6 +172,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 		resToBeDeleted.cancel();
 		
 		this.dataNotSaved = true;
+		super.setChanged();
+		super.notifyObservers(this);
+		
 		return resToBeDeleted;
 	}
 
@@ -206,8 +213,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// reset the filter
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
-		
+
 		this.dataNotSaved = true;
+		super.setChanged();
+		super.notifyObservers(this);
+		
 		return tourToBeDeleted;
 	}
 
@@ -309,6 +319,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public void loadFile(String filename) {
 		// TODO Auto-generated method stub
 
+		this.dataNotSaved = false;
+		super.setChanged();
+		super.notifyObservers(this);
 	}
 
 	/* (non-Javadoc)
@@ -369,8 +382,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// Needed to update filteredTours
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
-		
+
 		this.dataNotSaved = true;
+		super.setChanged();
+		super.notifyObservers(this);
 		return newTour;
 	}
 
@@ -389,6 +404,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.customer.add(newClient);
 		
 		this.dataNotSaved = true;
+		super.setChanged();
+		super.notifyObservers(this);
 		return newClient;
 	}
 
@@ -421,6 +438,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		//// c.addReservation(newReservation);
 		
 		this.dataNotSaved = true;
+		super.setChanged();
+		super.notifyObservers(this);
 		return newReservation;
 	}
 
@@ -444,6 +463,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		//// c.addReservation(oldReservation);
 		
 		this.dataNotSaved = true;
+		super.setChanged();
+		super.notifyObservers(this);
 		return oldReservation;
 	}
 }
