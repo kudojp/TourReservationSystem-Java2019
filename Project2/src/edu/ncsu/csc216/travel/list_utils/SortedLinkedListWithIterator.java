@@ -158,6 +158,11 @@ public class SortedLinkedListWithIterator<E extends Comparable<E>> implements So
 		if (this.size == 0) {
 			return -1;
 		}
+		
+		// check if the first element is the searched one.
+		if (this.head.value.equals(e)) {
+			return 0;
+		}
 		Node current = this.head;
 
 		for (int i = 0 ; current.next != null ; i++ ) {
