@@ -327,7 +327,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		} else if (kind.equals("Education") || kind.equals("ED") ) {
 			newTour = new EducationalTrip(name, startDate, duration, basePrice, capacity);
 		} else {
-			System.out.println("TourCoordinator.addNewTour() had an error.");
+			System.out.println("TourCoordinator.addNewTour() received " + kind + " as the kind.");
 			throw new IllegalArgumentException("TourCoordinator.addNewTour() received " + kind + " as the kind.");
 		}
 		
@@ -380,7 +380,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// I DON'T have to add new Reservation to the reservation list hold by the specified client.
 		// It is already done in Tour.createReservationFor(c, numInParty);
-		////   c.addReservation(newReservation);
+		//// c.addReservation(newReservation);
 		
 		this.dataNotSaved = true;
 		return newReservation;
@@ -393,14 +393,17 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public Reservation addOldReservation(Client c, Tour t, int numInParty, int confCode) 
 			throws CapacityException {
 		
-		// Here, CapacityException may be thrown when capacity over!
-		Reservation oldReservation = t.createReservationFor(c, numInParty);
+		// Here, CapacityException is thrown when capacity over!
+		Reservation oldReservation = new Reservation(t, c, numInParty, confCode);
+		Reservation returnedOldReservation = t.addOldReservation(oldReservation);
+		assert(oldReservation.equals(returnedOldReservation));
 		
 		// When you reach here, it means there was enough space in the specified Tour.
 		// and the new Reservation has been added to the list hold by that Tour.
 		
-		// I have to add new Reservation to the reservation list hold by the specified client.
-		c.addReservation(oldReservation);
+		// I DON'T have to add new Reservation to the reservation list hold by the specified client.
+		// It is already done in Tour.createReservationFor(c, numInParty);
+		//// c.addReservation(oldReservation);
 		
 		this.dataNotSaved = true;
 		return oldReservation;
