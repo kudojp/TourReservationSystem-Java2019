@@ -130,16 +130,16 @@ public class TourCoordinator extends Observable implements TravelManager {
 			if (this.durationMinFilter <= this.tours.get(i).getDuration()
 					|| this.tours.get(i).getDuration() <= this.durationMaxFilter) {
 			
-				if (this.kindFilter.equals("Any")) {
+				if (this.kindFilter.equals("Any") || this.kindFilter.equals("All")) {
 					this.filteredTours.add(this.tours.get(i));
-				} else if (this.kindFilter.equals("River Cruise") &&
-						this.tours.get(i).getName().substring(0, 2).equals("RC")) {
+				} else if ( (this.kindFilter.equals("River Cruise") || this.kindFilter.equals("RC") )
+						&& this.tours.get(i).getName().substring(0, 2).equals("RC")) {
 					this.filteredTours.add(this.tours.get(i));
-				} else if (this.kindFilter.equals("Land Tour") &&
-						this.tours.get(i).getName().substring(0, 2).equals("LT")) {
+				} else if ((this.kindFilter.equals("Land Tour") || this.kindFilter.equals("LT") )
+						&& this.tours.get(i).getName().substring(0, 2).equals("LT")) {
 					this.filteredTours.add(this.tours.get(i));
-				} else if (this.kindFilter.equals("Education") &&
-						this.tours.get(i).getName().substring(0, 2).equals("EDå")) {
+				} else if ((this.kindFilter.equals("Education") || this.kindFilter.equals("ED") )
+						&& this.tours.get(i).getName().substring(0, 2).equals("EDå")) {
 					this.filteredTours.add(this.tours.get(i));
 				}
 			}
