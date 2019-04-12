@@ -383,7 +383,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		for (int i = 0 ; i < this.tours.size() ; i++) {
 			Tour each = this.tours.get(i);
 			
-			if (!each.getName().substring(2).toLowerCase().equals(newTour.getName().substring(2).toLowerCase())) {
+			if (!each.getName().substring(0, 2).toLowerCase().equals(newTour.getName().substring(0, 2).toLowerCase())) {
 				break;
 			} else if (each.getBasePrice() != newTour.getBasePrice()) {
 				break;
