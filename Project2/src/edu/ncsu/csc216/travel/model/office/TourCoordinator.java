@@ -346,10 +346,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 	}
 
 	@Override
-	// public Client addNewClient(String contact, String userName) throws DuplicateClientException {
 	public Client addNewClient(String userName, String contact) throws DuplicateClientException {
-		// Take care that order of contact and userName or opposite
-		// when constructing with Client()
+		// Take care that order of contact and userName is wrong
+		// in interface's javadoc.
 		
 		Client newClient = new Client(userName, contact);
 		

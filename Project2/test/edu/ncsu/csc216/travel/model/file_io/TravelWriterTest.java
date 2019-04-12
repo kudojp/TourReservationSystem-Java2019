@@ -67,9 +67,9 @@ public class TravelWriterTest {
 		TourCoordinator tc = TourCoordinator.getInstance();
 		
 		try {
-			tc.addNewClient("contact1", "user1");
-			tc.addNewClient("contact2", "user2");
-			tc.addNewClient("contact3", "user3");
+			tc.addNewClient("user1", "contact1");
+			tc.addNewClient("user2", "contact2");
+			tc.addNewClient("user3", "contact3");
 		} catch (DuplicateClientException e) {
 			fail();
 		}
