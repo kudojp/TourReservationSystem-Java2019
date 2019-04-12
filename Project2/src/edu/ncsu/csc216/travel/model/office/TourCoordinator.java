@@ -374,16 +374,16 @@ public class TourCoordinator extends Observable implements TravelManager {
 		}
 		
 		// if this is an already existing tour,,,
-		if (this.tours.contains(newTour)) {
-			throw new DuplicateTourException();
-		}
+		//if (this.tours.contains(newTour)) {
+		//	throw new DuplicateTourException();
+		//}
 		
 		
 		// if anything but the kind is equal, it is still equal
 		for (int i = 0 ; i < this.tours.size() ; i++) {
 			Tour each = this.tours.get(i);
 			
-			if (!each.getName().substring(0, 2).toLowerCase().equals(newTour.getName().substring(0, 2).toLowerCase())) {
+			if (!each.getName().substring(2).toLowerCase().equals(newTour.getName().substring(2).toLowerCase())) {
 				break;
 			} else if (each.getBasePrice() != newTour.getBasePrice()) {
 				break;
