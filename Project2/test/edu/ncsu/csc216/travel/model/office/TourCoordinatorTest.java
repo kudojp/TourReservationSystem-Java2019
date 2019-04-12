@@ -340,8 +340,7 @@ public class TourCoordinatorTest {
 		assertEquals(1, tc.reservationsForAClient(1).length);
 		assertEquals("000503  50 LT-lt: 01/01/19 3 days", tc.reservationsForAClient(1)[0]);
 		assertEquals(0, tc.reservationsForAClient(2).length);
-		assertEquals("000503  50 LT-lt: 01/01/19 3 days", tc.reservationsForAClient(2)[0]);
-		
+
 		assertTrue(tc.dataShouldBeSaved());
 		
 	}

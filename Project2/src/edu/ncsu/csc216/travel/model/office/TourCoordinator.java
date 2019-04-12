@@ -192,7 +192,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// cancel reservations made for this Tour.
 		///THIS REMOVING SHOULD BE DONE FROM TAIL !!!!!
 		int numRes = tourToBeDeleted.numberOfClientReservations();
-		for (int i = numRes - 1 ; i <= 0 ; i--) {
+		for (int i = numRes - 1 ; 0 <= i ; i--) {
 			tourToBeDeleted.getReservation(i).cancel();
 		}
 			
