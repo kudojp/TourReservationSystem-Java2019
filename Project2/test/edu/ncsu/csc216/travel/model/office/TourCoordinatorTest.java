@@ -39,18 +39,6 @@ public class TourCoordinatorTest {
     }
 
 
-
-
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#cancelTour(int)}.
-	 */
-	@Test
-	public void testCancelTour() {
-		fail("Not yet implemented");
-	}
-
-
 	/**
 	 * Test method setFilters(), filteredTourData()
 	 */

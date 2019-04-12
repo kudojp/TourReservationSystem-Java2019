@@ -108,6 +108,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 
 	/* (non-Javadoc)
 	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#setFilters(java.lang.String, int, int)
+	 * Notification to GUI is done by calling this method.
 	 */
 	@Override
 	public void setFilters(String kind, int min, int max) {
@@ -211,12 +212,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 			}
 		}
 		
-		// reset the filter
+		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
+		
+		this.dataNotSaved = true; 
 
-		this.dataNotSaved = true;
-		super.setChanged();
-		super.notifyObservers(this);
 		
 		return tourToBeDeleted;
 	}
@@ -384,8 +384,12 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 
 		this.dataNotSaved = true;
-		super.setChanged();
-		super.notifyObservers(this);
+		
+		
+		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
+				
+
 		return newTour;
 	}
 
@@ -404,8 +408,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.customer.add(newClient);
 		
 		this.dataNotSaved = true;
-		super.setChanged();
-		super.notifyObservers(this);
+		
+		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
+						
 		return newClient;
 	}
 
@@ -438,8 +444,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 		//// c.addReservation(newReservation);
 		
 		this.dataNotSaved = true;
-		super.setChanged();
-		super.notifyObservers(this);
+		
+		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
+						
+		
 		return newReservation;
 	}
 
