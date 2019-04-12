@@ -112,7 +112,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public void setFilters(String kind, int min, int max) {
 		// note : rbtnLabels = {"Any", "River Cruise", "Land Tour", "Education"}
 		
-		if (min > max) {
+		if (kind == null || min > max) {
 			throw new IllegalArgumentException();
 		}
 		
