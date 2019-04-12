@@ -322,7 +322,7 @@ public class EducationalTripTest {
 		assertFalse(t1.equals(t3));
 		assertFalse(t1.equals(t4));
 		assertFalse(t1.equals(t5));
-		assertTrue(t1.equals(t6));
+		
 		
 		
 	}
