@@ -41,44 +41,22 @@ public class TourCoordinatorTest {
 
 
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#addObserver(edu.ncsu.csc216.travel.ui.TravelGUI)}.
-	 */
-	@Test
-	public void testAddObserverTravelGUI() {
-		fail("Not yet implemented");
-	}
+
 
 	/**
-	 * Test method for setFilters().
-	 * Also, reservationForATour and ReservationForAClient is tested here.
+	 * Test method for setFilters(), filteredTourData()
 	 */
 	@Test
 	public void testSetFilters() {
 		
 	}
 
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#cancelReservation(int, int)}.
-	 */
-	@Test
-	public void testCancelReservation() {
-		fail("Not yet implemented");
-	}
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#cancelTour(int)}.
 	 */
 	@Test
 	public void testCancelTour() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#totalClientCost(int)}.
-	 */
-	@Test
-	public void testTotalClientCost() {
 		fail("Not yet implemented");
 	}
 
@@ -230,7 +208,8 @@ public class TourCoordinatorTest {
 
 
 	/**
-	 * Test method for addNewReservation() and addOldReservation() and cancelReservation() methods.
+	 * Test method for addNewReservation,addOldReservation(), 
+	 * cancelReservation(), totalClientCost()
 	 */
 	@Test
 	public void testAddOldAndNewReservations() {
@@ -262,19 +241,19 @@ public class TourCoordinatorTest {
 		
 		// add Reservations
 		try {
-			// add oldReesrvation 000500 client 1 for et(50)
+			// add oldReesrvation 000500 client 1 for et(50)  ::: total 10k
 			Reservation res1 = tc.addOldReservation(c1, et, 50, 500);
 			assertEquals(et, res1.getTour());
 			assertEquals(c1, res1.getClient());
 			assertEquals("000500", res1.getConfirmationCode());
 			
-			// add oldReesrvation 000250 client 1 for et(50)
+			// add oldReesrvation 000250 client 1 for et(50)   :::total 10k
 			Reservation res2 = tc.addOldReservation(c1, et, 50, 250);
 			assertEquals(et, res2.getTour());
 			assertEquals(c1, res2.getClient());
 			assertEquals("000250", res2.getConfirmationCode());
 			
-			// reservation 000000 client 1 for et (50)
+			// reservation 000000 client 1 for et (50)   :::total 10k
 			// check expanding for educational trip
 			Reservation res3 = tc.addNewReservation(0, 0, 50);
 			assertEquals(et, res3.getTour());
@@ -319,6 +298,11 @@ public class TourCoordinatorTest {
 		} catch (CapacityException e){
 			fail();
 		}
+		
+		assertEquals(30000, Math.round(tc.totalClientCost(0)));
+		assertEquals(10000, Math.round(tc.totalClientCost(1)));
+		assertEquals(10000, Math.round(tc.totalClientCost(2)));
+		
 		
 		// cancel the 1st client(c1)'s  2nd reservation 
 		// which is oldReesrvation 000250 client 1 for et(50)

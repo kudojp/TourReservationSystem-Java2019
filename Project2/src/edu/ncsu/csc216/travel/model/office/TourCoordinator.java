@@ -258,8 +258,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public String[] reservationsForATour(int filteredTourIndex) {
 		
-		Object[][] filteredTours = this.filteredTourData();
-		if (filteredTourIndex < 0 || filteredTours.length <= filteredTourIndex) {
+		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
 			throw new IllegalArgumentException();
 		}
 		
@@ -366,6 +365,15 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public Reservation addNewReservation(int clientIndex, int filteredTourIndex, int numInParty)
 			throws CapacityException {
+		
+		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
+			throw new IllegalArgumentException();
+		}
+		
+		//throw IAE when the given index is out of bounds
+		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
+			throw new IllegalArgumentException();
+		}
 		
 		Client c = this.customer.get(clientIndex);
 		Tour t = this.filteredTours.get(filteredTourIndex);
