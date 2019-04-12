@@ -84,8 +84,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 		
 		this.dataNotSaved = false;
-		//super.setChanged();
-		//super.notifyObservers(this);
+		super.setChanged();
+		super.notifyObservers(this);
 	}
 	
 	/**
@@ -100,12 +100,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 * TODO
 	 * @param travelGUI : TODO
 	*/
-	/**
 	public void addObserver(TravelGUI travelGUI) {
 		// TODO Auto-generated method stub
 		
 	}	
-	*/
 
 	/* (non-Javadoc)
 	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#setFilters(java.lang.String, int, int)
@@ -315,6 +313,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public Tour addNewTour(String kind, String name, LocalDate startDate, int duration, int basePrice, int capacity)
 			throws DuplicateTourException {
 		// rbtnLabels = {"Any", "River Cruise", "Land Tour", "Education"}
+		
+		if (kind == null) {
+			throw new IllegalArgumentException();
+		}
 		
 		Tour newTour = null; 
 		
