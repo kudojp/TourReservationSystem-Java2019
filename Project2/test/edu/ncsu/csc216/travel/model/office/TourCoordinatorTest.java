@@ -102,7 +102,7 @@ public class TourCoordinatorTest {
 	}
 
 	/**
-	 * Tests addNewClient(),
+	 * Tests addNewClient(), lsitClients()
 	 */
 	@Test
 	public void testAddNewClient() {
@@ -119,6 +119,12 @@ public class TourCoordinatorTest {
 		} catch (DuplicateClientException e) {
 			fail();
 		}
+		
+		//test listClients()
+		assertEquals(3, tc.listClients().length);
+		assertEquals("user1 (contact1)", tc.listClients()[0]);
+		assertEquals("user2 (contact2)", tc.listClients()[1]);
+		assertEquals("user3 (contact3)", tc.listClients()[2]);
 		
 		//try to add invalid Client.
 		try {
