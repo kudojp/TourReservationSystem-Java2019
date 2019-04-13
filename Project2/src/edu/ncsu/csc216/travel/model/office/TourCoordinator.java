@@ -45,6 +45,18 @@ public class TourCoordinator extends Observable implements TravelManager {
 	private SimpleArrayList<Tour> filteredTours;
 
 	/**
+	 * TODO
+	 * @param travelGUI : TODO
+	*/
+	/**
+	public void addObserver(TravelGUI travelGUI) {
+		// TODO Auto-generated method stub
+		
+	}
+	*/
+	
+	
+	/**
 	 * Constructs TourCoordinator object.
 	 * This is a private constructor and called only in getInstance() method 
 	 * only if this class has not been instantiated.
@@ -138,14 +150,6 @@ public class TourCoordinator extends Observable implements TravelManager {
 		return this.dataNotSaved;
 	}
 	
-	/**
-	 * TODO
-	 * @param travelGUI : TODO
-	*/
-	public void addObserver(TravelGUI travelGUI) {
-		// TODO Auto-generated method stub
-		
-	}	
 
 	/* (non-Javadoc)
 	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#setFilters(java.lang.String, int, int)
@@ -228,6 +232,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// remove the tour from the tour-list in TourCoordinator
 		// remove the reservations having made for the tour
 		
+		// just in case, set the filter
 		
 		// throw IAE if the given index is out of bounds
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
