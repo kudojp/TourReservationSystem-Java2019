@@ -55,6 +55,9 @@ public class TravelReader {
 				}
 			}
 			
+			//TO BE CHANGED.
+			currentLine = "";
+			
 			// for the line which represents Tour info
 			if (currentLine.charAt(0) == '#') {
 				// "ED" or "RC" or "LT"
