@@ -49,7 +49,7 @@ public interface TravelManager {
     * @param max  maximum tour duration
     * @throws IllegalArgumentException if min > max
     */
-   public void setFilters(String kind, int min, int max);
+   void setFilters(String kind, int min, int max);
    
    /**
     * Adds a new reservation for a client on a tour with the given number of participants.
@@ -102,14 +102,14 @@ public interface TravelManager {
     * Get an array that lists all clients for the TripCoordinator
     * @return the array, with each client represented as a String
     */
-   public String[] listClients();
+   String[] listClients();
    
    /**
     * Get the list of tour data filtered according to filter settings
     * Each row holds {name, date, duration, cost, capacity} of a Tour.
     * @return tour data list (each row represents a trip)
     */
-   public Object[][] filteredTourData();
+   Object[][] filteredTourData();
    
    /** 
     * String of Reservations for a given trip
@@ -117,7 +117,7 @@ public interface TravelManager {
     * @return array of strings, one for each reservation
     * @throws IllegalArgumentException if clientIndex is out of range
     */
-   public String[] reservationsForAClient(int clientIndex);
+   String[] reservationsForAClient(int clientIndex);
    
    /** 
     * String of Reservations for a given tour
@@ -125,25 +125,25 @@ public interface TravelManager {
     * @return array of strings, one for each reservation
     * @throws IllegalArgumentException if filteredTripIndex is out of range
     */
-   public String[] reservationsForATour(int filteredTourIndex);
+   String[] reservationsForATour(int filteredTourIndex);
    
    /**
     * Loads file with trip/client/reservation info. 
     * @param filename name of file to read.
     * @throws IllegalArgumentException if the file contains any irregularities or a read error occurs
     */
-   public void loadFile(String filename);
+   void loadFile(String filename);
     
    /**
     * Writes current Trips and Clients to file. 
     * @param filename file to write.
     * @throws IllegalArgumentException if file error occurs while attempting to write
     */
-   public void saveFile(String filename);
+   	void saveFile(String filename);
     
    /**
     * Returns the last used filename.
     * @return last used filename, or null if there is none
     */
-   public String getFilename();
+   String getFilename();
 }
