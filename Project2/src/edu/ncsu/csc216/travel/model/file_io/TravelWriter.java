@@ -45,7 +45,6 @@ public class TravelWriter {
 			// construct a filewriter.
 			FileWriter fw = new FileWriter(new File(filename));
 			
-			
 			// get all Clients info. 
 			String[] allClients = TourCoordinator.getInstance().listClients();
 			// write all the Clients info.
