@@ -309,7 +309,6 @@ public class LandTourTest {
 		
 		Client c1 = new Client("name1", "contact1");
 		Client c2 = new Client("name2", "contact2");
-		Client c3 = new Client("name3", "contact3");
 		
 		try {
 			t1.createReservationFor(c1, 10);

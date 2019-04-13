@@ -69,7 +69,7 @@ public class ReservationTest {
 		
 		// Tour is null
 		try {
-			Reservation r1 = new Reservation(null, new Client("name3", "contact3"), 5);
+			new Reservation(null, new Client("name3", "contact3"), 5);
 			fail();
 		} catch (IllegalArgumentException e) {
 			//pass
@@ -77,14 +77,14 @@ public class ReservationTest {
 			
 		// Client is null
 		try {
-			Reservation r2 = new Reservation(new EducationalTrip("name3", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name3", "contact3"), 5);
+			new Reservation(new EducationalTrip("name3", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name3", "contact3"), 5);
 		} catch (IllegalArgumentException e) {
 			//pass
 		}
 		
 		// numInParty is less than 1
 		try {
-			Reservation r3 = new Reservation(new EducationalTrip("name3", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name3", "contact3"), 0);
+			new Reservation(new EducationalTrip("name3", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name3", "contact3"), 0);
 		} catch (IllegalArgumentException e) {
 			//pass
 		}
@@ -128,7 +128,7 @@ public class ReservationTest {
 		
 		// Tour is null
 		try {
-			Reservation r1 = new Reservation(null, new Client("name1", "contact1"), 5, 5);
+			new Reservation(null, new Client("name1", "contact1"), 5, 5);
 			fail();
 		} catch (IllegalArgumentException e) {
 			//pass
@@ -136,28 +136,28 @@ public class ReservationTest {
 			
 		// Client is null
 		try {
-			Reservation r2 = new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 5, 5);
+			new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 5, 5);
 		} catch (IllegalArgumentException e) {
 			//pass
 		}
 		
 		// numInParty is less than 1
 		try {
-			Reservation r3 = new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 0, 5);
+			new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 0, 5);
 		} catch (IllegalArgumentException e) {
 			//pass
 		}
 		
 		// Confirmation code is less than 0
 		try {
-			Reservation r3 = new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 5, -1);
+			new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 5, -1);
 		} catch (IllegalArgumentException e) {
 			//pass
 		}
 		
 		// Confirmation code is larger than 1000000
 		try {
-			Reservation r4 = new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 5, 1000000);
+			new Reservation(new EducationalTrip("name", LocalDate.of(2019, 11, 11), 7, 500, 50), new Client("name1", "contact1"), 5, 1000000);
 		} catch (IllegalArgumentException e) {
 			//pass
 		}
