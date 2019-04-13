@@ -32,7 +32,9 @@ public class TravelWriter {
 		// If the filename entered by the user is blank, just whitespace, or does not end with .md, 
 		// an error dialog opens with the message “File not saved.” 
 		// The user clicks OK, closing the dialog and aborting the file save operation.
-		if (filename == null || filename.trim().length() <= 3 || 
+		filename = filename.trim();
+		
+		if (filename == null || filename.length() <= 3 || 
 				!filename.substring(filename.length() - 3).equals(".md")){
 			throw new IllegalArgumentException("File not saved.");
 		}

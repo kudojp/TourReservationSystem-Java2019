@@ -28,6 +28,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	private static TourCoordinator instance;
 	/** true whenever the TourCoordinator data has not been saved to a file and false otherwise */
 	private boolean dataNotSaved;
+	/** filename which was opened to load lately */
+	public String filename;
 	/** List of customers */
 	private SimpleArrayList<Client> customer;
 	/** List of tours*/
@@ -87,6 +89,45 @@ public class TourCoordinator extends Observable implements TravelManager {
 		this.dataNotSaved = false;
 		super.setChanged();
 		super.notifyObservers(this);
+	}
+	
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#loadFile(java.lang.String)
+	 */
+	@Override
+	public void loadFile(String filename) {
+		// TODO Auto-generated method stub
+
+		this.dataNotSaved = false;
+		super.setChanged();
+		super.notifyObservers(this);
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#saveFile(java.lang.String)
+	 */
+	@Override
+	public void saveFile(String filename) {
+		
+		// make sure that change the filter before writing a file.
+		// Note for change : This is called inside of TravelWriter.writeTravelData(filename);
+		// this.setFilters("Any", 0, Integer.MAX_VALUE);
+		
+		filename = filename.trim();
+		// filename is checked here, and IAE is thrown if invalid.
+		TravelWriter.writeTravelData(filename);
+		
+		this.filename = filename;
+		// switch dataNotSaved to false.
+		this.dataNotSaved = false;
+	}
+
+	/* (non-Javadoc)
+	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#getFilename()
+	 */
+	@Override
+	public String getFilename() {
+		return this.filename;
 	}
 	
 	/**
@@ -311,44 +352,6 @@ public class TourCoordinator extends Observable implements TravelManager {
 		return returnArray;
 	}
 
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#loadFile(java.lang.String)
-	 */
-	@Override
-	public void loadFile(String filename) {
-		// TODO Auto-generated method stub
-
-		this.dataNotSaved = false;
-		super.setChanged();
-		super.notifyObservers(this);
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#saveFile(java.lang.String)
-	 */
-	@Override
-	public void saveFile(String filename) {
-		
-		// make sure that change the filter before writing a file.
-		// Note for change : This is called inside of TravelWriter.writeTravelData(filename);
-		// this.setFilters("Any", 0, Integer.MAX_VALUE);
-		
-		
-		TravelWriter.writeTravelData(filename);
-		
-		// switch dataNotSaved to false.
-		this.dataNotSaved = false;
-
-	}
-
-	/* (non-Javadoc)
-	 * @see edu.ncsu.csc216.travel.model.office.TravelManager#getFilename()
-	 */
-	@Override
-	public String getFilename() {
-		// TODO Auto-generated method stub
-		return null;
-	}
 
 	@Override
 	public Tour addNewTour(String kind, String name, LocalDate startDate, int duration, int basePrice, int capacity)
