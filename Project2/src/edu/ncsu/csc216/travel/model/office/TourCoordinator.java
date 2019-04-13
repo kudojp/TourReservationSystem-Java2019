@@ -188,9 +188,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		
 		// throw IAE if the given index is out of bounds
-		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			throw new IllegalArgumentException("Index in TC.cancelTour() out of bounds.");
-		}
+		//if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
+		//	throw new IllegalArgumentException("Index in TC.cancelTour() out of bounds.");
+		//}
 		
 		Tour tourToBeDeleted = this.filteredTours.get(filteredTourIndex);
 		
