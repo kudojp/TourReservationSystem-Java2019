@@ -135,13 +135,13 @@ public class TourCoordinator extends Observable implements TravelManager {
 				if (this.kindFilter.equals("Any") || this.kindFilter.equals("All")) {
 					this.filteredTours.add(this.tours.get(i));
 				} else if ( (this.kindFilter.equals("River Cruise") || this.kindFilter.equals("RC") )
-						&& this.tours.get(i).getName().substring(0, 2).equals("RC")) {
+						&& this.tours.get(i).getName().substring(0, 1).equals("R")) {
 					this.filteredTours.add(this.tours.get(i));
 				} else if ((this.kindFilter.equals("Land Tour") || this.kindFilter.equals("LT") )
-						&& this.tours.get(i).getName().substring(0, 2).equals("LT")) {
+						&& this.tours.get(i).getName().substring(0, 1).equals("L")) {
 					this.filteredTours.add(this.tours.get(i));
 				} else if ((this.kindFilter.equals("Education") || this.kindFilter.equals("ED") )
-						&& this.tours.get(i).getName().substring(0, 2).equals("ED")) {
+						&& this.tours.get(i).getName().substring(0, 1).equals("E")) {
 					this.filteredTours.add(this.tours.get(i));
 				}
 			}
