@@ -129,9 +129,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 		for (int i = 0 ; i < this.tours.size() ; i++) {
 			
 			// check if the duration is in filtered range (inclusively)
-			if (this.durationMinFilter <= this.tours.get(i).getDuration()
-					|| kind.length() < 1 
-					|| this.tours.get(i).getDuration() <= this.durationMaxFilter) {
+			if (kind != null && 1 <= kind.length() 
+					&& this.durationMinFilter <= this.tours.get(i).getDuration()
+					&& this.tours.get(i).getDuration() <= this.durationMaxFilter) {
 			
 				if (this.kindFilter.equals("Any") || this.kindFilter.equals("All")) {
 					this.filteredTours.add(this.tours.get(i));
