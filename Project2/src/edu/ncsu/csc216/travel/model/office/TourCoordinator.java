@@ -15,7 +15,6 @@ import edu.ncsu.csc216.travel.model.vacation.LandTour;
 import edu.ncsu.csc216.travel.model.vacation.Reservation;
 import edu.ncsu.csc216.travel.model.vacation.RiverCruise;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
-import edu.ncsu.csc216.travel.ui.TravelGUI;
 
 /**
  * TourCoordinator class which provides the glue to coordinate the data for the backend model classes.
@@ -43,17 +42,6 @@ public class TourCoordinator extends Observable implements TravelManager {
 	
 	/** list of filtered Tours in the current setting */
 	private SimpleArrayList<Tour> filteredTours;
-
-	/**
-	 * TODO
-	 * @param travelGUI : TODO
-	*/
-	/**
-	public void addObserver(TravelGUI travelGUI) {
-		// TODO Auto-generated method stub
-		
-	}
-	*/
 	
 	
 	/**

@@ -32,16 +32,12 @@ public class TravelReader {
 			while (fileScanner.hasNextLine()) {
 				currentLine = fileScanner.nextLine();
 				
-				// blank line means the end of Tours.
-				if (currentLine.charAt(0) == '#') {
+				// if the current line doesn't include "(", this line should be skipped
+				if (currentLine.contains("#")){
 					break;
 				}
 				
-				// if the current line doesn't include "(", this line should nbe skipped
-				int index = currentLine.indexOf("(");
-				if (index == -1) {
-					continue;
-				}
+				// if the current line is the end of h
 				
 				// get tokens which represents name and contact
 				String customer = currentLine.substring(0, index - 1);
@@ -54,9 +50,42 @@ public class TravelReader {
 					// skip the line
 				}
 			}
+			;
+			while (fileScanner.hasNext()) {
+				
+				
+				// if this line is blank, then it's the end of the file.
+				if  (currentLine.trim().length() == 0) {
+					break;
+				}
+				
+				
+				// if the line represents the tour name (begins with "#"),,,
+				if (currentLine.charAt(0) == '#') {
+					// "ED" or "RC" or "LT"
+					String tourKind = currentLine.substring(1, 3);
+					int index = currentLine.indexOf(':');
+					// "Tour name"
+					String tourName = currentLine.substring(4, index);
+					// the rest of line signifies date, duration, cost, capacity
+					Scanner tourLineScanner  = new Scanner(currentLine.substring(index + 1));
+					String dateToken = tourLineScanner.next();
+					int duration = tourLineScanner.nextInt();
+					String cost = tourLineScanner.next().substring(1);
+					String capacity = tourLineScanner.next();
+					currentLine = fileScanner.nextLine();
+				}
+				
+				// if the line represents the reservation for this tour,,,
+				if (curren)
+				
+				
+				
+				
+			}
 			
-			//TO BE CHANGED.
-			currentLine = "";
+			
+			
 			
 			// for the line which represents Tour info
 			if (currentLine.charAt(0) == '#') {

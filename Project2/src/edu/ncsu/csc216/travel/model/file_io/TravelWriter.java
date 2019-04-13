@@ -52,7 +52,7 @@ public class TravelWriter {
 			for (String eachClient : allClients) {
 				fw.write(eachClient + "\n");
 			}
-			fw.write("\n");
+			//fw.write("\n");
 			
 			// get number of all Tours data
 			int numTours = TourCoordinator.getInstance().filteredTourData().length;
