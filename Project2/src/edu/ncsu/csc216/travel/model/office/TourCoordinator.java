@@ -115,7 +115,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// note : rbtnLabels = {"Any", "River Cruise", "Land Tour", "Education"}
 		
 		if (kind == null || min > max) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Params in TC.setFilters() is wrong");
 		}
 		
 		this.kindFilter = kind;
@@ -157,10 +157,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		//throw IAE when the given index is out of bounds
 		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
 		}
 		if (reservationIndex < 0 || this.reservationsForAClient(clientIndex).length <= reservationIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
 		}
 		
 		// client to of this reservation to be deleted
@@ -189,7 +189,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// throw IAE if the given index is out of bounds
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.cancelTour() out of bounds.");
 		}
 		
 		Tour tourToBeDeleted = this.filteredTours.get(filteredTourIndex);
@@ -227,7 +227,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// throws IAE if the given index is out of bounds.
 		if (clientIndex < 0 || this.customer.size() <= clientIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.totalClientCost() out of bounds.");
 		}
 		
 		// Client we are thinking
@@ -277,7 +277,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public String[] reservationsForAClient(int clientIndex) {
 		if (clientIndex < 0 || this.customer.size() <= clientIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.reservationsForAClient() out of bounds.");
 		}
 		
 		Client c = this.customer.get(clientIndex);
@@ -297,7 +297,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public String[] reservationsForATour(int filteredTourIndex) {
 		
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.reservationsForATour() out of bounds.");
 		}
 		
 		Tour t = this.filteredTours.get(filteredTourIndex);
@@ -355,7 +355,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// rbtnLabels = {"Any", "River Cruise", "Land Tour", "Education"}
 		
 		if (kind == null) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("kind in TC.addNewTour is null.");
 		}
 		
 		Tour newTour = null; 
@@ -439,12 +439,12 @@ public class TourCoordinator extends Observable implements TravelManager {
 			throws CapacityException {
 		
 		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
 		}
 		
 		//throw IAE when the given index is out of bounds
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
 		}
 		
 		Client c = this.customer.get(clientIndex);
