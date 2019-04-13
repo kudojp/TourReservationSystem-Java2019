@@ -174,8 +174,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		resToBeDeleted.cancel();
 		
 		this.dataNotSaved = true;
-		super.setChanged();
-		super.notifyObservers(this);
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 		
 		return resToBeDeleted;
 	}
@@ -492,8 +491,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		//// c.addReservation(oldReservation);
 		
 		this.dataNotSaved = true;
-		super.setChanged();
-		super.notifyObservers(this);
+		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
 		return oldReservation;
 	}
 }

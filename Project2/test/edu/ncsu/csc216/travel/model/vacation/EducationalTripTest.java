@@ -315,9 +315,7 @@ public class EducationalTripTest {
 		// different duration
 		EducationalTrip t5 = new EducationalTrip("name1", LocalDate.of(2019, 10, 11), 3, 500, 50);
 		// different kind
-		Tour t6 = new LandTour("name1", LocalDate.of(2019, 10, 11), 7, 500, 50);
-		
-		
+	
 		assertTrue(t1.equals(t2));
 		assertFalse(t1.equals(t3));
 		assertFalse(t1.equals(t4));
