@@ -202,10 +202,12 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		//throw IAE when the given index is out of bounds
 		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
-			throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
+			return null;
+			//throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
 		}
 		if (reservationIndex < 0 || this.reservationsForAClient(clientIndex).length <= reservationIndex) {
-			throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
+			return null;
+			//throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
 		}
 		
 		// client to of this reservation to be deleted
@@ -236,7 +238,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// throw IAE if the given index is out of bounds
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			throw new IllegalArgumentException("Index in TC.cancelTour() out of bounds.");
+			return null;
+			//throw new IllegalArgumentException("Index in TC.cancelTour() out of bounds.");
 		}
 		
 		Tour tourToBeDeleted = this.filteredTours.get(filteredTourIndex);
