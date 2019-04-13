@@ -6,52 +6,28 @@
     <includePatterns/>
     <rules>
         <rule>
-            <name>EmptySwitchStatements</name>
+            <name>BooleanInstantiation</name>
+            <ruleset>Performance</ruleset>
+        </rule>
+        <rule>
+            <name>JumbledIncrementer</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>BrokenNullCheck</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>EmptyFinallyBlock</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryModifier</name>
+            <name>BooleanGetMethodName</name>
             <ruleset>Code Style</ruleset>
         </rule>
         <rule>
-            <name>MethodNamingConventions</name>
-            <ruleset>Code Style</ruleset>
-        </rule>
-        <rule>
-            <name>JUnitTestClassNeedsTestCase</name>
-            <ruleset>ncsucscpmd</ruleset>
-        </rule>
-        <rule>
-            <name>EmptyTryBlock</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>ClassNamingConventions</name>
-            <ruleset>Code Style</ruleset>
-        </rule>
-        <rule>
-            <name>JUnit4TestsHaveAssertions</name>
-            <ruleset>ncsucscpmd</ruleset>
-        </rule>
-        <rule>
-            <name>SuspiciousHashcodeMethodName</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>NoPackage</name>
-            <ruleset>Code Style</ruleset>
+            <name>UnusedPrivateField</name>
+            <ruleset>Best Practices</ruleset>
         </rule>
         <rule>
             <name>UnusedPrivateMethod</name>
             <ruleset>Best Practices</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyCatchBlock</name>
+            <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
             <name>UnconditionalIfStatement</name>
@@ -62,23 +38,19 @@
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>FormalParametersNeedMeaningfulNames</name>
-            <ruleset>ncsucscpmd</ruleset>
-        </rule>
-        <rule>
-            <name>ReturnFromFinallyBlock</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>UncommentedEmptyConstructor</name>
-            <ruleset>Documentation</ruleset>
-        </rule>
-        <rule>
-            <name>JUnit4ConstantAssertion</name>
-            <ruleset>ncsucscpmd</ruleset>
+            <name>PackageCase</name>
+            <ruleset>Code Style</ruleset>
         </rule>
         <rule>
             <name>EmptyStatementNotInLoop</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>EmptySynchronizedBlock</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>ReturnFromFinallyBlock</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
@@ -86,23 +58,43 @@
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>UnusedImports</name>
-            <ruleset>Best Practices</ruleset>
-        </rule>
-        <rule>
-            <name>JUnit3TestsHaveAssertions</name>
-            <ruleset>ncsucscpmd</ruleset>
-        </rule>
-        <rule>
-            <name>UselessOperationOnImmutable</name>
+            <name>EmptySwitchStatements</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>CollapsibleIfStatements</name>
+            <name>MethodNamingConventions</name>
+            <ruleset>Code Style</ruleset>
+        </rule>
+        <rule>
+            <name>UnusedLocalVariable</name>
+            <ruleset>Best Practices</ruleset>
+        </rule>
+        <rule>
+            <name>MisplacedNullCheck</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>JUnitTestClassNeedsTestCase</name>
+            <ruleset>ncsucscpmd</ruleset>
+        </rule>
+        <rule>
+            <name>DoubleCheckedLocking</name>
+            <ruleset>Multithreading</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyFinallyBlock</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryReturn</name>
+            <ruleset>Code Style</ruleset>
+        </rule>
+        <rule>
+            <name>UselessOverridingMethod</name>
             <ruleset>Design</ruleset>
         </rule>
         <rule>
-            <name>EmptyCatchBlock</name>
+            <name>SuspiciousHashcodeMethodName</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
@@ -114,67 +106,35 @@
             <ruleset>Code Style</ruleset>
         </rule>
         <rule>
-            <name>SimplifyBooleanExpressions</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>DontImportJavaLang</name>
-            <ruleset>Code Style</ruleset>
-        </rule>
-        <rule>
-            <name>UselessOverridingMethod</name>
-            <ruleset>Design</ruleset>
-        </rule>
-        <rule>
-            <name>JUnit3ConstantAssertion</name>
-            <ruleset>ncsucscpmd</ruleset>
-        </rule>
-        <rule>
-            <name>BooleanInstantiation</name>
-            <ruleset>Performance</ruleset>
-        </rule>
-        <rule>
-            <name>PackageCase</name>
-            <ruleset>Code Style</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryReturn</name>
-            <ruleset>Code Style</ruleset>
-        </rule>
-        <rule>
-            <name>UnnecessaryConversionTemporary</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>EmptyInitializer</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
             <name>ClassCastExceptionWithToArray</name>
             <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>DuplicateImports</name>
-            <ruleset>Code Style</ruleset>
-        </rule>
-        <rule>
-            <name>UnusedPrivateField</name>
-            <ruleset>Best Practices</ruleset>
         </rule>
         <rule>
             <name>EmptyIfStmt</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>UnusedLocalVariable</name>
-            <ruleset>Best Practices</ruleset>
+            <name>JUnit4ConstantAssertion</name>
+            <ruleset>ncsucscpmd</ruleset>
         </rule>
         <rule>
-            <name>EmptyWhileStmt</name>
+            <name>EqualsNull</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>EmptySynchronizedBlock</name>
+            <name>SimplifyBooleanExpressions</name>
+            <ruleset>Design</ruleset>
+        </rule>
+        <rule>
+            <name>UncommentedEmptyConstructor</name>
+            <ruleset>Documentation</ruleset>
+        </rule>
+        <rule>
+            <name>JUnit3TestsHaveAssertions</name>
+            <ruleset>ncsucscpmd</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyInitializer</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
@@ -182,36 +142,76 @@
             <ruleset>Documentation</ruleset>
         </rule>
         <rule>
+            <name>ClassNamingConventions</name>
+            <ruleset>Code Style</ruleset>
+        </rule>
+        <rule>
+            <name>BrokenNullCheck</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>JUnit4TestsHaveAssertions</name>
+            <ruleset>ncsucscpmd</ruleset>
+        </rule>
+        <rule>
+            <name>DuplicateImports</name>
+            <ruleset>Code Style</ruleset>
+        </rule>
+        <rule>
             <name>UselessParentheses</name>
             <ruleset>Code Style</ruleset>
         </rule>
         <rule>
-            <name>EqualsNull</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>MisplacedNullCheck</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>SuspiciousEqualsMethodName</name>
-            <ruleset>Error Prone</ruleset>
-        </rule>
-        <rule>
-            <name>BooleanGetMethodName</name>
+            <name>NoPackage</name>
             <ruleset>Code Style</ruleset>
+        </rule>
+        <rule>
+            <name>UselessOperationOnImmutable</name>
+            <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
             <name>MethodWithSameNameAsEnclosingClass</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>JumbledIncrementer</name>
+            <name>UnusedImports</name>
+            <ruleset>Best Practices</ruleset>
+        </rule>
+        <rule>
+            <name>FormalParametersNeedMeaningfulNames</name>
+            <ruleset>ncsucscpmd</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryModifier</name>
+            <ruleset>Code Style</ruleset>
+        </rule>
+        <rule>
+            <name>SuspiciousEqualsMethodName</name>
             <ruleset>Error Prone</ruleset>
         </rule>
         <rule>
-            <name>DoubleCheckedLocking</name>
-            <ruleset>Multithreading</ruleset>
+            <name>EmptyTryBlock</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>CollapsibleIfStatements</name>
+            <ruleset>Design</ruleset>
+        </rule>
+        <rule>
+            <name>UnnecessaryConversionTemporary</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>JUnit3ConstantAssertion</name>
+            <ruleset>ncsucscpmd</ruleset>
+        </rule>
+        <rule>
+            <name>EmptyWhileStmt</name>
+            <ruleset>Error Prone</ruleset>
+        </rule>
+        <rule>
+            <name>DontImportJavaLang</name>
+            <ruleset>Code Style</ruleset>
         </rule>
     </rules>
     <includeDerivedFiles>false</includeDerivedFiles>

@@ -16,6 +16,7 @@ package edu.ncsu.csc216.travel.list_utils;
  *         (position in the list), and search for elements in the list.
  *
  *
+ *
  * @author Josh Bloch
  * @author Neal Gafter
  * @see Collection
@@ -29,6 +30,8 @@ package edu.ncsu.csc216.travel.list_utils;
  * @see AbstractList
  * @see AbstractSequentialList
  * @since 1.2
+ * 
+ * @param <E> Class type of elements in this list.
  */
 public interface SortedList<E extends Comparable<E>> {
 
