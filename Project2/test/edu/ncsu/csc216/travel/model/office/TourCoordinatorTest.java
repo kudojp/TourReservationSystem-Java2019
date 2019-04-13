@@ -40,15 +40,6 @@ public class TourCoordinatorTest {
 
 
 	/**
-	 * Test method setFilters(), filteredTourData()
-	 */
-	@Test
-	public void testFilteres() {
-		fail("Not yet implemented");
-	}
-
-
-	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#loadFile(java.lang.String)}.
 	 */
 	@Test
