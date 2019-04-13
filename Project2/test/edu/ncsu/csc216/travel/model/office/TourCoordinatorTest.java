@@ -103,6 +103,8 @@ public class TourCoordinatorTest {
 	public void testGetFilename() {
 		fail("Not yet implemented");
 	}
+	
+	
 
 	/**
 	 * Tests addNewClient(), lsitClients()
