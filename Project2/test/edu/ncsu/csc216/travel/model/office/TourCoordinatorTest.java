@@ -10,7 +10,6 @@ import java.time.LocalDate;
 import org.junit.Before;
 import org.junit.Test;
 
-import edu.ncsu.csc216.travel.model.file_io.TravelWriter;
 import edu.ncsu.csc216.travel.model.file_io.TravelWriterTest;
 import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.CapacityException;
