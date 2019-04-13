@@ -34,7 +34,6 @@
 
 package edu.ncsu.csc216.travel.ui;
 import javax.swing.*;
-import javax.swing.SpringLayout;
 import java.awt.*;
 
 /**

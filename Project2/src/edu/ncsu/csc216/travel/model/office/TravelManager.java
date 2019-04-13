@@ -96,7 +96,7 @@ public interface TravelManager {
     * @return total cost of this client's reservations
     * @throws IllegalArgumentException if clientIndex is out of range
     */
-   public double totalClientCost(int clientIndex);
+   double totalClientCost(int clientIndex);
    
    /** 
     * Get an array that lists all clients for the TripCoordinator
