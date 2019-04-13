@@ -147,9 +147,6 @@ public class TourCoordinator extends Observable implements TravelManager {
 				}
 			}
 		}
-		
-		super.setChanged();
-		super.notifyObservers(this);
 	}
 
 	/* (non-Javadoc)
@@ -214,7 +211,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
-		
+		super.setChanged();
+		super.notifyObservers(this);
 		this.dataNotSaved = true; 
 
 		
@@ -406,7 +404,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// Needed to update filteredTours
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
-
+		super.setChanged();
+		super.notifyObservers(this);
 		this.dataNotSaved = true;
 		
 		return newTour;
@@ -430,7 +429,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
-						
+		super.setChanged();
+		super.notifyObservers(this);
 		return newClient;
 	}
 
@@ -466,7 +466,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// reset the filters (uper.setChanged(); super.notifyObservers(this);)
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
-						
+		super.setChanged();
+		super.notifyObservers(this);			
 		
 		return newReservation;
 	}
@@ -492,6 +493,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		this.dataNotSaved = true;
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
+		super.setChanged();
+		super.notifyObservers(this);
+		
 		return oldReservation;
 	}
 }
