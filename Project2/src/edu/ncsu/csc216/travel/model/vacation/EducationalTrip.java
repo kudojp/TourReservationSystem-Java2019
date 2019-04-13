@@ -5,8 +5,6 @@ package edu.ncsu.csc216.travel.model.vacation;
 
 import java.time.LocalDate;
 
-import edu.ncsu.csc216.travel.model.participants.Client;
-
 /**
  * Class of Educational Tour
  * @author dkudo

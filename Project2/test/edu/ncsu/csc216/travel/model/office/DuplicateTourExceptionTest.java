@@ -6,9 +6,6 @@ package edu.ncsu.csc216.travel.model.office;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-
-import edu.ncsu.csc216.travel.model.vacation.CapacityException;
-
 /**
  * Test class for DuplicateTourException class.
  * @author dkudo

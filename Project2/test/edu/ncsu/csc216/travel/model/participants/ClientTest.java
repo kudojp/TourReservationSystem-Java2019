@@ -21,7 +21,7 @@ import edu.ncsu.csc216.travel.model.vacation.Tour;
  */
 public class ClientTest {
 	
-	/* *
+	/**
 	 * Sets up the Reservation class
 	 * Resets confirmation code.
 	 */

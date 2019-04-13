@@ -482,7 +482,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// Here, CapacityException is thrown when capacity over!
 		Reservation oldReservation = new Reservation(t, c, numInParty, confCode);
 		Reservation returnedOldReservation = t.addOldReservation(oldReservation);
-		assert(oldReservation.equals(returnedOldReservation));
+		assert oldReservation.equals(returnedOldReservation);
 		
 		// When you reach here, it means there was enough space in the specified Tour.
 		// and the new Reservation has been added to the list hold by that Tour.
