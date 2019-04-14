@@ -63,7 +63,7 @@ public class TravelReader {
 				Tour currentTour = null; 
 
 				// if the line represents the tour name (begins with "#"),,,
-				if (currentLine.charAt(0) == '#') {
+				while (currentLine.charAt(0) == '#') {
 					currentTour = callAddNewTour(currentLine);
 					
 					currentLine = fileScanner.nextLine();
