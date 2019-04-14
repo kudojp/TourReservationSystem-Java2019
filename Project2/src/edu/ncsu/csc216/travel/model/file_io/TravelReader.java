@@ -219,7 +219,8 @@ public class TravelReader {
 			}
 			
 			if (theClient == null) {
-				throw new IllegalArgumentException("Could not find the Client of the loaded Reservation of " + reservationLine);
+				throw new IllegalArgumentException("Could not find the Client of the loaded Reservation of " 
+							+ reservationLine + ":" + user + contact);
 			}
 			
 			TourCoordinator.getInstance().addOldReservation(theClient, tour, numInParty, code);
