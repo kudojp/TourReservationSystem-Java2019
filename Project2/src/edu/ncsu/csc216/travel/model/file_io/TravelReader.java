@@ -200,8 +200,8 @@ public class TravelReader {
 			int index1 = userAndContact.indexOf('(');
 			int index2 = userAndContact.indexOf(')');
 			
-			String user = userAndContact.substring(0, index1 - 1);
-			String contact = userAndContact.substring(index1 + 1, index2);
+			String user = userAndContact.substring(0, index1 - 1).trim();
+			String contact = userAndContact.substring(index1 + 1, index2).trim();
 			
 			reservationLineScanner.close();
 			
