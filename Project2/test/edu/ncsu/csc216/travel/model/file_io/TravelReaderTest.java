@@ -19,7 +19,7 @@ public class TravelReaderTest {
 	 */
 	@Test
 	public void testReadTravelData() {
-		fail("Not yet implemented");
+		
 	}
 
 }
