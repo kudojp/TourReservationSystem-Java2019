@@ -53,7 +53,7 @@ public class TravelReader {
 			}
 			
 			// read the iterating lines of (tour > reservations)
-			for (;;) {
+			while (currentLine.trim().length() != 0) {
 				
 				Tour currentTour = null; 
 
