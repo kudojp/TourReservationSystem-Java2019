@@ -83,7 +83,6 @@ public class TravelReader {
 			// just finish this reading file
 			fileScanner.close();
 		}
-		
 	}
 	
 	
