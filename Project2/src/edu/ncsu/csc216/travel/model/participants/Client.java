@@ -122,7 +122,7 @@ public class Client {
 	public void addReservation(Reservation res) {
 		
 		if (!res.getClient().equals(this)) {
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("This reservation is for " + res.getClient().name + ", not for " + this.name);
 		}
 		
 		this.myReservations.add(res);

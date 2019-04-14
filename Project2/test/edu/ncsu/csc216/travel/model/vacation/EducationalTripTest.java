@@ -318,12 +318,9 @@ public class EducationalTripTest {
 		assertTrue(t1.equals(t2));
 		assertFalse(t1.equals(t3));
 		assertFalse(t1.equals(t4));
-		assertFalse(t1.equals(t5));
-		
-		
-		
+		assertFalse(t1.equals(t5));		
 	}
-
+	
 
 	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.vacation.Tour#listOfReservations()}.

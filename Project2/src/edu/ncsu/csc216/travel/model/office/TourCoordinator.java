@@ -473,7 +473,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// When you reach here, it means there was enough space in the specified Tour.
 		// and the new Reservation has been added to the list hold by that Tour.
-		c.addReservation(newReservation);
+		// c.addReservation(newReservation);
 		
 		
 		this.dataNotSaved = true;
@@ -500,8 +500,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// When you reach here, it means there was enough space in the specified Tour.
 		// and the new Reservation has been added to the list hold by that Tour.
-		
-		c.addReservation(returnedOldReservation);
+		// c.addReservation(returnedOldReservation);
 		
 		this.dataNotSaved = true;
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);

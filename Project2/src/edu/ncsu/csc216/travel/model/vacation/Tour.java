@@ -344,6 +344,9 @@ public abstract class Tour implements Comparable<Tour> {
 			//add this new reservation to the Tour object
 			this.res.add(newRes);
 			
+			//add this new reservation to the Client object
+			c.addReservation(newRes);
+			
 			//add number of participants
 			this.numParticipants += i;
 			return newRes;
