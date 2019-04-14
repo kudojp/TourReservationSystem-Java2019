@@ -33,16 +33,21 @@ public class TravelReader {
 		Scanner fileScanner = null;
 		try {
 			fileScanner = new Scanner(new File(filename));
-			String currentLine = fileScanner.next();
+			
+			String currentLine = fileScanner.nextLine();
+			while (currentLine.trim().length() == 0) {
+				currentLine = fileScanner.nextLine();
+			}
 			
 			// client lines
 			while (currentLine.contains("(")) {
 				callAddNewClient(currentLine);
-				currentLine = fileScanner.next();
+				
+				currentLine = fileScanner.nextLine();
+				while (currentLine.trim().length() == 0) {
+					currentLine = fileScanner.nextLine();
+				}
 			}
-			
-			// skip the blank line after client lines
-			currentLine = fileScanner.next();
 			
 			// read the iterating lines of (tour > reservations)
 			for (;;) {
@@ -52,7 +57,11 @@ public class TravelReader {
 				// if the line represents the tour name (begins with "#"),,,
 				if (currentLine.charAt(0) == '#') {
 					currentTour = callAddNewTour(currentLine);
+					
 					currentLine = fileScanner.nextLine();
+					while (currentLine.trim().length() == 0) {
+						currentLine = fileScanner.nextLine();
+					}
 				}
 				
 				
@@ -60,7 +69,10 @@ public class TravelReader {
 				while (!currentLine.contains("#")) {
 					// read in the reservation info from lines
 					callAddOldReservation(currentTour, currentLine);
-					currentLine = fileScanner.next();
+					currentLine = fileScanner.nextLine();
+					while (currentLine.trim().length() == 0) {
+						currentLine = fileScanner.nextLine();
+					}
 				}
 			}
 			
@@ -69,7 +81,6 @@ public class TravelReader {
 		} catch (NoSuchElementException e) {
 			// end of the file 
 			// just finish this reading file
-		} finally {
 			fileScanner.close();
 		}
 		
@@ -81,7 +92,7 @@ public class TravelReader {
 	 * @param clientLine : String which represents Client
 	 * @throws IllegalArgumentException when a Client cannot be added, or it already exists in TourCoordinator.
 	 */
-	private static void callAddNewClient(String clientLine) {
+	public static void callAddNewClient(String clientLine) {
 		int index = clientLine.indexOf('(');
 		
 		// get tokens which represents name and contact
@@ -103,7 +114,7 @@ public class TravelReader {
 	 * @return Tour newly added
 	 * @throws IllegalArgumentException when Tour cannot be added, or it already exists in TourCoordinator.
 	 */
-	private static Tour callAddNewTour(String tourLine) {
+	public static Tour callAddNewTour(String tourLine) {
 		// "ED" or "RC" or "LT"
 		String kind = tourLine.substring(1, 3);
 		int index = tourLine.indexOf(':');
@@ -115,10 +126,11 @@ public class TravelReader {
 		try {
 			// "01/15/19"	
 			String dateToken = tourLineScanner.next();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
+			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
 			LocalDate date = LocalDate.parse(dateToken, formatter); 
 			// integer 10
 			int duration = tourLineScanner.nextInt();
+			
 			// integer 200
 			int cost = Integer.valueOf(tourLineScanner.next().substring(1));
 			// capacity "150" or "150*"
@@ -129,40 +141,46 @@ public class TravelReader {
 			} else {
 				capacity = Integer.valueOf(capacityToken);
 			}
+			
 			tourLineScanner.close();
 			return TourCoordinator.getInstance().addNewTour(kind, name, date, duration, cost, capacity);
 		} catch (DuplicateTourException e) {
 			throw new IllegalArgumentException("Duplicate Tous in a file.");
 		} catch (Exception e) {
 			tourLineScanner.close();
-			throw new IllegalArgumentException("Something is wrong in Tour line.");
+			throw new IllegalArgumentException("Something is wrong in Tour line." + tourLine);
 		}
 	}
 	
 	
 	/**
 	 * Call TourCoordinator.addOldReservation() to add a Reservation represented by a given Tour and String line.
-	 * @return Tour newly added
 	 * @param tour Tour of the Reservation
 	 * @param reservationLine String which represents Reservation
 	 * @throws IllegalArgumentException when a Reservation cannot be added, or it causes capacity over.
 	 */
-	private static void callAddOldReservation(Tour tour, String reservationLine) {
+	public static void callAddOldReservation(Tour tour, String reservationLine) {
 		Scanner reservationLineScanner = new Scanner(reservationLine);
 		try {
 			int code = Integer.valueOf(reservationLineScanner.next());
 			int numInParty = Integer.valueOf(reservationLineScanner.next());
-			String user = reservationLineScanner.next();
-			String contactToken = reservationLineScanner.next();
-			String contact = contactToken.substring(1, contactToken.length() - 1);
+			
+			String userAndContact = reservationLineScanner.nextLine().trim();
+			
+			int index1 = userAndContact.indexOf('(');
+			int index2 = userAndContact.indexOf(')');
+			
+			String user = userAndContact.substring(0, index1 - 1);
+			String contact = userAndContact.substring(index1 + 1, index2);
 			
 			reservationLineScanner.close();
+			
 			TourCoordinator.getInstance().addOldReservation(new Client(user, contact), tour, numInParty, code);
 		} catch (CapacityException e) {
 			reservationLineScanner.close();
 			throw new IllegalArgumentException("Capacity over when reading a file.");
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Something is wring in Reservaiton line.");
+			throw new IllegalArgumentException("Something wring in Reservaiton line. " + e.getCause()+ e.getMessage());
 		}
 	}
 }

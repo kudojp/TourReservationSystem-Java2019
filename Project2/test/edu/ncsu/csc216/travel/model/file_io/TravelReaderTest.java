@@ -20,6 +20,11 @@ public class TravelReaderTest {
 	@Test
 	public void testReadTravelData() {
 		
+		TravelReader.readTravelData("test-files/sample.md");
+		TravelWriter.writeTravelData("test-files/sampleReadOut.md");
+		
 	}
+	
+	
 
 }
