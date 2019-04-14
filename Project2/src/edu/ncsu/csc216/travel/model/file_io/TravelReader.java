@@ -91,7 +91,7 @@ public class TravelReader {
 	 * @param clientLine : String which represents Client
 	 * @throws IllegalArgumentException when a Client cannot be added, or it already exists in TourCoordinator.
 	 */
-	public static void callAddNewClient(String clientLine) {
+	private static void callAddNewClient(String clientLine) {
 		int index = clientLine.indexOf('(');
 		
 		// get tokens which represents name and contact
@@ -113,7 +113,7 @@ public class TravelReader {
 	 * @return Tour newly added
 	 * @throws IllegalArgumentException when Tour cannot be added, or it already exists in TourCoordinator.
 	 */
-	public static Tour callAddNewTour(String tourLine) {
+	private static Tour callAddNewTour(String tourLine) {
 		// "ED" or "RC" or "LT"
 		String kind = tourLine.substring(1, 3);
 		int index = tourLine.indexOf(':');
@@ -166,7 +166,7 @@ public class TravelReader {
 	 * @param reservationLine String which represents Reservation
 	 * @throws IllegalArgumentException when a Reservation cannot be added, or it causes capacity over.
 	 */
-	public static void callAddOldReservation(Tour tour, String reservationLine) {
+	private static void callAddOldReservation(Tour tour, String reservationLine) {
 		Scanner reservationLineScanner = new Scanner(reservationLine);
 		try {
 			int code = Integer.valueOf(reservationLineScanner.next());
