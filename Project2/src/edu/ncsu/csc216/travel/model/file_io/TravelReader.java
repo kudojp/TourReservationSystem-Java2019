@@ -15,7 +15,6 @@ import edu.ncsu.csc216.travel.model.office.DuplicateTourException;
 import edu.ncsu.csc216.travel.model.office.TourCoordinator;
 import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.CapacityException;
-import edu.ncsu.csc216.travel.model.vacation.EducationalTrip;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
 
 /**
@@ -104,7 +103,7 @@ public class TravelReader {
 		try {
 			TourCoordinator.getInstance().addNewClient(customer, contact);
 		} catch (DuplicateClientException e) {
-			throw new IllegalArgumentException("Something is wrong in Client line.");
+			throw new IllegalArgumentException("Duplicate Clients in a file.");
 		}
 	}
 	
@@ -139,7 +138,6 @@ public class TravelReader {
 			int capacity;
 			
 			Tour newTour;
-			
 			// for Educational Trip WITH *
 			if (capacityToken.contains("*")) {
 				capacity = Integer.valueOf(capacityToken.substring(0, capacityToken.length() - 1));
@@ -155,7 +153,7 @@ public class TravelReader {
 			return newTour;
 		} catch (DuplicateTourException e) {
 			tourLineScanner.close();
-			throw new IllegalArgumentException("Duplicate Tous in a file.");
+			throw new IllegalArgumentException("Duplicate Tours in a file.");
 		} catch (Exception e) {
 			tourLineScanner.close();
 			throw new IllegalArgumentException("Something is wrong in Tour line." + tourLine);

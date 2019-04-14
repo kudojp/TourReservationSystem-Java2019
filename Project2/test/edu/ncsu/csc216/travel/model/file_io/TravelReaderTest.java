@@ -7,6 +7,9 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
+import edu.ncsu.csc216.travel.model.office.TourCoordinator;
+import edu.ncsu.csc216.travel.model.vacation.Reservation;
+
 /**
  * Test class for TravelReader class.
  * @author dkudo
@@ -20,9 +23,33 @@ public class TravelReaderTest {
 	@Test
 	public void testReadTravelData() {
 		
-		TravelReader.readTravelData("test-files/sample.md");
-		TravelWriter.writeTravelData("test-files/sampleReadOut.md");
+		//valid file
+		try {
+			TravelReader.readTravelData("test-files/sample.md");
+			TravelWriter.writeTravelData("test-files/sampleReadOut.md");
+		} catch(Exception e) {
+			fail();
+		}
 		
+		TourCoordinator.getInstance().flushLists();
+		Reservation.resetCodeGenerator();
+		//invalid file which has duplicated clients
+		try {
+			TravelReader.readTravelData("test-files/sampleDuplicateClients.md");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("Duplicate Clients in a file.", e.getMessage());
+		}
+		
+		TourCoordinator.getInstance().flushLists();
+		Reservation.resetCodeGenerator();
+		//invalid file which has duplicated clients
+		try {
+			TravelReader.readTravelData("test-files/sampleDuplicateTours.md");
+			fail();
+		} catch (IllegalArgumentException e) {
+			assertEquals("Duplicate Tours in a file.", e.getMessage());
+		}
 	}
 	
 	
