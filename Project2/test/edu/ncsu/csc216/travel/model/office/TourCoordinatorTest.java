@@ -93,15 +93,7 @@ public class TourCoordinatorTest {
 		
 		tc.saveFile("test-files/actualOutputFile2.md");
 		assertTrue(TravelWriterTest.compareFiles("test-files/expectedOutputFile.md", "test-files/actualOutputFile2.md"));
-		
-	}
-
-	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#getFilename()}.
-	 */
-	@Test
-	public void testGetFilename() {
-		fail("Not yet implemented");
+		assertEquals("test-files/actualOutputFile2.md", tc.getFilename());
 	}
 	
 	

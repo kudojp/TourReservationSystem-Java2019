@@ -188,14 +188,23 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public Reservation cancelReservation(int clientIndex, int reservationIndex) {
 		
-		//throw IAE when the given index is out of bounds
+		// return null when the given index is out of bounds
 		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
+<<<<<<< HEAD
 			return null;
 			//throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
 		}
 		if (reservationIndex < 0 || this.reservationsForAClient(clientIndex).length <= reservationIndex) {
 			return null;
 			//throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
+=======
+			//throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
+			return null;
+		}
+		if (reservationIndex < 0 || this.reservationsForAClient(clientIndex).length <= reservationIndex) {
+			//throw new IllegalArgumentException("Index in TC.cancelReservation() out of bounds.");
+			return null;
+>>>>>>> e16cbb64378248b4d46109da0a12bdc9c892e945
 		}
 		
 		// client to of this reservation to be deleted
@@ -224,10 +233,15 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		// just in case, set the filter
 		
-		// throw IAE if the given index is out of bounds
+		// return null if the given index is out of bounds
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
+<<<<<<< HEAD
 			return null;
 			//throw new IllegalArgumentException("Index in TC.cancelTour() out of bounds.");
+=======
+			//throw new IllegalArgumentException("Index in TC.cancelTour() out of bounds.");
+			return null;
+>>>>>>> e16cbb64378248b4d46109da0a12bdc9c892e945
 		}
 		
 		Tour tourToBeDeleted = this.filteredTours.get(filteredTourIndex);
@@ -263,7 +277,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public double totalClientCost(int clientIndex) {
 		
-		// throws IAE if the given index is out of bounds.
+		// throw IAE if the given index is out of bounds.
 		if (clientIndex < 0 || this.customer.size() <= clientIndex) {
 			throw new IllegalArgumentException("Index in TC.totalClientCost() out of bounds.");
 		}
@@ -315,7 +329,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public String[] reservationsForAClient(int clientIndex) {
 		if (clientIndex < 0 || this.customer.size() <= clientIndex) {
-			throw new IllegalArgumentException("Index in TC.reservationsForAClient() out of bounds.");
+			//throw new IllegalArgumentException("Index in TC.reservationsForAClient() out of bounds.");
+			return null;
 		}
 		
 		Client c = this.customer.get(clientIndex);
@@ -335,7 +350,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public String[] reservationsForATour(int filteredTourIndex) {
 		
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			throw new IllegalArgumentException("Index in TC.reservationsForATour() out of bounds.");
+			//throw new IllegalArgumentException("Index in TC.reservationsForATour() out of bounds.");
+			return null;
 		}
 		
 		Tour t = this.filteredTours.get(filteredTourIndex);
@@ -438,13 +454,14 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public Reservation addNewReservation(int clientIndex, int filteredTourIndex, int numInParty)
 			throws CapacityException {
 		
+		//return null when the given index is out of bounds
 		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
-			throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
+			//throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
+			return null;
 		}
-		
-		//throw IAE when the given index is out of bounds
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
+			//throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
+			return null;
 		}
 		
 		Client c = this.customer.get(clientIndex);
