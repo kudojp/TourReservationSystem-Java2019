@@ -24,14 +24,25 @@ public class TravelReaderTest {
 	public void testReadTravelData() {
 		
 		
-		
+		TourCoordinator.getInstance().flushLists();
+		Reservation.resetCodeGenerator();
 		//valid file
-		//try {
+		try {
 			TravelReader.readTravelData("test-files/sample.md");
 			TravelWriter.writeTravelData("test-files/sampleReadOut.md");
-		//} catch(Exception e) {
-		//	fail();
-		//}
+		} catch(Exception e) {
+			fail();
+		}
+		
+		TourCoordinator.getInstance().flushLists();
+		Reservation.resetCodeGenerator();
+		//valid file2
+		try {
+			TravelReader.readTravelData("test-files/sampleWithBlankLines.md");
+			TravelWriter.writeTravelData("test-files/sampleReadOut.md");
+		} catch(Exception e) {
+			fail();
+		}
 		
 		TourCoordinator.getInstance().flushLists();
 		Reservation.resetCodeGenerator();

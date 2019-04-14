@@ -1,6 +1,3 @@
-user1 (contact1)
-user2 (contact2)
-user3 (contact3)
 Over the Top Tours (John 413-299-2999 x29)
 Tetterton Travels (James T)
 Goodnight Travel Agency (Cheryl)
@@ -31,13 +28,3 @@ Family Adventures (919-239-0000)
 #ED-A Day at MOMA:  01/01/20  1   $75  6
 #ED-Birding in Antarctica:  01/12/20  10   $8900  6*
 #ED-A Day at MOMA:  05/01/20  1   $75  6
-#ED-et1:  01/01/19  1   $200  200
-000000  60 user1 (contact1)
-000001  60 user2 (contact2)
-#ED-et2:  01/01/19  2   $200  100*
-000002  60 user2 (contact2)
-#LT-lt:  01/01/19  3   $200  100
-000003  60 user2 (contact2)
-#RC-rc1:  01/01/19  4   $200  100
-000004  60 user3 (contact3)
-#RC-rc2:  01/01/19  5   $200  100

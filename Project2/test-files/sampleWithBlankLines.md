@@ -1,8 +1,15 @@
 Over the Top Tours (John 413-299-2999 x29)
 Tetterton Travels (James T)
 Goodnight Travel Agency (Cheryl)
+
+
 John Doe (John Doe)
 Family Adventures (919-239-0000)
+
+
+
+
+
 #LT-Bicycling the Pacific Coast:  09/09/02  10   $2000  8
 #LT-Great Castles of the British Isles:  04/18/19  10   $3456  10
 #ED-Go Manhattan:  05/05/19  1   $300  10
@@ -14,6 +21,9 @@ Family Adventures (919-239-0000)
 #LT-Great Wall of China:  05/20/19  10   $5500  10
 #ED-Basque for a Day:  06/01/19  1   $180  5*
 #ED-Creole Cooking:  07/01/19  1   $150  6
+
+
+
 #LT-A Week in Tuscany and Umbria:  07/02/19  7   $2700  10
 000011   3 John Doe (John Doe)
 #ED-Costa Rican Wildlife:  07/16/19  4   $2500  6
