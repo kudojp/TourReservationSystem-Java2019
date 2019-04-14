@@ -69,6 +69,7 @@ public class TravelWriterTest {
 		
 		
 		TourCoordinator tc = TourCoordinator.getInstance();
+		tc.flushLists();
 		
 		try {
 			tc.addNewClient("user1", "contact1");
