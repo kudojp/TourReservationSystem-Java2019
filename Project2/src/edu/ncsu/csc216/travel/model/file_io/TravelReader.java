@@ -36,24 +36,24 @@ public class TravelReader {
 		try {
 			fileScanner = new Scanner(new File(filename));
 			
-			String currentLine = fileScanner.nextLine();
-			while (currentLine.trim().length() == 0) {
+			String currentLine = fileScanner.nextLine().trim();
+			while (currentLine.length() == 0) {
 				if (!fileScanner.hasNext()) {
 					break;
 				}
-				currentLine = fileScanner.nextLine();
+				currentLine = fileScanner.nextLine().trim();
 			}
 			
 			// client lines
 			while (currentLine.contains("(")) {
 				TravelReader.callAddNewClient(currentLine);
 				
-				currentLine = fileScanner.nextLine();
-				while (currentLine.trim().length() == 0) {
+				currentLine = fileScanner.nextLine().trim();
+				while (currentLine.length() == 0) {
 					if (!fileScanner.hasNext()) {
 						break;
 					}
-					currentLine = fileScanner.nextLine();
+					currentLine = fileScanner.nextLine().trim();
 				}
 			}
 			
@@ -66,12 +66,12 @@ public class TravelReader {
 				while (currentLine.charAt(0) == '#') {
 					currentTour = callAddNewTour(currentLine);
 					
-					currentLine = fileScanner.nextLine();
-					while (currentLine.trim().length() == 0) {
+					currentLine = fileScanner.nextLine().trim();
+					while (currentLine.length() == 0) {
 						if (!fileScanner.hasNext()) {
 							break;
 						}
-						currentLine = fileScanner.nextLine();
+						currentLine = fileScanner.nextLine().trim();
 					}
 				}
 				
@@ -79,12 +79,12 @@ public class TravelReader {
 				while (currentLine.charAt(0) != '#') {
 					// read in the reservation info from lines
 					callAddOldReservation(currentTour, currentLine);
-					currentLine = fileScanner.nextLine();
-					while (currentLine.trim().length() == 0) {
+					currentLine = fileScanner.nextLine().trim();
+					while (currentLine.length() == 0) {
 						if (!fileScanner.hasNext()) {
 							break;
 						}
-						currentLine = fileScanner.nextLine();
+						currentLine = fileScanner.nextLine().trim();
 					}
 				}
 				
@@ -228,7 +228,7 @@ public class TravelReader {
 			reservationLineScanner.close();
 			throw new IllegalArgumentException("Capacity over when reading a file.");
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Something wrong in Reservaiton line. " + e.getMessage());
+			throw new IllegalArgumentException("Something wrong in Reservation line. " + e.getMessage());
 		}
 	}
 }
