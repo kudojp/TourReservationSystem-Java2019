@@ -26,12 +26,12 @@ public class TravelReaderTest {
 		
 		
 		//valid file
-		try {
+		//try {
 			TravelReader.readTravelData("test-files/sample.md");
 			TravelWriter.writeTravelData("test-files/sampleReadOut.md");
-		} catch(Exception e) {
-			fail();
-		}
+		//} catch(Exception e) {
+		//	fail();
+		//}
 		
 		TourCoordinator.getInstance().flushLists();
 		Reservation.resetCodeGenerator();

@@ -141,8 +141,15 @@ public class TravelReader {
 		try {
 			// "01/15/19"	
 			String dateToken = tourLineScanner.next();
-			DateTimeFormatter formatter = DateTimeFormatter.ofPattern("MM/dd/yy");
-			LocalDate date = LocalDate.parse(dateToken, formatter); 
+			int index1 = dateToken.indexOf('/');
+			int index2 = dateToken.indexOf('/', index1 + 1);
+			//System.out.println(""+index1+index2);
+			int month = Integer.valueOf(dateToken.substring(0, index1));
+			int day = Integer.valueOf(dateToken.substring(index1 + 1, index2));
+			int year = Integer.valueOf(dateToken.substring(index2 + 1));
+			//System.out.println(""+month+day+year);
+			LocalDate date = LocalDate.of(year, month, day);
+			
 			// integer 10
 			int duration = tourLineScanner.nextInt();
 			
