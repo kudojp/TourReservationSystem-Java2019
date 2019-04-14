@@ -326,8 +326,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	@Override
 	public String[] reservationsForAClient(int clientIndex) {
 		if (clientIndex < 0 || this.customer.size() <= clientIndex) {
-			//throw new IllegalArgumentException("Index in TC.reservationsForAClient() out of bounds.");
-			return null;
+			throw new IllegalArgumentException("Index in TC.reservationsForAClient() out of bounds.");
+			//return null;
 		}
 		
 		
@@ -349,8 +349,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public String[] reservationsForATour(int filteredTourIndex) {
 		
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			//throw new IllegalArgumentException("Index in TC.reservationsForATour() out of bounds.");
-			return null;
+			throw new IllegalArgumentException("Index in TC.reservationsForATour() out of bounds.");
+			//return null;
 		}
 		
 		Tour t = this.filteredTours.get(filteredTourIndex);
