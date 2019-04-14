@@ -39,6 +39,9 @@ public class TravelReader {
 			
 			String currentLine = fileScanner.nextLine();
 			while (currentLine.trim().length() == 0) {
+				if (!fileScanner.hasNext()) {
+					break;
+				}
 				currentLine = fileScanner.nextLine();
 			}
 			
@@ -48,6 +51,9 @@ public class TravelReader {
 				
 				currentLine = fileScanner.nextLine();
 				while (currentLine.trim().length() == 0) {
+					if (!fileScanner.hasNext()) {
+						break;
+					}
 					currentLine = fileScanner.nextLine();
 				}
 			}
@@ -63,18 +69,24 @@ public class TravelReader {
 					
 					currentLine = fileScanner.nextLine();
 					while (currentLine.trim().length() == 0) {
+						if (!fileScanner.hasNext()) {
+							break;
+						}
 						currentLine = fileScanner.nextLine();
 					}
+				}
 				
-				
+				// read reservation infos
 				while (currentLine.charAt(0) != '#') {
 					// read in the reservation info from lines
 					callAddOldReservation(currentTour, currentLine);
 					currentLine = fileScanner.nextLine();
 					while (currentLine.trim().length() == 0) {
+						if (!fileScanner.hasNext()) {
+							break;
+						}
 						currentLine = fileScanner.nextLine();
 					}
-				}
 				}
 				
 			}
