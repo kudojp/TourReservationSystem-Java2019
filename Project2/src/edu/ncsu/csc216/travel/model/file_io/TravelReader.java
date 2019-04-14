@@ -10,6 +10,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
+import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
 import edu.ncsu.csc216.travel.model.office.DuplicateClientException;
 import edu.ncsu.csc216.travel.model.office.DuplicateTourException;
 import edu.ncsu.csc216.travel.model.office.TourCoordinator;
@@ -22,6 +23,8 @@ import edu.ncsu.csc216.travel.model.vacation.Tour;
  * @author dkudo
  */
 public class TravelReader {
+	
+	private static SimpleArrayList<Client> clientList;
 
 	/**
 	 * Writes the data currently in the TourCoordinator to the given file
@@ -29,7 +32,7 @@ public class TravelReader {
 	 * @throws IllegalArgumentException : when any error occurs
 	 */
 	public static void readTravelData(String filename) {
-			
+		clientList = new SimpleArrayList<Client>();
 		Scanner fileScanner = null;
 		try {
 			fileScanner = new Scanner(new File(filename));
@@ -41,7 +44,7 @@ public class TravelReader {
 			
 			// client lines
 			while (currentLine.contains("(")) {
-				callAddNewClient(currentLine);
+				TravelReader.callAddNewClient(currentLine);
 				
 				currentLine = fileScanner.nextLine();
 				while (currentLine.trim().length() == 0) {
@@ -100,7 +103,8 @@ public class TravelReader {
 		
 		// add a client represented by this line
 		try {
-			TourCoordinator.getInstance().addNewClient(customer, contact);
+			Client newClient = TourCoordinator.getInstance().addNewClient(customer, contact);
+			clientList.add(newClient);
 		} catch (DuplicateClientException e) {
 			throw new IllegalArgumentException("Duplicate Clients in a file.");
 		}
@@ -182,12 +186,29 @@ public class TravelReader {
 			
 			reservationLineScanner.close();
 			
-			TourCoordinator.getInstance().addOldReservation(new Client(user, contact), tour, numInParty, code);
+			//get the Tour object corresponds to the current Tour
+			Client theClient = null;
+			
+		
+			for (int i = 0 ; i < clientList.size() ; i++){
+				if (clientList.get(i).getName().equals(user)
+					&& clientList.get(i).getContact().equals(contact)){
+		
+					theClient =  clientList.get(i); 
+					break;
+				}
+			}
+			
+			if (theClient == null) {
+				throw new IllegalArgumentException("Could not find the Client of the loaded Reservation of " + reservationLine);
+			}
+			
+			TourCoordinator.getInstance().addOldReservation(theClient, tour, numInParty, code);
 		} catch (CapacityException e) {
 			reservationLineScanner.close();
 			throw new IllegalArgumentException("Capacity over when reading a file.");
 		} catch (Exception e) {
-			throw new IllegalArgumentException("Something wring in Reservaiton line. " + e.getCause()+ e.getMessage());
+			throw new IllegalArgumentException("Something wrong in Reservaiton line. " + e.getMessage());
 		}
 	}
 }

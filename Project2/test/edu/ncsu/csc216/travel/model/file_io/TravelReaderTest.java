@@ -23,6 +23,8 @@ public class TravelReaderTest {
 	@Test
 	public void testReadTravelData() {
 		
+		
+		
 		//valid file
 		try {
 			TravelReader.readTravelData("test-files/sample.md");

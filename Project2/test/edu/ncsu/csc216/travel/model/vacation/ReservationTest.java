@@ -184,6 +184,9 @@ public class ReservationTest {
 			t1.addOldReservation(r1);
 			t1.addOldReservation(r2);
 			t2.addOldReservation(r3);
+			c1.addReservation(r1);
+			c2.addReservation(r2);
+			c1.addReservation(r3);
 			
 		} catch (CapacityException e) {
 			fail();

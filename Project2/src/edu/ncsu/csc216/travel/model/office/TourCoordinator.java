@@ -51,7 +51,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 * only if this class has not been instantiated.
 	 */
 	private TourCoordinator() {
-		this.dataNotSaved = true;
+		this.dataNotSaved = false;
 		this.customer = new SimpleArrayList<Client>();
 		this.tours = new SortedLinkedListWithIterator<Tour>();
 		this.kindFilter = "Any";
@@ -97,9 +97,12 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 */
 	@Override
 	public void loadFile(String filename) {
+		
+		this.flushLists();
 		TravelReader.readTravelData(filename);
 		this.filename = filename;
 		this.dataNotSaved = false;
+		
 		super.setChanged();
 		super.notifyObservers(this);
 	}
@@ -320,7 +323,9 @@ public class TourCoordinator extends Observable implements TravelManager {
 			return null;
 		}
 		
+		
 		Client c = this.customer.get(clientIndex);
+		
 		String[] returnArray = new String[c.getNumberOfReservations()];
 		
 		for (int i = 0 ; i < c.getNumberOfReservations() ; i++) {
@@ -458,13 +463,11 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// Here, CapacityException may be thrown when capacity over!
 		Reservation newReservation = t.createReservationFor(c, numInParty);
 		
+		
 		// When you reach here, it means there was enough space in the specified Tour.
 		// and the new Reservation has been added to the list hold by that Tour.
+		c.addReservation(newReservation);
 		
-		
-		// I DON'T have to add new Reservation to the reservation list hold by the specified client.
-		// It is already done in Tour.createReservationFor(c, numInParty);
-		//// c.addReservation(newReservation);
 		
 		this.dataNotSaved = true;
 		
@@ -491,9 +494,7 @@ public class TourCoordinator extends Observable implements TravelManager {
 		// When you reach here, it means there was enough space in the specified Tour.
 		// and the new Reservation has been added to the list hold by that Tour.
 		
-		// I DON'T have to add new Reservation to the reservation list hold by the specified client.
-		// It is already done in Tour.createReservationFor(c, numInParty);
-		//// c.addReservation(oldReservation);
+		c.addReservation(returnedOldReservation);
 		
 		this.dataNotSaved = true;
 		this.setFilters(this.kindFilter, this.durationMinFilter, this.durationMaxFilter);
