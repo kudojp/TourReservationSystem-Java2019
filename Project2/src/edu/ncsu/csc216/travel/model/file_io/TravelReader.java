@@ -53,7 +53,7 @@ public class TravelReader {
 			}
 			
 			// read the iterating lines of (tour > reservations)
-			while (currentLine.trim().length() != 0) {
+			for (;;) {
 				
 				Tour currentTour = null; 
 
@@ -65,11 +65,9 @@ public class TravelReader {
 					while (currentLine.trim().length() == 0) {
 						currentLine = fileScanner.nextLine();
 					}
-				}
 				
 				
-				// if the line does not represent the client info, then it is the next tour
-				while (!currentLine.contains("#")) {
+				while (currentLine.charAt(0) != '#') {
 					// read in the reservation info from lines
 					callAddOldReservation(currentTour, currentLine);
 					currentLine = fileScanner.nextLine();
@@ -77,6 +75,8 @@ public class TravelReader {
 						currentLine = fileScanner.nextLine();
 					}
 				}
+				}
+				
 			}
 			
 		} catch (FileNotFoundException e) {
