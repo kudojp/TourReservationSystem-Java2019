@@ -6,7 +6,6 @@ package edu.ncsu.csc216.travel.model.file_io;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.NoSuchElementException;
 import java.util.Scanner;
 
@@ -131,12 +130,13 @@ public class TravelReader {
 	 */
 	private static Tour callAddNewTour(String tourLine) {
 		// "ED" or "RC" or "LT"
-		String kind = tourLine.substring(1, 3);
-		int index = tourLine.indexOf(':');
+		int idx1 = tourLine.indexOf('-');
+		String kind = tourLine.substring(1, idx1).trim();
+		int idx2 = tourLine.indexOf(':');
 		// "Tour name"
-		String name = tourLine.substring(4, index);
+		String name = tourLine.substring(idx1 + 1, idx2);
 		// the rest of line signifies date, duration, cost, capacity
-		Scanner tourLineScanner  = new Scanner(tourLine.substring(index + 1));
+		Scanner tourLineScanner  = new Scanner(tourLine.substring(idx2 + 1));
 		
 		try {
 			// "01/15/19"	
