@@ -15,6 +15,7 @@ import edu.ncsu.csc216.travel.model.office.DuplicateTourException;
 import edu.ncsu.csc216.travel.model.office.TourCoordinator;
 import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.CapacityException;
+import edu.ncsu.csc216.travel.model.vacation.EducationalTrip;
 import edu.ncsu.csc216.travel.model.vacation.Tour;
 
 /**
@@ -136,15 +137,24 @@ public class TravelReader {
 			// capacity "150" or "150*"
 			String capacityToken = tourLineScanner.next();
 			int capacity;
+			
+			Tour newTour;
+			
+			// for Educational Trip WITH *
 			if (capacityToken.contains("*")) {
-				capacity = 2 * Integer.valueOf(capacityToken.substring(0, capacityToken.length() - 1));
+				capacity = Integer.valueOf(capacityToken.substring(0, capacityToken.length() - 1));
+				newTour = TourCoordinator.getInstance().addNewTour(kind, name, date, duration, cost, capacity);
+			// for any tour WITHOUT * ()
 			} else {
 				capacity = Integer.valueOf(capacityToken);
+				newTour = TourCoordinator.getInstance().addNewTour(kind, name, date, duration, cost, capacity);
+				newTour.fixCapacity();
 			}
 			
 			tourLineScanner.close();
-			return TourCoordinator.getInstance().addNewTour(kind, name, date, duration, cost, capacity);
+			return newTour;
 		} catch (DuplicateTourException e) {
+			tourLineScanner.close();
 			throw new IllegalArgumentException("Duplicate Tous in a file.");
 		} catch (Exception e) {
 			tourLineScanner.close();
