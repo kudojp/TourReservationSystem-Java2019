@@ -41,14 +41,6 @@ public class TourCoordinatorTest {
 
 
 	/**
-	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#loadFile(java.lang.String)}.
-	 */
-	@Test
-	public void testLoadFile() {
-		fail("Not yet implemented");
-	}
-
-	/**
 	 * Test method for {@link edu.ncsu.csc216.travel.model.office.TourCoordinator#saveFile(java.lang.String)}.
 	 */
 	@Test

@@ -7,6 +7,7 @@ import java.time.LocalDate;
 import java.util.Observable;
 import edu.ncsu.csc216.travel.list_utils.SimpleArrayList;
 import edu.ncsu.csc216.travel.list_utils.SortedLinkedListWithIterator;
+import edu.ncsu.csc216.travel.model.file_io.TravelReader;
 import edu.ncsu.csc216.travel.model.file_io.TravelWriter;
 import edu.ncsu.csc216.travel.model.participants.Client;
 import edu.ncsu.csc216.travel.model.vacation.CapacityException;
@@ -96,8 +97,8 @@ public class TourCoordinator extends Observable implements TravelManager {
 	 */
 	@Override
 	public void loadFile(String filename) {
-		// TODO Auto-generated method stub
-
+		TravelReader.readTravelData(filename);
+		this.filename = filename;
 		this.dataNotSaved = false;
 		super.setChanged();
 		super.notifyObservers(this);

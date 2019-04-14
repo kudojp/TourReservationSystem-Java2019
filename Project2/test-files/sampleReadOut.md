@@ -1,3 +1,6 @@
+user1 (contact1)
+user2 (contact2)
+user3 (contact3)
 Over the Top Tours (John 413-299-2999 x29)
 Tetterton Travels (James T)
 Goodnight Travel Agency (Cheryl)
@@ -5,6 +8,16 @@ John Doe (John Doe)
 Family Adventures (919-239-0000)
 
 #LT-Bicycling the Pacific Coast:  09/09/02  10   $2000  8
+#ED-et1:  01/01/19  1   $200  200
+000000  60 user1 (contact1)
+000001  60 user2 (contact2)
+#ED-et2:  01/01/19  2   $200  100*
+000002  60 user2 (contact2)
+#LT-lt:  01/01/19  3   $200  100
+000003  60 user2 (contact2)
+#RC-rc1:  01/01/19  4   $200  100
+000004  60 user3 (contact3)
+#RC-rc2:  01/01/19  5   $200  100
 #LT-Great Castles of the British Isles:  04/18/19  10   $3456  10
 #ED-Go Manhattan:  05/05/19  1   $300  10
 #RC-Amsterdam to Basel:  05/05/19  8   $3999  20
