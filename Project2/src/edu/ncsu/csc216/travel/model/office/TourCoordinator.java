@@ -455,12 +455,10 @@ public class TourCoordinator extends Observable implements TravelManager {
 		
 		//return null when the given index is out of bounds
 		if (clientIndex < 0 || this.listClients().length <= clientIndex) {
-			//throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
-			return null;
+			throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
 		}
 		if (filteredTourIndex < 0 || this.filteredTours.size() <= filteredTourIndex) {
-			//throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
-			return null;
+			throw new IllegalArgumentException("Index in TC.addNewReservation() out of bounds.");
 		}
 		
 		Client c = this.customer.get(clientIndex);
