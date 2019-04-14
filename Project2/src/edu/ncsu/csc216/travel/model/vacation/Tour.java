@@ -329,8 +329,10 @@ public abstract class Tour implements Comparable<Tour> {
 			
 			//add this new reservation to the Tour object
 			this.res.add(newRes);
+			
 			//add this new reservation to the Client object
 			c.addReservation(newRes);
+			
 			//add number of participants
 			this.numParticipants += i;
 			return newRes;
@@ -384,6 +386,9 @@ public abstract class Tour implements Comparable<Tour> {
 		
 		// add oldRes to the Reservation list of this Tour
 		this.res.add(oldRes);
+		
+		//add this new reservation to the Client object
+		oldRes.getClient().addReservation(oldRes);
 		
 		// add number of participants
 		this.numParticipants += oldRes.getNumInParty();
