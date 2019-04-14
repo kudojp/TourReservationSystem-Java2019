@@ -99,7 +99,14 @@ public class TourCoordinator extends Observable implements TravelManager {
 	public void loadFile(String filename) {
 		
 		this.flushLists();
-		TravelReader.readTravelData(filename);
+		
+		try {
+			TravelReader.readTravelData(filename);
+		} catch (Exception e) {
+			this.flushLists();
+			throw e;
+		}
+		
 		this.filename = filename;
 		this.dataNotSaved = false;
 		
