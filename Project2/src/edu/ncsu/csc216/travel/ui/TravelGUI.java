@@ -872,7 +872,10 @@ public class TravelGUI extends JFrame implements ActionListener, Observer {
     * @author Jo Perry
     */
    private class TourTableModel extends AbstractTableModel {
-      /** Column names for the table */
+    
+	/** serialVersionUID */
+	private static final long serialVersionUID = 1L;
+	/** Column names for the table */
       private String[] columns = {"Kind-Tour Name", "Start Date", "Days", "Price", "Cap"};
       /** Data stored in the table */
       private Object[][] data = null; 
