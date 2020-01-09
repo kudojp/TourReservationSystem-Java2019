@@ -54,11 +54,13 @@ Thanks to the campus students for contributing to this list of FAQs for Project 
 
 #### Shutdown
 
-In Use Case 13: Shutdown, how should I handle the user clicking the close button in the top corner of the window?
-Clicking the close button should have the same effect as selecting File -> Quit.
+* In Use Case 13: Shutdown, how should I handle the user clicking the close button in the top corner of the window?
 
-Should the program prompt the user to save before ending, or save automatically before ending?
-The program should prompt the user to save before ending if there are any changes in data to save. (The user can opt not to save.)
+   Clicking the close button should have the same effect as selecting File -> Quit.
+
+* Should the program prompt the user to save before ending, or save automatically before ending?
+
+   The program should prompt the user to save before ending if there are any changes in data to save. (The user can opt not to save.)
 
 #### Files
 
