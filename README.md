@@ -14,8 +14,9 @@
 * ユーザはローカルのテキストファイルをインポートすることができる
 
 ## 仕様
-プロジェクトの仕様は[CSC216P2P1.pdf](https://github.com/kudojp/TravelManager/blob/master/CSC216P2P1.pdf)で与えられた。
+プロジェクトの仕様は[CSC216P2P1.pdf](https://github.com/kudojp/TravelManager/blob/master/CSC216P2P1.pdf)で与えられた。このプロジェクトのXMLクラス図は以下である。
 
+![image](https://user-images.githubusercontent.com/44487754/73433247-c0a66e00-4387-11ea-9050-cf631aedaf6f.png)
 
 ## 設計
 プロジェクトの設計およびその実装手順は[CSC216P2P2.pdf](CSC216P2P2.pdf)で与えられた。MVCのうちVewとControllerに関しては講師に与えられ、Model部分をUML図を元にeclipseで実装した。データの永続化はローカルのテキストファイルで行なことができる。
