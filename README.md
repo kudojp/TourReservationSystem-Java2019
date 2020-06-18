@@ -6,7 +6,7 @@
 
 このプロジェクトの完成物は Java のスタンドアローンアプリケーションであり、旅行管理会社の予約システムを実装している。実行可能ファイルは[TravelManager.jar](https://github.com/kudojp/TravelManager/blob/master/TravelManager.jar)である。
 
-## 仕様
+## 要件の要約
 
 プロジェクトの仕様は[CSC216P2P1.pdf](https://github.com/kudojp/TravelManager/blob/master/CSC216P2P1.pdf)で与えられた。実現される機能は以下の通りである。
 
