@@ -17,7 +17,7 @@
 
 ## 実行方法
 
-1. 実行可能ファイルを[/TravelManager.jar](https://github.com/kudojp/TravelManager/blob/master/TravelManager.jar)からダンロードする。
+1. 実行可能ファイルを[/TravelManager.jar](https://github.com/kudojp/TravelManager/blob/master/TravelManager.jar)からダウンロードする。
 2. ローカル環境で jar ファイルを起動する。
 3. 画面左上の File から、File>Load でデータをインポートする(初回時には File>New を選択)
 4. 使用後は左上の File から、File>Save でデータをアウトポートする。
