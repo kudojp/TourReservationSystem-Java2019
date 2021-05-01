@@ -81,7 +81,7 @@
 
 ## Summary
 
-This ia s standalone application for staffs working for travel agencies to manage reservations of one's clients. I developed this system as the final project of [2019-Spring CSC216(Programming Concept)](https://people.engr.ncsu.edu/sesmith5/teaching/syllabi/S19_CSC216_Syllabus.pdf) in North Carolina State University in my one academic year program. In this project, I worked on these on the solid understandings of error handlings, testing, design patterns(e.g singleton pattern), data structure.
+This ia s standalone application for a staff of travel agencies to manage reservations of one's clients. I developed this system as the final project of [2019-Spring CSC216(Programming Concept)](https://people.engr.ncsu.edu/sesmith5/teaching/syllabi/S19_CSC216_Syllabus.pdf) in North Carolina State University in my one academic year program. In this project, I worked on these on the solid understandings of error handlings, testing, design patterns(e.g singleton pattern), data structure.
 
 1. Implementation of model layers (See [here](https://github.com/kudojp/TravelManager/tree/master/Project2/src/edu/ncsu/csc216/travel/model]))
   - This includes [I/O class of text files for saving data](https://github.com/kudojp/TravelManager/tree/master/Project2/src/edu/ncsu/csc216/travel/model/file_io)
