@@ -81,7 +81,7 @@
 
 ## Summary
 
-This ia s standalone application for a staff of travel agencies to manage reservations of one's clients. I developed this system as the final project of [2019-Spring CSC216(Programming Concept)](https://people.engr.ncsu.edu/sesmith5/teaching/syllabi/S19_CSC216_Syllabus.pdf) in North Carolina State University in my one academic year program. In this project, I worked on these on the solid understandings of error handlings, testing, design patterns(e.g singleton pattern), data structure.
+This is a Java standalone application for a staff of travel agencies to manage tour reservations of one's clients. I developed this system as a final project of [2019-Spring CSC216(Programming Concept)](https://people.engr.ncsu.edu/sesmith5/teaching/syllabi/S19_CSC216_Syllabus.pdf) in North Carolina State University in my one year exchange program. In this project, I worked on implementation on the solid understandings of error handlings, testing, design patterns(e.g singleton pattern), data structure, etc.
 
 1. Implementation of model layers (See [here](https://github.com/kudojp/TravelManager/tree/master/Project2/src/edu/ncsu/csc216/travel/model]))
   - This includes [I/O class of text files for saving data](https://github.com/kudojp/TravelManager/tree/master/Project2/src/edu/ncsu/csc216/travel/model/file_io)
@@ -123,7 +123,7 @@ Specifications of this project was given in [/CSC216P2P1.pdf](https://github.com
 5. User can import saved data from local text file and save data from text file.
    - When importing from / exporting to a text file, user can specify the name of the file.
 
-<img width="1051" alt="travelmanager-menu" src="https://user-images.githubusercontent.com/44487754/86505764-cb1bd680-be03-11ea-816b-0f581304cb90.png">
+<img width="1051" alt="travelmanager-menu" src="https://user-images.githubusercontent.com/44487754/116785472-b3b98280-aad4-11eb-82d4-5c043c26904b.png">
 
 
 ## Design
