@@ -132,7 +132,7 @@ Design of this project and its implementation process was given in [/CSC216P2P2.
 
 ![image](https://user-images.githubusercontent.com/44487754/73433247-c0a66e00-4387-11ea-9050-cf631aedaf6f.png)
 
-I will list some of design where I learned a lot.
+I will list some of the designs patterns where I learned a lot.
 
 ### [TourCoordinator class](https://github.com/kudojp/TravelManager/blob/master/Project2/src/edu/ncsu/csc216/travel/model/office/TourCoordinator.java)
 
